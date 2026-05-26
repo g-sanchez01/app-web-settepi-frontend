@@ -4,7 +4,7 @@
 </script>
 
 <template>
-    <div>
+    <div class="ml-72">
         <PerfilHeader/>
         <UserCard/>
     </div>

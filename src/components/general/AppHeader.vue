@@ -1,36 +1,38 @@
 <script setup>
-
+    import { ref } from 'vue';
 </script>
 
 <template>
-    <header class="w-full flex items-start justify-between mb-8">
+    <header class="w-full flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-8">
 
         <!--Izquierda-->
-        <div>
-            <h1 class="text-4xl font-bold text-slate-900">Buen día, Carolina Sánchez</h1>
+        <div class="text-left">
+            <h1 class="text-3xl md:text-4xl font-bold text-slate-900">Buen día, Carolina Sánchez</h1>
 
-            <div class="flex items-center gap-2 mt-3 text-slate-500">
+            <div class="flex items-center md:justify-start gap-2 mt-3 text-slate-500 text-sm md:text-base">
                 <i class="pi pi-clock"></i>
                 <span>lunes, 25 de mayo de 2026</span>
             </div>
         </div>
 
-        <!--Derecha-->
-        <div class="flex items-center gap-5">
+        <!--Derecha (solo tamaño md en adelante)-->
+        <div class="hidden md:flex flex-col md:flex-row items-center gap-3 md:gap-5 text-center md:text-right">
 
-            <div class="text-right">
-                <p class="text-slate-500">Departamento</p>
-
-                <p class="text-2xl font-bold text-slate-900">Comunicación Interna</p>
+            <div>
+                <p class="text-slate-500 text-sm">Departamento</p>
+                <p class="text-lg md:text-2xl font-bold text-slate-900">Comunicación Interna</p>
             </div>
 
             <div
-                class="w-16 h-16 rounded-full bg-yellow-400 flex items-center justify-center font-bold text-2xl text-slate-900"
+                class="w-12 h-12 md:w-16 md:h-16 rounded-full bg-yellow-400 flex items-center justify-center font-bold text-lg md:text-2xl text-slate-900"
             >
                 CS
             </div>
+
         </div>
 
     </header>
+
+
 </template>
 

@@ -1,6 +1,12 @@
 <script setup>
     import { useRouter } from 'vue-router'
 
+    defineProps({
+        open: Boolean
+    })
+
+    defineEmits(['close'])
+
     const router = useRouter()
 
     const cerrarSesion = () => {
@@ -15,10 +21,24 @@
 </script>
 
 <template>
-    <aside class="w-72 h-screen bg-[#005B96] text-white flex flex-col justify-between">
+    <aside class="fixed
+            top-0 left-0
+            z-50
+            w-72 h-screen
+            bg-[#005B96]
+            text-white
+            flex flex-col justify-between
+            transition-transform duration-300"
 
-        
+            :class="
+            open
+                ? 'translate-x-0'
+                : '-translate-x-full md:translate-x-0'
+        "          
+    >   
         <div>
+
+            
             <!--Logo-->
             <div class="p-6 border-b border-white/10">
                 <img 
@@ -82,7 +102,7 @@
                     to="/"
                     class="flex items-center gap-4 px-4 py-4 rounded-2xl hover:bg-white/10 transition"
                 >
-                    <i class="pi pi-user text-xl"></i>
+                    <i class="pi pi-cog text-xl"></i>
                     <span class="text-lg">Configuración</span>
                     
                 </router-link>

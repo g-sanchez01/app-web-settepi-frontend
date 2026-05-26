@@ -3,7 +3,7 @@
 </script>
 
 <template>
-    <header class="w-full flex items-start justify-between mb-8">
+    <header class="w-full flex items-start justify-between mb-5">
 
         <!--Izquierda-->
         <div>

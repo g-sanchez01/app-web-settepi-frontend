@@ -56,19 +56,19 @@
             </div>
 
             <!-- Información -->
-            <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-5 mt-5">
+            <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4 mt-4 w-full">
 
                 <!-- Email -->
-                <div class="bg-gray-100 rounded-2xl p-5 flex gap-4 items-start">
+                <div class="w-full bg-gray-100 rounded-2xl px-6 py-4 min-h-[95px] flex gap-4 items-center">
 
-                    <div class="text-blue-700 text-xl">
+                    <div class="text-blue-700 text-xl shrink-0">
                         <i class="pi pi-envelope"></i>
                     </div>
 
-                    <div>
-                        <p class="text-sm text-gray-400">Email</p>
+                    <div class="min-w-0">
+                        <p class="text-xs text-gray-400">Email</p>
 
-                        <p class="font-medium text-slate-800">
+                        <p class="text-sm font-medium text-slate-800 break-words">
                             {{ user.email }}
                         </p>
                     </div>
@@ -76,7 +76,7 @@
                 </div>
 
                 <!-- Teléfono -->
-                <div class="bg-gray-50 rounded-2xl p-5 flex gap-4 items-start">
+                <div class="w-full bg-gray-100 rounded-2xl px-6 py-4 min-h-[95px] flex gap-4 items-center">
 
                     <div class="text-blue-700 text-xl">
                         <i class="pi pi-phone"></i>
@@ -85,7 +85,7 @@
                     <div>
                         <p class="text-sm text-gray-400">Teléfono</p>
 
-                        <p class="font-medium text-slate-800">
+                        <p class="text-sm font-medium text-slate-800">
                             {{ user.phone }}
                         </p>
                     </div>
@@ -93,7 +93,7 @@
                 </div>
 
                 <!-- Ubicación -->
-                <div class="bg-gray-50 rounded-2xl p-5 flex gap-4 items-start">
+                <div class="w-full bg-gray-100 rounded-2xl px-6 py-4 min-h-[95px] flex gap-4 items-center">
 
                     <div class="text-blue-700 text-xl">
                         <i class="pi pi-map-marker"></i>
@@ -102,7 +102,7 @@
                     <div>
                         <p class="text-sm text-gray-400">Ubicación</p>
 
-                        <p class="font-medium text-slate-800">
+                        <p class="text-sm font-medium text-slate-800">
                             {{ user.location }}
                         </p>
                     </div>
@@ -110,7 +110,7 @@
                 </div>
 
                 <!-- Ingreso -->
-                <div class="bg-gray-50 rounded-2xl p-5 flex gap-4 items-start">
+                <div class="bg-gray-50 rounded-2xl p-5 flex gap-4 items-center">
 
                     <div class="text-blue-700 text-xl">
                         <i class="pi pi-calendar"></i>
@@ -119,7 +119,7 @@
                     <div>
                         <p class="text-sm text-gray-400">Ingreso</p>
 
-                        <p class="font-medium text-slate-800">
+                        <p class="text-sm font-medium text-slate-800">
                             {{ user.entryDate }}
                         </p>
                     </div>
