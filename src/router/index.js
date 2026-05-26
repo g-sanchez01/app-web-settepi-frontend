@@ -33,6 +33,10 @@ const router = createRouter({
         {
           path: 'encuestas/mis-ideas',
           component: () => import('../views/UsersGeneral/Encuestas/TusIdeasNosMueven/HomeIdeasView.vue')
+        },
+        {
+          path: 'encuestas/settepi-te-escucha',
+          component: () => import('../views/UsersGeneral/Encuestas/Feedback/HomeFeedbackView.vue')
         }
       ]
     }
