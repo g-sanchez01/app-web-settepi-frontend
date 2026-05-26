@@ -70,11 +70,21 @@
                 </router-link>
 
                 <router-link
-                    to="/"
-                    class="flex items-center gap-4 px-4 py-4 rounded-2xl hover:bg-white/10 transition"
+                    to="/general/encuestas"
+                    v-slot="{ isActive }"
                 >
-                    <i class="pi pi-file text-xl"></i>
-                    <span class="text-lg">Encuestas</span>
+                    <div
+                        :class="[
+                            'flex items-center gap-4 px-4 py-4 rounded-2xl transition',
+                            isActive
+                                ? 'bg-[#0077C8] shadow-md'
+                                : 'hover:bg-white/10'
+                        ]"
+                    >
+                        <i class="pi pi-file text-xl"></i>
+                        <span class="text-lg">Encuestas</span>
+                    </div>
+                
                 </router-link>
 
                 <router-link

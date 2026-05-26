@@ -4,7 +4,7 @@
 </script>
 
 <template>
-    <div class="ml-72">
+    <div class="flex-1 p-4 md:p-4 md:ml-72 overflow-x-hidden">
         <PerfilHeader/>
         <UserCard/>
     </div>

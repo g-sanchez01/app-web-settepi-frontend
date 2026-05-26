@@ -8,10 +8,10 @@
         <!--Izquierda-->
         <div class="w-full">
 
-            <h1 class="text-2xl sm:text-3xl md:text-4xl font-medium text-slate-900">Mi Perfil</h1>
+            <h1 class="text-2xl sm:text-3xl md:text-4xl font-medium text-slate-900">Mis Ideas</h1>
 
             <div class="flex items-center gap-2 mt-2 sm:mt-3 text-sm sm:text-base text-slate-600">
-                <span>Información personal y profesional</span>
+                <span>Aquí consulta tus ideas.</span>
             </div>
         </div>
 
