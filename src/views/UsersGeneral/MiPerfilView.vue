@@ -1,10 +1,12 @@
 <script setup>
-
+    import PerfilHeader from '@/components/general/PerfilHeader.vue';
+    import UserCard from '@/components/general/UserCard.vue';
 </script>
 
 <template>
     <div>
-        <h1>Desde Mi Perfil</h1>
+        <PerfilHeader/>
+        <UserCard/>
     </div>
 </template>
 

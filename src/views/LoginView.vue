@@ -13,7 +13,18 @@
             data.nomina === usuario &&
             data.password === password
         ) {
+
+            // Guardar sesión
+            localStorage.setItem('token', 'sesion_activa')
+
+            localStorage.setItem('usuario', JSON.stringify({
+                nombre: 'Carolina Sánchez',
+                departamento: 'Comunicación Interna',
+                nomina: usuario
+            }))
+
             router.push('/general/home')
+
         } else {
             alert('Número de nómina o contraseña incorrectos')
         }
