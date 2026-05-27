@@ -35,8 +35,16 @@ const router = createRouter({
           component: () => import('../views/UsersGeneral/Encuestas/TusIdeasNosMueven/HomeIdeasView.vue')
         },
         {
+          path: 'encuestas/mis-ideas/idea-nueva',
+          component: () => import('../views/UsersGeneral/Encuestas/TusIdeasNosMueven/IdeaNuevaView.vue')
+        },
+        {
           path: 'encuestas/settepi-te-escucha',
           component: () => import('../views/UsersGeneral/Encuestas/Feedback/HomeFeedbackView.vue')
+        },
+        {
+          path: 'encuestas/settepi-te-escucha/nueva-situacion',
+          component: () => import('../views/UsersGeneral/Encuestas/Feedback/FeedbackNuevoView.vue')
         }
       ]
     }
