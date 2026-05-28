@@ -1,33 +1,18 @@
 <script setup>
+    import AppSpinner from '@/components/ui/AppSpinner.vue'
     import { useRouter } from 'vue-router'
+    import { useAuth } from '@/composables/useAuth'
 
     const router = useRouter()
 
-    const login = (data) => {
+    const { login, loading, error } = useAuth()
 
-        // Datos temporales
-        const usuario = '12345678'
-        const password = 'admin123456'
+    const handleSubmit = async (data) => {
 
-        if (
-            data.nomina === usuario &&
-            data.password === password
-        ) {
-
-            // Guardar sesión
-            localStorage.setItem('token', 'sesion_activa')
-
-            localStorage.setItem('usuario', JSON.stringify({
-                nombre: 'Carolina Sánchez',
-                departamento: 'Comunicación Interna',
-                nomina: usuario
-            }))
-
-            router.push('/general/home')
-
-        } else {
-            alert('Número de nómina o contraseña incorrectos')
-        }
+        await login({
+            numero_nomina: data.nomina,
+            imss: data.password
+        })
     }
 
 </script>
@@ -37,8 +22,15 @@
         class="min-h-screen bg-cover bg-center relative flex items-center justify-center"
         style="background-image: url('/images/LoginPortada.jpeg')"
     >
+        <AppSpinner
+           :show="loading" logo="/images/logoAzul.png" text="Validando credenciales..."
+        />
+
         <!-- Overlay azul -->
-        <div class="absolute inset-0" style="background-color: rgba(0, 89, 143, 0.81);"></div>
+        <div
+            class="absolute inset-0"
+            style="background-color: rgba(0, 89, 143, 0.81);"
+        ></div>
         
         <!--Card-->
         <div class="relative z-10 w-full max-w-lg mx-4 sm:mx-6 md:mx-0 rounded-lg p-6 sm:p-8 md:p-10 shadow-xl" style="background-color: rgba(0, 0, 0, 0.20);">
@@ -59,7 +51,7 @@
             <FormKit
                 type="form"
                 :actions="false"
-                @submit="login"
+                @submit="handleSubmit"
                 incomplete-message="El número de nomina o contraseña son incorrectos"
                 form-class="space-y-6"
             >
@@ -164,9 +156,18 @@
                     />
                 </div>
 
+                <p
+                    v-if="error"
+                    class="text-red-300 text-center mt-4"
+                >
+                    {{ error }}
+                </p>
+
 
             </FormKit>
 
         </div>
+
+
     </div>
 </template>
