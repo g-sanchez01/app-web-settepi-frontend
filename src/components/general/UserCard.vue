@@ -1,16 +1,7 @@
 <script setup>
-    const user = {
-        initials: 'CS',
-        name: 'Carolina Sánchez',
-        role: 'Desarrollador Jr',
-        employeeId: '19201051',
-        email: 'g.sanchez@settepi.com',
-        phone: '+52 55 1234 5678',
-        location: 'Monterrey, Nuevo León',
-        entryDate: '15 de marzo, 2020',
-        years: 6,
-        courses: 8
-    }
+    import { useUser } from '@/composables/useUser';
+
+    const { user } = useUser()
 </script>
 
 <template>

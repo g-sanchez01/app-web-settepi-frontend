@@ -1,5 +1,7 @@
 <script setup>
-    import { ref } from 'vue';
+    import { useUser } from '@/composables/useUser';
+
+    const { user, currentDate } = useUser()
 </script>
 
 <template>
@@ -7,11 +9,11 @@
 
         <!--Izquierda-->
         <div class="text-left">
-            <h1 class="text-3xl md:text-4xl font-bold text-slate-900">Buen día, Carolina Sánchez</h1>
+            <h1 class="text-3xl md:text-4xl font-bold text-slate-900">Buen día, {{ user.name }}</h1>
 
             <div class="flex items-center md:justify-start gap-2 mt-3 text-slate-500 text-sm md:text-base">
                 <i class="pi pi-clock"></i>
-                <span>lunes, 25 de mayo de 2026</span>
+                <span> {{ currentDate }}</span>
             </div>
         </div>
 
@@ -20,13 +22,13 @@
 
             <div>
                 <p class="text-slate-500 text-sm">Departamento</p>
-                <p class="text-lg md:text-2xl font-bold text-slate-900">Comunicación Interna</p>
+                <p class="text-lg md:text-2xl font-bold text-slate-900">{{ user.department }}</p>
             </div>
 
             <div
                 class="w-12 h-12 md:w-16 md:h-16 rounded-full bg-yellow-400 flex items-center justify-center font-bold text-lg md:text-2xl text-slate-900"
             >
-                CS
+                {{ user.initials }}
             </div>
 
         </div>
