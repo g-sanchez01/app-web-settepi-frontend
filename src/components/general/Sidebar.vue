@@ -150,7 +150,7 @@
                 <div
                     class="w-15 h-12 rounded-full bg-yellow-400 text-black font-bold flex items-center justify-center"
                 >
-                    {{  user.initials }}
+                    {{ user.initials }}
                 </div>
 
                 <div>

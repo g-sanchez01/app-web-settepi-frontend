@@ -12,7 +12,7 @@
 </script>
 
 <template>
-    <div class="w-full md:mt-18 max-w-xl mx-auto bg-white p-6 rounded-xl shadow">
+    <div class="w-full md:mt-8 max-w-xl mx-auto bg-white p-6 rounded-xl shadow">
 
         <FormKit
             type="form"
@@ -31,6 +31,37 @@
                 validation="required"
                 :validation-messages="{
                     required: 'El titulo es requerido',
+                }"
+            />
+
+            <!-- Unidad de negocio -->
+            <FormKit
+                type="select"
+                name="businessUnitOptions"
+                label="Unidad de Negocio"
+                :options="[ { label: 'SETTEPI MTY', value: 'SETTEPI MTY' } ]"
+                validation="required"
+                :disabled="true"
+                input-class="$reset w-full px-4 py-2 text-gray-500 disabled:bg-slate-200"
+                :validation-messages="{
+                    required: 'La unidad de negocio es requerida',
+                }"
+            />
+
+            <!-- Zona -->
+            <FormKit
+                type="select"
+                name="businessZone"
+                label="Zona"
+                :options="[
+                { label: 'Selecciona una zona', value: '', disabled: true },
+                { label: 'APODACA', value: 'APODACA' },
+                { label: 'ESCOBEDO', value: 'ESCOBEDO' },
+                { label: 'PESQUERIA', value: 'PESQUERIA' }
+                ]"
+                validation="required"
+                :validation-messages="{
+                    required: 'La zona es requerida',
                 }"
             />
 
