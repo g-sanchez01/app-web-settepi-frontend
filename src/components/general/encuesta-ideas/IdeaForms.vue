@@ -1,20 +1,43 @@
 <script setup>
-    import { ref } from 'vue';
+    import AppSpinner from '@/components/ui/AppSpinner.vue';
+    import { useRouter } from 'vue-router';
+    import { useIdeas } from '@/composables/useIdeas';
+    import { reset } from '@formkit/core'
+    import { ROUTES } from '@/router/routesGeneral';
 
-    const formData = ref({
-        titulo: '',
-        descripcion: ''
-    })
+    const router = useRouter()
 
-    const handleSubmit = (data) => {
-        console.log('Formulario enviado:', data)
+    const { registrarIdea, loading, error } = useIdeas()
+
+    const handleSubmit = async (data) => {
+        
+        try {
+            
+            await registrarIdea(data)
+
+            // reset limpio del form
+            reset('ideaForm')
+
+            // redireccion
+            router.push(
+                ROUTES.GENERAL.ENCUESTAS.MIS_IDEAS.LISTA
+            )
+
+        } catch (err) {
+            console.error(err)
+        }
     }
 </script>
 
 <template>
     <div class="w-full md:mt-8 max-w-xl mx-auto bg-white p-6 rounded-xl shadow">
 
+        <AppSpinner
+           :show="loading" logo="/images/logoAzul.png" text="Guardando Idea..."
+        />
+
         <FormKit
+            id="ideaForm"
             type="form"
             v-model="formData"
             @submit="handleSubmit"
@@ -25,7 +48,7 @@
             <!--Titulo-->
             <FormKit
                 type="text"
-                name="titulo"
+                name="tituloIdea"
                 label="Título"
                 placeholder="Escribe el título de tu idea"
                 validation="required"
@@ -37,7 +60,7 @@
             <!-- Unidad de negocio -->
             <FormKit
                 type="select"
-                name="businessUnitOptions"
+                name="unidadNegocio"
                 label="Unidad de Negocio"
                 :options="[ { label: 'SETTEPI MTY', value: 'SETTEPI MTY' } ]"
                 validation="required"
@@ -51,7 +74,7 @@
             <!-- Zona -->
             <FormKit
                 type="select"
-                name="businessZone"
+                name="zona"
                 label="Zona"
                 :options="[
                 { label: 'Selecciona una zona', value: '', disabled: true },
@@ -68,7 +91,7 @@
             <!-- Descripción -->
             <FormKit
                 type="textarea"
-                name="descripcion"
+                name="descripcionIdea"
                 label="Descripción"
                 placeholder="Describe tu nueva idea"
                 validation="required"
@@ -77,6 +100,14 @@
                     required: 'La descrición es requerida',
                 }"
             />
+
+            <!-- ERROR -->
+            <p
+                v-if="error"
+                class="mt-4 text-sm text-red-500 font-medium"
+            >
+                {{ error }}
+            </p>
 
             <!-- BOTÓN PERSONALIZADO -->
             <div class="mt-6 flex justify-end">
