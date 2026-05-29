@@ -1,6 +1,17 @@
 <script setup>
-    import { ideasTable } from '@/data/general/ideas';
+    import { formatDateTime } from '@/utils/formatDate';
+    import { useIdeas } from '@/composables/useIdeas';
     import { ESTADO_STYLES } from '@/constants/status.constants';
+    import { onMounted, ref } from 'vue';
+
+    const { obtenerMisIdeas } = useIdeas()
+
+    const ideas = ref([])
+
+    onMounted(async () => {
+        ideas.value = await obtenerMisIdeas()
+    })
+
 </script>
 
 <template>
@@ -21,24 +32,31 @@
 
             <tbody class="divide-y divide-gray-200">
 
+                <!-- SI NO HAY IDEAS -->
+                <tr v-if="ideas.length === 0">
+                    <td colspan="6" class="px-6 py-10 text-center text-gray-500">
+                        No tienes ideas registradas 
+                    </td>
+                </tr>
+
                 <tr
-                    v-for="idea in ideasTable"
+                    v-for="idea in ideas"
                     :key="idea.id"
                     class="hover:bg-gray-50 transition-all duration-200"
                 >
                     <td class="px-6 py-4 font-medium text-gray-700">
-                        {{ idea.id }}
+                        {{ idea.idRegistroIdea }}
                     </td>
 
                     <!--Titulo-->
                     <td class="px-6 py-4 text-gray-800">
                         <div class="font-medium text-gray-900 leading-snug">
-                            {{ idea.titulo }}
+                            {{ idea.tituloIdea }}
                         </div>
                     </td>
 
                     <td class="px-6 py-4 text-gray-500 whitespace-nowrap">
-                        {{ idea.fechaCreacion }}
+                        {{ formatDateTime(idea.fecha) }}
                     </td>
 
                     <!--ESTADO-->

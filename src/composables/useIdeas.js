@@ -6,6 +6,10 @@ export function useIdeas() {
     const loading = ref(false)
     const error = ref(null)
 
+    const getAuthHeaders = () => ({
+        Authorization: `Bearer ${localStorage.getItem('token')}`
+    })
+
     const registrarIdea = async (ideaData) => {
 
         try {
@@ -60,8 +64,36 @@ export function useIdeas() {
 
     }
 
+    const obtenerMisIdeas = async () => {
+        try {
+            
+            loading.value = true
+            error.value = null
+
+            const response = await axios.get(
+                'http://127.0.0.1:8000/ideas/mis-ideas',
+                {
+                    headers: getAuthHeaders()
+                }
+            )
+
+            return response.data
+
+        } catch (err) {
+            console.error(err)
+
+            error.value = err.response?.data?.detail || 'Error al obtener ideas'
+
+            throw err
+        } finally {
+
+            loading.value = false
+        }
+    }
+
     return {
         registrarIdea,
+        obtenerMisIdeas,
         loading,
         error
     }
