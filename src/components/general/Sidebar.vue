@@ -1,5 +1,8 @@
 <script setup>
     import { useRouter } from 'vue-router'
+    import { useUser } from '@/composables/useUser';
+
+    const { user } = useUser()
 
     defineProps({
         open: Boolean
@@ -145,14 +148,14 @@
             <div class="flex items-center gap-3">
 
                 <div
-                    class="w-12 h-12 rounded-full bg-yellow-400 text-black font-bold flex items-center justify-center"
+                    class="w-15 h-12 rounded-full bg-yellow-400 text-black font-bold flex items-center justify-center"
                 >
-                    CS
+                    {{  user.initials }}
                 </div>
 
                 <div>
-                    <p class="font-semibold">Carolina Sánchez</p>
-                    <p class="text-sm text-white/70">Comunicación Interna</p>
+                    <p class="font-semibold">{{ user.name }}</p>
+                    <p class="text-sm text-white/70">{{ user.department }}</p>
                 </div>
 
             </div>
