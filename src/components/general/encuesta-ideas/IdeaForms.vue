@@ -4,8 +4,11 @@
     import { useIdeas } from '@/composables/useIdeas';
     import { reset } from '@formkit/core'
     import { ROUTES } from '@/router/routesGeneral';
+    import { useToast } from '@/composables/ui/useToast';
 
     const router = useRouter()
+
+    const toast = useToast()
 
     const { registrarIdea, loading, error } = useIdeas()
 
@@ -14,6 +17,8 @@
         try {
             
             await registrarIdea(data)
+
+            toast.showToast('Idea registrada correctamente', 'success')
 
             // reset limpio del form
             reset('ideaForm')
@@ -25,6 +30,8 @@
 
         } catch (err) {
             console.error(err)
+
+            toast.showToast('No se pudo registrar la idea', 'error')
         }
     }
 </script>
