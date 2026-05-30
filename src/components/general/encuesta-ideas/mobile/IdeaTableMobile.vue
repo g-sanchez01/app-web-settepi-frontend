@@ -1,6 +1,16 @@
 <script setup>
-import { ideasTable } from '@/data/general/ideas'
-import { ESTADO_STYLES } from '@/constants/status.constants'
+    import { formatDateTime } from '@/utils/formatDate';
+    import { useIdeas } from '@/composables/useIdeas';
+    import { onMounted, ref } from 'vue';
+    import { ESTADO_STYLES } from '@/constants/status.constants'
+
+    const { obtenerMisIdeas } = useIdeas()
+
+    const ideas = ref([])
+
+    onMounted(async () => {
+        ideas.value = await obtenerMisIdeas()
+    })
 
 </script>
 
@@ -9,7 +19,7 @@ import { ESTADO_STYLES } from '@/constants/status.constants'
 
         <div class="md:hidden space-y-3">
             <div
-                v-for="idea in ideasTable"
+                v-for="idea in ideas"
                 :key="idea.id"
                 class="bg-white border border-gray-100 rounded-xl shadow-sm p-4"
             >
@@ -17,22 +27,34 @@ import { ESTADO_STYLES } from '@/constants/status.constants'
                     
                     <div>
                         <p class="text-xs text-gray-400">ID</p>
-                        <p class="font-semibold text-gray-700">{{ idea.id }}</p>
+                        <p class="font-semibold text-gray-700">{{ idea.idRegistroIdea }}</p>
                     </div>
 
-                    <button
-                        class="text-blue-500 w-9 h-9 flex items-center justify-center rounded-lg hover:bg-blue-50"
-                        @click="editIdea(idea)"
-                    >
-                        <i class="pi pi-pencil text-xl"></i>
-                    </button>
+                    <!-- BOTONES AGRUPADOS -->
+                    <div class="flex items-center gap-2 bg-gray-50 p-1 rounded-lg">
+                        
+                        <button
+                            class="text-blue-500 w-9 h-9 flex items-center justify-center rounded-lg hover:bg-blue-100 transition"
+                            @click="editIdea(idea)"
+                        >
+                            <i class="pi pi-pencil text-3xl"></i>
+                        </button>
+
+                        <button
+                            class="text-indigo-500 w-9 h-9 flex items-center justify-center rounded-lg hover:bg-indigo-100 transition"
+                            @click="enviarIdea(idea)"
+                        >
+                            <i class="pi pi-send text-3xl"></i>
+                        </button>
+
+                    </div>
 
                 </div>
 
                 <div class="mt-2">
                     <p class="text-xs text-gray-400">Título</p>
                     <p class="text-gray-900 font-medium leading-snug">
-                        {{ idea.titulo }}
+                        {{ idea.tituloIdea }}
                     </p>
                 </div>
 
@@ -41,7 +63,7 @@ import { ESTADO_STYLES } from '@/constants/status.constants'
                     <div>
                         <p class="text-xs text-gray-400">Fecha</p>
                         <p class="text-sm text-gray-600">
-                            {{ idea.fechaCreacion }}
+                            {{ formatDateTime(idea.fecha) }}
                         </p>
                     </div>
 
