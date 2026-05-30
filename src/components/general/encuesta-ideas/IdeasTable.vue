@@ -1,12 +1,23 @@
 <script setup>
+    import { useRouter } from 'vue-router'
     import { formatDateTime } from '@/utils/formatDate';
     import { useIdeas } from '@/composables/useIdeas';
     import { ESTADO_STYLES } from '@/constants/status.constants';
+    import { ROUTES } from '@/router/routesGeneral';
     import { onMounted, ref } from 'vue';
+
+    const router = useRouter()
 
     const { obtenerMisIdeas } = useIdeas()
 
     const ideas = ref([])
+
+    const editIdea = (idea) => {
+        // redireccion
+        const ruta = router.push(ROUTES.GENERAL.ENCUESTAS.MIS_IDEAS.EDITAR(idea.idRegistroIdea))
+        console.log(ruta)
+    }
+
 
     onMounted(async () => {
         ideas.value = await obtenerMisIdeas()

@@ -1,7 +1,11 @@
 import { ref } from 'vue'
 import axios from 'axios'
 
+
 export function useIdeas() {
+
+    // Server QA
+    const API_URL = 'http://127.0.0.1:8000'
 
     const loading = ref(false)
     const error = ref(null)
@@ -23,7 +27,7 @@ export function useIdeas() {
             const token = localStorage.getItem('token')
 
             const response = await axios.post(
-                'http://127.0.0.1:8000/ideas/registrar',
+                `${API_URL}/ideas/registrar`,
                 ideaData,
                 {
                     headers: {
@@ -71,7 +75,7 @@ export function useIdeas() {
             error.value = null
 
             const response = await axios.get(
-                'http://127.0.0.1:8000/ideas/mis-ideas',
+                `${API_URL}/ideas/mis-ideas`,
                 {
                     headers: getAuthHeaders()
                 }
@@ -91,7 +95,68 @@ export function useIdeas() {
         }
     }
 
+    const obtenerIdeaPorId = async (id) => {
+
+        try {
+            loading.value = true
+            error.value = null
+
+            const response = await axios.get(
+                `${API_URL}/ideas/${id}`,
+                {
+                    headers: getAuthHeaders()
+                }
+            )
+
+            return response.data
+
+        } catch (err) {
+            console.error(err)
+
+            error.value =
+                err.response?.data?.detail ||
+                'Error al obtener la idea'
+
+            throw err
+
+        } finally {
+            loading.value = false
+        }
+    }
+
+    const editarIdea = async (id, ideaData) => {
+
+        try {
+            loading.value = true
+            error.value = null
+
+            const response = await axios.put(
+                `${API_URL}/ideas/${id}`,
+                ideaData,
+                {
+                    headers: getAuthHeaders()
+                }
+            )
+
+            return response.data
+
+        } catch (err) {
+            console.error(err)
+
+            error.value =
+                err.response?.data?.detail ||
+                'Error al actualizar la idea'
+
+            throw err
+
+        } finally {
+            loading.value = false
+        }
+    }
+
     return {
+        obtenerIdeaPorId,
+        editarIdea,
         registrarIdea,
         obtenerMisIdeas,
         loading,
