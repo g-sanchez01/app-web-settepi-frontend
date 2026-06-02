@@ -5,7 +5,7 @@
 </script>
 
 <template>
-  <div class="fixed top-4 right-4 z-50">
+  <div class="fixed top-[90px] md:top-4 left-1/2 md:left-auto -translate-x-1/2 md:translate-x-0 right-auto md:right-4 z-50 w-[calc(100vw-1rem)] max-w-sm">
     
     <TransitionGroup name="toast" tag="div" class="space-y-2">
       <div
@@ -18,7 +18,7 @@
           'bg-blue-500': t.type === 'info'
         }"
       >
-        <span>{{ t.message }}</span>
+        <span class="flex-1 break-words">{{ t.message }}</span>
 
         <button class="ml-3" @click="removeToast(t.id)">✕</button>
       </div>
