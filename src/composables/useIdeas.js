@@ -154,10 +154,55 @@ export function useIdeas() {
         }
     }
 
+    const enviarIdea = async (id) => {
+
+        try {
+            loading.value = true
+            error.value = null
+
+            const startTime = Date.now()
+
+            const response = await axios.put(
+                `${API_URL}/ideas/enviar/${id}`,
+                {},
+                {
+                    headers: getAuthHeaders()
+                }
+            )
+
+            // duración mínima del spinner
+            const elapsed = Date.now() - startTime
+            const minDuration = 1000
+
+            if (elapsed < minDuration) {
+
+                await new Promise(resolve =>
+                    setTimeout(resolve, minDuration - elapsed)
+                )
+
+            }
+
+            return response.data
+
+        } catch (err) {
+            console.error(err)
+
+            error.value =
+                err.response?.data?.detail ||
+                'Error al enviar la idea'
+
+            throw err
+
+        } finally {
+            loading.value = false
+        }
+    }
+
     return {
         obtenerIdeaPorId,
         editarIdea,
         registrarIdea,
+        enviarIdea,
         obtenerMisIdeas,
         loading,
         error

@@ -1,21 +1,23 @@
 <script setup>
+    import AppSpinner from '@/components/ui/AppSpinner.vue';
     import { useRouter } from 'vue-router'
     import { formatDateTime } from '@/utils/formatDate';
     import { useIdeas } from '@/composables/useIdeas';
     import { ESTADO_STYLES } from '@/constants/status.constants';
     import { ROUTES } from '@/router/routesGeneral';
+    import { useToast } from '@/composables/ui/useToast'
     import { onMounted, ref } from 'vue';
 
     const router = useRouter()
+    const toast = useToast()
 
-    const { obtenerMisIdeas } = useIdeas()
+    const { obtenerMisIdeas, enviarIdea, loading, error } = useIdeas()
 
     const ideas = ref([])
 
     const editIdea = (idea) => {
         // redireccion
-        const ruta = router.push(ROUTES.GENERAL.ENCUESTAS.MIS_IDEAS.EDITAR(idea.idRegistroIdea))
-        console.log(ruta)
+        router.push(ROUTES.GENERAL.ENCUESTAS.MIS_IDEAS.EDITAR(idea.idRegistroIdea))
     }
 
 
@@ -23,10 +25,32 @@
         ideas.value = await obtenerMisIdeas()
     })
 
+    const handleEnviarIdea = async (idea) => {
+        try {
+
+            await enviarIdea(
+                idea.idRegistroIdea
+            )
+
+            toast.showToast('Tu idea fue enviada con éxito', 'success')
+            
+            idea.estado = 'ENVIADA'
+
+        } catch (err) {
+            console.error(err)
+            toast.showToast('Error al envíar idea', 'error')
+        }
+    }
+
 </script>
 
 <template>
     <div class="w-full overflow-x-auto rounded-2xl border border-gray-100 bg-white shadow-sm mt-5">
+
+        <AppSpinner
+           :show="loading" logo="/images/logoAzul.png" text=" "
+        />
+
         <table class="min-w-full text-sm text-left">
 
             <!--HEADER-->
@@ -83,7 +107,11 @@
                     <!-- EDITAR -->
                     <td class="px-6 py-4">
                         <button
-                            class="inline-flex items-center justify-center text-blue-500 w-9 h-9 rounded-lg hover:text-blue-300 hover:text-blue-300 transition cursor-pointer"
+                            :disabled="idea.estado === 'ENVIADA'"
+                            class="inline-flex items-center justify-center w-9 h-9 rounded-lg transition"
+                            :class="idea.estado === 'ENVIADA'
+                                ? 'text-blue-200 cursor-not-allowed'
+                                : 'text-blue-500 hover:text-blue-300 cursor-pointer'"
                             @click="editIdea(idea)"
                         >
                             <i class="pi pi-pencil text-2xl"></i>
@@ -93,8 +121,12 @@
                     <!-- ENVIAR -->
                     <td class="px-6 py-4">
                         <button
-                            class="inline-flex items-center justify-center text-indigo-400 w-9 h-9 rounded-lg hover:text-indigo-300 hover:text-blue-300 transition cursor-pointer"
-                            @click="enviarIdea(idea)"
+                            :disabled="idea.estado === 'ENVIADA'"
+                            class="inline-flex items-center justify-center w-9 h-9 rounded-lg transition"
+                            :class="idea.estado === 'ENVIADA'
+                                ? 'text-indigo-200 cursor-not-allowed'
+                                : 'text-indigo-400 hover:text-indigo-300 cursor-pointer'"
+                            @click="handleEnviarIdea(idea)"
                         >
                             <i class="pi pi-send text-2xl"></i>
                         </button>
