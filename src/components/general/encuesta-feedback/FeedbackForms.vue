@@ -1,27 +1,59 @@
 <script setup>
-    import { Form } from 'lucide-vue-next';
-import { ref } from 'vue';
+    import AppSpinner from '@/components/ui/AppSpinner.vue';
+    import { ref } from 'vue';
+    import { useRouter } from 'vue-router';
+    import { reset } from '@formkit/core'
+    import { useFeedbacks } from '@/composables/useFeedbacks';
+    import { ROUTES } from '@/router/routesGeneral';
+    import { useToast } from '@/composables/ui/useToast';
+
+    const router = useRouter()
+
+    const { registrarFeedback, loading, error } = useFeedbacks()
 
     const formData = ref({
-        tipo: '',
-        area: '',
-        comentario: '',
-        planta: ''
+        anonimo: false
     })
 
-    const handleSubmit = (data) => {
-        console.log('Formulario enviado:', data)
+    const toast = useToast()
+
+    const handleSubmit = async (data) => {
+
+        try {
+
+            await registrarFeedback(data)
+
+            toast.showToast('Feedback registrado correctamente', 'success')
+
+            // reset limpio del form
+            reset('feedbackForm')
+
+            // redireccion
+            router.push(
+                ROUTES.GENERAL.ENCUESTAS.FEEDBACKS.LISTA
+            )
+        } catch (err) {
+            console.error(err)
+
+            toast.showToast('No se envíar el feedback', 'error')
+        }
+        
     }
 </script>
 
 <template>
     <div class="w-full md:mt-18 max-w-xl mx-auto bg-white p-6 rounded-xl shadow">
 
+        <AppSpinner
+           :show="loading" logo="/images/logoAzul.png" text="Envíando Feedback..."
+        />
+
         <FormKit
+            id="feedbackForm"
             type="form"
             v-model="formData"
             @submit="handleSubmit"
-            submit-label="Guardar"
+            submit-label="Envíar"
             :actions="false"
         >
 
@@ -75,6 +107,62 @@ import { ref } from 'vue';
                     required: 'El comentario de tu situación es requerida',
                 }"
             />
+
+            <!-- Planta -->
+            <FormKit
+                type="text"
+                name="planta"
+                label="Planta"
+                placeholder="Escribe a la planta que perteneces"
+                validation="required"
+                rows="4"
+                :validation-messages="{
+                    required: 'La planta es requerida',
+                }"
+            />
+
+            <!-- Anónimo -->
+            <div class="mb-6">
+                <div
+                    class="flex items-center justify-between p-4 border border-gray-200 rounded-xl bg-gray-50"
+                >
+                    <div>
+                        <h3 class="font-medium text-gray-800">
+                            Enviar de forma anónima
+                        </h3>
+
+                        <p class="text-sm text-gray-500 mt-1">
+                            Tu nombre y datos personales no serán visibles para el área receptora.
+                        </p>
+                    </div>
+
+                    <button
+                        type="button"
+                        @click="formData.anonimo = !formData.anonimo"
+                        class="relative inline-flex h-7 w-12 items-center rounded-full transition-all duration-300"
+                        :class="formData.anonimo ? 'bg-green-600' : 'bg-gray-300'"
+                    >
+                        <span
+                            class="inline-block h-5 w-5 transform rounded-full bg-white shadow transition-all duration-300"
+                            :class="formData.anonimo ? 'translate-x-6' : 'translate-x-1'"
+                        />
+                    </button>
+                </div>
+
+                <!-- Campo oculto para enviarlo en FormKit -->
+                <FormKit
+                    type="hidden"
+                    name="anonimo"
+                    :value="formData.anonimo"
+                />
+
+                <div
+                    v-if="formData.anonimo"
+                    class="mt-2 text-sm text-green-700 flex items-center gap-2"
+                >
+                    ✓ Este feedback será enviado de forma anónima.
+                </div>
+            </div>
 
             <!-- BOTÓN PERSONALIZADO -->
             <div class="mt-6 flex justify-end">
