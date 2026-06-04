@@ -33,7 +33,7 @@
 
             <div
                 v-for="feedback in feedbacks"
-                :key="feedback.id"
+                :key="feedback.idfeedback"
                 class="bg-white border border-gray-100 rounded-2xl shadow-sm overflow-hidden"
             >
 

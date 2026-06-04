@@ -28,6 +28,7 @@
            :show="loading" logo="/images/logoAzul.png" text=" "
         />
 
+
         <table class="min-w-full text-sm text-left">
 
             <!--HEADER-->

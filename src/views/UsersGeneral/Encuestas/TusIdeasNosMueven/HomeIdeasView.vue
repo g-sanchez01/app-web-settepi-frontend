@@ -1,4 +1,5 @@
 <script setup>
+    import IdeaFilter from '@/components/general/encuesta-ideas/IdeaFilter.vue';
     import IdeasHeader from '@/components/general/encuesta-ideas/IdeasHeader.vue';
     import IdeasTable from '@/components/general/encuesta-ideas/IdeasTable.vue';
     import IdeaTableMobile from '@/components/general/encuesta-ideas/mobile/IdeaTableMobile.vue';
@@ -7,6 +8,8 @@
 <template>
     <div class="p-4 lg:ml-72 lg:p-6">
         <IdeasHeader/>
+
+        <IdeaFilter/>
 
         <!--Desktop-->
         <div class="hidden md:block">
