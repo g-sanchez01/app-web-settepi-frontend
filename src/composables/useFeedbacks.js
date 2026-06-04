@@ -67,8 +67,38 @@ export function useFeedbacks() {
         }
     }
 
+    const obtenerMisFeedbacks = async () => {
+        try {
+            
+            loading.value = true
+            error.value = null
+
+            const response = await axios.get(
+                `${API_URL}/feedbacks/settepi-te-escucha`,
+                {
+                    headers: getAuthHeaders()
+                }
+            )
+
+            return response.data
+
+        } catch (error) {
+
+            console.error(err)
+
+            error.value = err.response?.data?.detail || 'Error al obtener feedbacks'
+
+            throw err
+        } finally {
+
+            loading.value = false
+
+        }
+    }
+
     return {
         registrarFeedback,
+        obtenerMisFeedbacks,
         loading,
         error
     }

@@ -1,10 +1,33 @@
 <script setup>
-    import { feedbacksTable } from '@/data/general/feedbacks';
+    import AppSpinner from '@/components/ui/AppSpinner.vue';
+    import { useFeedbacks } from '@/composables/useFeedbacks';
+    import { formatDateTime } from '@/utils/formatDate';
     import { ESTADO_STYLES } from '@/constants/status.constants';
+    import { onMounted, ref } from 'vue';
+
+    const { obtenerMisFeedbacks, loading, error } = useFeedbacks()
+
+    const feedbacks = ref([])
+
+    onMounted(async () => {
+        try {
+            feedbacks.value = await obtenerMisFeedbacks()
+        } catch (err) {
+            console.error(err)
+        }
+        
+    })
+
+
 </script>
 
 <template>
     <div class="w-full overflow-x-auto rounded-2xl border border-gray-100 bg-white shadow-sm mt-5">
+
+        <AppSpinner
+           :show="loading" logo="/images/logoAzul.png" text=" "
+        />
+
         <table class="min-w-full text-sm text-left">
 
             <!--HEADER-->
@@ -14,7 +37,6 @@
                     <th class="px-4 py-3 font-semibold">Tipo</th>
                     <th class="px-4 py-3 font-semibold">Area</th>
                     <th class="px-4 py-3 font-semibold">Comentario</th>
-                    <th class="px-4 py-3 font-semibold">Planta</th>
                     <th class="px-4 py-3 font-semibold">Fecha y Hora</th>
                     <th class="px-4 py-3 font-semibold">Estado</th>
                 </tr>
@@ -23,12 +45,12 @@
             <tbody class="divide-y divide-gray-200">
 
                 <tr
-                    v-for="feedback in feedbacksTable"
-                    :key="feedback.id"
+                    v-for="feedback in feedbacks"
+                    :key="feedback.idfeedback"
                     class="hover:bg-gray-50 transition-all duration-200"
                 >
                     <td class="px-6 py-4 font-medium text-gray-700">
-                        {{ feedback.id }}
+                        {{ feedback.idfeedback }}
                     </td>
 
                     <!--Tipo-->
@@ -52,15 +74,9 @@
                         </div>
                     </td>
 
-                    <!--Planta-->
-                    <td class="px-6 py-4 text-gray-800">
-                        <div class="font-medium text-gray-900 leading-snug">
-                            {{ feedback.planta }}
-                        </div>
-                    </td>
 
                     <td class="px-6 py-4 text-gray-500 whitespace-nowrap">
-                        {{ feedback.fechaCreacion }}
+                        {{ formatDateTime(feedback.fecha) }}
                     </td>
 
                     <!--ESTADO-->
