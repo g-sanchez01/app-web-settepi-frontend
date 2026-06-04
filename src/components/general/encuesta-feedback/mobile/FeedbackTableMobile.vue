@@ -1,16 +1,38 @@
 <script setup>
-import { feedbacksTable } from '@/data/general/feedbacks'
-import { ESTADO_STYLES } from '@/constants/status.constants'
+    import AppSpinner from '@/components/ui/AppSpinner.vue';
+    import { useFeedbacks } from '@/composables/useFeedbacks';
+    import { formatDateTime } from '@/utils/formatDate';
+    import { ESTADO_STYLES } from '@/constants/status.constants'
+    import { onMounted, ref } from 'vue';
+
+
+    const { obtenerMisFeedbacks, loading, error } = useFeedbacks()
+
+    const feedbacks = ref([])
+
+    onMounted(async () => {
+        try {
+            feedbacks.value = await obtenerMisFeedbacks()
+        } catch (err) {
+            console.error(err)
+        }
+        
+    })
+
 </script>
 
 <template>
     <div class="w-full mt-5">
 
+        <AppSpinner
+           :show="loading" logo="/images/logoAzul.png" text=" "
+        />
+
         <!-- MOBILE -->
         <div class="md:hidden space-y-4">
 
             <div
-                v-for="feedback in feedbacksTable"
+                v-for="feedback in feedbacks"
                 :key="feedback.id"
                 class="bg-white border border-gray-100 rounded-2xl shadow-sm overflow-hidden"
             >
@@ -28,7 +50,7 @@ import { ESTADO_STYLES } from '@/constants/status.constants'
 
                         <div>
                             <p class="text-xs text-gray-400">
-                                Feedback #{{ feedback.id }}
+                                Feedback #{{ feedback.idfeedback }}
                             </p>
 
                             <p class="font-semibold text-gray-800">
@@ -61,15 +83,6 @@ import { ESTADO_STYLES } from '@/constants/status.constants'
                             {{ feedback.area }}
                         </div>
 
-                        <div
-                            class="inline-flex items-center gap-2 
-                                   bg-indigo-50 text-indigo-700 
-                                   px-3 py-1.5 rounded-full text-xs font-medium"
-                        >
-                            <i class="pi pi-building"></i>
-                            {{ feedback.planta }}
-                        </div>
-
                     </div>
 
                     <!-- COMENTARIO -->
@@ -91,7 +104,7 @@ import { ESTADO_STYLES } from '@/constants/status.constants'
 
                         <div class="flex items-center gap-2 text-sm text-gray-500">
                             <i class="pi pi-calendar"></i>
-                            <span>{{ feedback.fechaCreacion }}</span>
+                            <span>{{ formatDateTime(feedback.fecha) }}</span>
                         </div>
 
                     </div>
