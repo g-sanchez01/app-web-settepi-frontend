@@ -68,16 +68,31 @@ export function useIdeas() {
 
     }
 
-    const obtenerMisIdeas = async () => {
+    const obtenerMisIdeas = async (filters = {}) => {
         try {
             
             loading.value = true
             error.value = null
 
+            const params = {}
+
+            if (filters.idRegistroIdea)
+                params.idRegistroIdea = filters.idRegistroIdea
+
+            if (filters.tituloIdea)
+                params.tituloIdea = filters.tituloIdea
+
+            if (filters.estado)
+                params.estado = filters.estado
+
+            if (filters.fecha)
+                params.fecha = filters.fecha
+
             const response = await axios.get(
                 `${API_URL}/ideas/mis-ideas`,
                 {
-                    headers: getAuthHeaders()
+                    headers: getAuthHeaders(),
+                    params
                 }
             )
 

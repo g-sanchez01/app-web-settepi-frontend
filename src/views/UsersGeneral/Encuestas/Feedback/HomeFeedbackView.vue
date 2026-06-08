@@ -4,7 +4,6 @@
     import FeedbackHeader from '@/components/general/encuesta-feedback/FeedbackHeader.vue';
     import FeedbacksTable from '@/components/general/encuesta-feedback/FeedbacksTable.vue';
     import FeedbackTableMobile from '@/components/general/encuesta-feedback/mobile/FeedbackTableMobile.vue';
-
     import { useFeedbacks } from '@/composables/useFeedbacks';
 
     const { obtenerMisFeedbacks, loading } = useFeedbacks()

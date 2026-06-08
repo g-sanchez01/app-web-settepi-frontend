@@ -5,7 +5,7 @@
 
     const filters = ref({
         idRegistroIdea: '',
-        titulo: '',
+        tituloIdea: '',
         fecha: '',
         estado: ''
     })
@@ -17,7 +17,7 @@
     const limpiarFiltros = () => {
         filters.value = {
             idRegistroIdea: '',
-            titulo: '',
+            tituloIdea: '',
             fecha: '',
             estado: ''
         }
@@ -41,7 +41,7 @@
 
             <!-- Titulo -->
             <input
-                v-model="filters.titulo"
+                v-model="filters.tituloIdea"
                 type="text"
                 placeholder="Titulo"
                 class="border rounded-lg px-3 py-2"

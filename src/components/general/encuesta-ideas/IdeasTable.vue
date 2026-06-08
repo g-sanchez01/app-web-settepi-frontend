@@ -6,24 +6,27 @@
     import { ESTADO_STYLES } from '@/constants/status.constants';
     import { ROUTES } from '@/router/routesGeneral';
     import { useToast } from '@/composables/ui/useToast'
-    import { onMounted, ref } from 'vue';
 
     const router = useRouter()
     const toast = useToast()
 
-    const { obtenerMisIdeas, enviarIdea, loading, error } = useIdeas()
+    const { enviarIdea } = useIdeas()
 
-    const ideas = ref([])
+    const props = defineProps({
+        ideas: {
+            type: Array,
+            default: () => []
+        },
+        loading: {
+            type: Boolean,
+            default: false
+        }
+    })
 
     const editIdea = (idea) => {
         // redireccion
         router.push(ROUTES.GENERAL.ENCUESTAS.MIS_IDEAS.EDITAR(idea.idRegistroIdea))
     }
-
-
-    onMounted(async () => {
-        ideas.value = await obtenerMisIdeas()
-    })
 
     const handleEnviarIdea = async (idea) => {
         try {
@@ -68,7 +71,7 @@
             <tbody class="divide-y divide-gray-200">
 
                 <!-- SI NO HAY IDEAS -->
-                <tr v-if="ideas.length === 0">
+                <tr v-if="!loading && ideas.length === 0"">
                     <td colspan="6" class="px-6 py-10 text-center text-gray-500">
                         No tienes ideas registradas 
                     </td>
