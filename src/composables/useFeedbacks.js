@@ -67,16 +67,31 @@ export function useFeedbacks() {
         }
     }
 
-    const obtenerMisFeedbacks = async () => {
+    const obtenerMisFeedbacks = async (filters = {}) => {
         try {
             
             loading.value = true
             error.value = null
 
+            const params = {}
+
+            if (filters.idfeedback)
+                params.idfeedback = filters.idfeedback
+
+            if (filters.tipo)
+                params.tipo = filters.tipo
+
+            if (filters.estado)
+                params.estado = filters.tipo
+
+            if (filters.fecha)
+                params.fecha = filters.fecha
+
             const response = await axios.get(
                 `${API_URL}/feedbacks/settepi-te-escucha`,
                 {
-                    headers: getAuthHeaders()
+                    headers: getAuthHeaders(),
+                    params
                 }
             )
 
