@@ -77,10 +77,6 @@ router.beforeEach((to, from) => {
   const authenticated = isAuthenticated()
   const role = getRole()
 
-  console.log('Ruta:', to.path)
-  console.log('Auth:', authenticated)
-  console.log('Role:', role)
-
   // Ruta protegida
   if (to.meta.requiresAuth && !authenticated) {
     return '/login'

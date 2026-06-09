@@ -3,7 +3,6 @@
     import { useRouter } from 'vue-router'
     import { formatDateTime } from '@/utils/formatDate';
     import { useIdeas } from '@/composables/useIdeas';
-    import { onMounted, ref } from 'vue';
     import { ESTADO_STYLES } from '@/constants/status.constants'
     import { useToast } from '@/composables/ui/useToast'
     import { ROUTES } from '@/router/routesGeneral';
@@ -11,19 +10,24 @@
     const router = useRouter()
     const toast = useToast()
 
-    const { obtenerMisIdeas, enviarIdea, loading, error } = useIdeas()
+    const { enviarIdea } = useIdeas()
 
-    const ideas = ref([])
+    const props = defineProps({
+        ideas: {
+            type: Array,
+            default: () => []
+        },
+        loading: {
+            type: Boolean,
+            default: false
+        }
+    })
 
     const editIdea = (idea) => {
         // redireccion
         router.push(ROUTES.GENERAL.ENCUESTAS.MIS_IDEAS.EDITAR(idea.idRegistroIdea))
         
     }
-
-    onMounted(async () => {
-        ideas.value = await obtenerMisIdeas()
-    })
 
     const handleEnviarIdea = async (idea) => {
         try {

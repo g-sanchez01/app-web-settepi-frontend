@@ -45,7 +45,6 @@ export function useAuth() {
 
             // obtener usuario
             const userResponse = await api.get('/general/home')
-            console.log(userResponse.data)
 
             localStorage.setItem(
                 'user',

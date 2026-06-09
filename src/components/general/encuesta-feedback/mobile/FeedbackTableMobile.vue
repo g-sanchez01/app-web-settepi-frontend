@@ -1,22 +1,17 @@
 <script setup>
     import AppSpinner from '@/components/ui/AppSpinner.vue';
-    import { useFeedbacks } from '@/composables/useFeedbacks';
     import { formatDateTime } from '@/utils/formatDate';
     import { ESTADO_STYLES } from '@/constants/status.constants'
-    import { onMounted, ref } from 'vue';
 
-
-    const { obtenerMisFeedbacks, loading, error } = useFeedbacks()
-
-    const feedbacks = ref([])
-
-    onMounted(async () => {
-        try {
-            feedbacks.value = await obtenerMisFeedbacks()
-        } catch (err) {
-            console.error(err)
+    defineProps({
+        feedbacks: {
+            type: Array,
+            default: () => []
+        },
+        loading: {
+            type: Boolean,
+            default: false
         }
-        
     })
 
 </script>
