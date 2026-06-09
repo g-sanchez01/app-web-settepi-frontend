@@ -1,8 +1,8 @@
 import { ROLES } from './roles'
 
 export const HOME_BY_ROLE = Object.freeze({
-  [ROLES.GENERAL]: '/general',
-  [ROLES.LIDER]: '/lider',
-  [ROLES.GESTOR]: '/gestor',
-  [ROLES.ADMIN]: '/admin'
+  [ROLES.GENERAL]: '/general/home',
+  [ROLES.LIDER]: '/lider/home',
+  [ROLES.GESTOR]: '/gestor/home',
+  [ROLES.ADMIN]: '/admin/home'
 })

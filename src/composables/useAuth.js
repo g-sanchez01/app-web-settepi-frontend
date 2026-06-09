@@ -1,5 +1,6 @@
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
+import { HOME_BY_ROLE } from '@/constants/homeByRole'
 
 import api from '@/services/api'
 
@@ -44,20 +45,29 @@ export function useAuth() {
             )
 
             // obtener usuario
-            const userResponse = await api.get('/general/home')
+            const userResponse = await api.get('/auth/me')
+
+            const user = userResponse.data
+            const role = user.rol
 
             localStorage.setItem(
                 'user',
-                JSON.stringify(userResponse.data)
+                JSON.stringify(user)
             )
 
             localStorage.setItem(
                 'role',
-                userResponse.data.rol
+                role
             )
 
-            // redirect
-            router.push('/general/home')
+            const homeRoute = HOME_BY_ROLE[role]
+
+            if (homeRoute) {
+                router.push(homeRoute)
+            } else {
+                console.error('Rol no reconocido:', role)
+                router.push('/login')
+            }
 
         } catch (err) {
 
@@ -78,6 +88,7 @@ export function useAuth() {
 
         localStorage.removeItem('token')
         localStorage.removeItem('user')
+        localStorage.removeItem('role')
 
         router.push('/login')
     }

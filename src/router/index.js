@@ -69,7 +69,31 @@ const router = createRouter({
           component: () => import('../views/UsersGeneral/Encuestas/Feedback/FeedbackNuevoView.vue')
         }
       ]
+    },
+
+    // GESTOR
+    {
+      path: '/gestor',
+      component: () => import('../views/UsersGestor/layouts/GestorLayout.vue'),
+      meta: {
+        requiresAuth: true,
+        roles: [ROLES.GESTOR]
+      },
+
+      children: [
+        {
+          path: '',
+          redirect: '/gestor/home'
+        },
+        {
+          path: 'home',
+          component: () => import('../views/UsersGestor/HomeView.vue')
+
+        }
+      ]
     }
+
+    
   ],
 })
 
