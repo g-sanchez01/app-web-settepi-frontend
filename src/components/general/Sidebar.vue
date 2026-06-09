@@ -14,12 +14,12 @@
 
     const cerrarSesion = () => {
 
-        // Elimina datos guardados
         localStorage.removeItem('token')
         localStorage.removeItem('usuario')
 
-        // Redirige al login
-        router.push('/login')
+        user.value = null
+
+        router.replace('/login')
     }
 </script>
 
