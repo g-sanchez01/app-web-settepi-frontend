@@ -44,13 +44,17 @@ export function useAuth() {
             )
 
             // obtener usuario
-            const userResponse = await api.get(
-                '/general/home'
-            )
+            const userResponse = await api.get('/general/home')
+            console.log(userResponse.data)
 
             localStorage.setItem(
                 'user',
                 JSON.stringify(userResponse.data)
+            )
+
+            localStorage.setItem(
+                'role',
+                userResponse.data.rol
             )
 
             // redirect

@@ -1,17 +1,35 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import LoginView from '../views/LoginView.vue'
+import { ROLES } from '@/constants/roles.js'
+import { HOME_BY_ROLE } from '@/constants/homeByRole.js'
+
+import { getRole, isAuthenticated, logout } from '@/utils/auth.js'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
+      path: '/',
+      redirect: '/login'
+    },
+    {
       path: '/login',
       name: 'login',
       component: LoginView,
+      meta: {
+        guestOnly: true
+      }
     },
+
+    // GENERAL
     {
       path: '/general',
       component: () => import('../views/UsersGeneral/layouts/GeneralLayout.vue'),
+      meta: {
+        requiresAuth: true,
+        roles: [ROLES.GENERAL]
+      },
+
       children: [
         {
           path: '',
@@ -53,6 +71,56 @@ const router = createRouter({
       ]
     }
   ],
+})
+
+router.beforeEach((to, from) => {
+  const authenticated = isAuthenticated()
+  const role = getRole()
+
+  console.log('Ruta:', to.path)
+  console.log('Auth:', authenticated)
+  console.log('Role:', role)
+
+  // Ruta protegida
+  if (to.meta.requiresAuth && !authenticated) {
+    return '/login'
+  }
+
+  // Rol inválido
+  if (
+    authenticated &&
+    !Object.values(ROLES).includes(role)
+  ) {
+    logout()
+    return '/login'
+  }
+
+  // Usuario autenticado intentando entrar a login
+  if (to.meta.guestOnly && authenticated) {
+    const homeRoute = HOME_BY_ROLE[role]
+
+    if (homeRoute && to.path !== homeRoute) {
+      return homeRoute
+    }
+
+    return true
+  }
+
+  // Validar permisos
+  if (
+    to.meta.roles &&
+    !to.meta.roles.includes(role)
+  ) {
+    const homeRoute = HOME_BY_ROLE[role]
+
+    if (homeRoute && to.path !== homeRoute) {
+      return homeRoute
+    }
+
+    return '/login'
+  }
+
+  return true
 })
 
 export default router
