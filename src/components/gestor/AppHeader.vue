@@ -13,7 +13,7 @@
 
             <div class="flex items-center md:justify-start gap-2 mt-3 text-slate-500 text-sm md:text-base">
                 <i class="pi pi-clock"></i>
-                <span> {{ currentDate }}</span>
+                <span>Panel de Gestor | {{ currentDate }}</span>
             </div>
         </div>
 
