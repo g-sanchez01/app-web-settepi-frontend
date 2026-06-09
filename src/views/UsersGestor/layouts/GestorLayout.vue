@@ -32,5 +32,8 @@
 
         <!--SIDEBAR DESKTOP-->
         <Sidebar :open="sidebarOpen"/>
+
+        <!-- CONTENIDO DE LAS RUTAS HIJAS -->
+        <RouterView />
     </div>
 </template>
