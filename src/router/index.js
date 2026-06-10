@@ -94,6 +94,10 @@ const router = createRouter({
           path: 'encuestas',
           component: () => import('../views/UsersGestor/EncuestasView.vue')
 
+        },
+        {
+          path: 'perfil',
+          component: () => import('../views/UsersGestor/MiPerfilView.vue')
         }
       ]
     }
