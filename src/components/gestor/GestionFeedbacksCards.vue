@@ -3,11 +3,10 @@
 </script>
 
 <template>
-    <div class="space-y-10">
+    <div class="space-y-5">
         <!--Encabezado-->
         <div>
             <h3 class="text-2xl md:text-3xl font-normal text-slate-800">Settepi Te Escucha</h3>
-            <p class="text-slate-500 mt-1">Revisa sus situaciones y/o felicitaciones.</p>
         </div>
 
         <!--Tarjetas-->

@@ -3,11 +3,10 @@
 </script>
 
 <template>
-    <div class="space-y-10">
+    <div class="space-y-5">
         <!--Encabezado-->
         <div>
             <h3 class="text-2xl md:text-3xl font-normal text-slate-800">Tus Ideas Nos Mueven</h3>
-            <p class="text-slate-500 mt-1">Gestiona las ideas, revisa la innovación.</p>
         </div>
 
         <!--Tarjetas-->

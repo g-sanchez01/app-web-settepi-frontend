@@ -3,6 +3,7 @@
     import GestionIdeasCards from '@/components/gestor/GestionIdeasCards.vue';
     import GestionFeedbacksCards from '@/components/gestor/GestionFeedbacksCards.vue';
     import OptionsEncuestasCards from '@/components/gestor/OptionsEncuestasCards.vue';
+    import RecentActivities from '@/components/gestor/RecentActivities.vue';
 </script>
 
 <template>
@@ -30,6 +31,9 @@
             <OptionsEncuestasCards/>
         </div>
         
+        <div class="mt-8">
+            <RecentActivities/>
+        </div>
         
     </div>
 </template>
