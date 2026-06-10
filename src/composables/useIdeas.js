@@ -68,19 +68,36 @@ export function useIdeas() {
 
     }
 
-    const obtenerMisIdeas = async (filters = {}) => {
+    const obtenerMisIdeas = async (
+        filters = {},
+        page = 1,
+        limit = 10
+    ) => {
+    
         try {
             
             loading.value = true
             error.value = null
 
-            const params = {}
+            const params = {
+                offset: (page - 1) * limit,
+                limit
+            }
 
             if (filters.idRegistroIdea)
                 params.idRegistroIdea = filters.idRegistroIdea
 
+            if (filters.nomina)
+                params.nomina = filters.nomina
+
             if (filters.tituloIdea)
                 params.tituloIdea = filters.tituloIdea
+
+            if (filters.zona)
+                params.zona = filters.zona
+
+            if (filters.departamento)
+                params.departamento = filters.departamento
 
             if (filters.estado)
                 params.estado = filters.estado

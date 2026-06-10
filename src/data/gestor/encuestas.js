@@ -6,7 +6,7 @@ import { Newspaper, Users, FileText, Briefcase, BadgeCheck, User, Gift } from 'l
             descripcion: 'Gestiona las ideas, revisa la innovación.',
             icono: FileText,
             color: 'bg-cyan-600',
-            ruta: '/gestor/encuestas'
+            ruta: 'encuestas/ideas'
         },
         {
             titulo: 'Settepi Te Escucha',

@@ -4,7 +4,6 @@
     import IdeasHeader from '@/components/general/encuesta-ideas/IdeasHeader.vue';
     import IdeasTable from '@/components/general/encuesta-ideas/IdeasTable.vue';
     import IdeaTableMobile from '@/components/general/encuesta-ideas/mobile/IdeaTableMobile.vue';
-
     import { useIdeas } from '@/composables/useIdeas';
 
     const { obtenerMisIdeas, loading } = useIdeas()
