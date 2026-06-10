@@ -34,6 +34,8 @@
         <Sidebar :open="sidebarOpen"/>
 
         <!-- CONTENIDO DE LAS RUTAS HIJAS -->
-        <RouterView />
+        <main class="flex-1 bg-gray-100 min-h-screen p-6 md:p-8 pt-24 md:pt-8">
+            <RouterView />
+        </main>
     </div>
 </template>

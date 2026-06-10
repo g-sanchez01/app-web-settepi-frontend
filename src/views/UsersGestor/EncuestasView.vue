@@ -7,13 +7,9 @@
 </script>
 
 <template>
-    <div class="p-4 lg:ml-72 lg:p-10">
-
-        <div class="mt-5">
-            <EncuestasHeader/>
-        </div>
-        
-
+    <div class="p-4 lg:ml-72 lg:p-6">
+        <EncuestasHeader/>
+       
         <!--Dashboard Encuestas-->
         <div class="mt-8 grid grid-cols-1 xl:grid-cols-2 gap-12">
                   

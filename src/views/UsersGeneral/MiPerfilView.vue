@@ -4,9 +4,12 @@
 </script>
 
 <template>
-    <div class="flex-1 p-4 md:p-4 md:ml-72 overflow-x-hidden">
+    <div class="flex-1 p-4 md:ml-72 overflow-x-hidden">
         <PerfilHeader/>
-        <UserCard/>
+
+        <div class="md:mt-0">
+            <UserCard />
+        </div>
     </div>
 </template>
 
