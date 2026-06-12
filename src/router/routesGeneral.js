@@ -1,5 +1,3 @@
-import { Edit } from "lucide-vue-next";
-
 export const ROUTES = {
     GENERAL: {
         ENCUESTAS: {
@@ -14,6 +12,20 @@ export const ROUTES = {
                 LISTA: '/general/encuestas/settepi-te-escucha',
                 NUEVA: '/general/encuestas/settepi-te-escucha/nueva-situacion',
                 DETALLE: (id) => `/general/encuestas/settepi-te-escucha/${id}`
+            }
+        }
+    },
+
+    GESTOR: {
+        ENCUESTAS: {
+            IDEAS: {
+                LISTA: '/gestor/encuestas/ideas',
+                DETALLE: (id) => `/gestor/encuestas/ideas/detalle/${id}`
+            },
+
+            FEEDBACKS: {
+                LISTA: '/gestor/encuestas/settepi-te-escucha',
+                DETALLE: (id) => `/gestor/encuestas/settepi-te-escucha/${id}`
             }
         }
     }

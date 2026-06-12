@@ -2,13 +2,10 @@
     import AppSpinner from '@/components/ui/AppSpinner.vue';
     import { useRouter } from 'vue-router'
     import { formatDateTime } from '@/utils/formatDate';
-    import { useIdeas } from '@/composables/useIdeas';
     import { ESTADO_STYLES } from '@/constants/status.constants';
     import { ROUTES } from '@/router/routesGeneral';
-    import { useToast } from '@/composables/ui/useToast'
 
     const router = useRouter()
-    const toast = useToast()
 
     const props = defineProps({
         ideas: {
@@ -23,21 +20,9 @@
 
     const verIdea = (idea) => {
         // redireccion
-        router.push(ROUTES.GENERAL.ENCUESTAS.MIS_IDEAS.EDITAR(idea.idRegistroIdea))
+        router.push(ROUTES.GESTOR.ENCUESTAS.IDEAS.DETALLE(idea.idRegistroIdea))
     }
 
-    const handleEnviarIdea = async (idea) => {
-        try {
-
-            toast.showToast('Tu idea fue enviada con éxito', 'success')
-            
-            idea.estado = 'ENVIADA'
-
-        } catch (err) {
-            console.error(err)
-            toast.showToast('Error al envíar idea', 'error')
-        }
-    }
 
 </script>
 
@@ -115,14 +100,10 @@
                         </span>
                     </td>
 
-                    <!-- EDITAR -->
+                    <!-- VER -->
                     <td class="px-6 py-4">
                         <button
-                            :disabled="idea.estado === 'ENVIADA'"
-                            class="inline-flex items-center justify-center w-9 h-9 rounded-lg transition"
-                            :class="idea.estado === 'ENVIADA'
-                                ? 'text-blue-200 cursor-not-allowed'
-                                : 'text-blue-500 hover:text-blue-300 cursor-pointer'"
+                            class="inline-flex items-center justify-center w-9 h-9 rounded-lg transition text-blue-500 hover:text-blue-300 cursor-pointer"
                             @click="verIdea(idea)"
                         >
                             <i class="pi pi-eye text-2xl"></i>

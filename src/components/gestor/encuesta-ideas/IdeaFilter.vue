@@ -80,6 +80,7 @@
                 <option value="">Todos departamentos</option>
                 <option value="COMUNICACION">COMUNICACION</option>
                 <option value="RECURSOS HUMANOS">RECURSOS HUMANOS</option>
+                <option value="RELACIONES PUBLICAS">RELACIONES PUBLICAS</option>
                 <option value="RECLUTAMIENTO">RECLUTAMIENTO</option>
                 <option value="MANTENIMIENTO">MANTENIMIENTO</option>
                 <option value="GESTORIA">GESTORIA</option>

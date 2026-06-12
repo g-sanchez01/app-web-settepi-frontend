@@ -102,7 +102,11 @@ const router = createRouter({
         {
           path: 'encuestas/ideas',
           component: () => import('../views/UsersGestor/Encuestas/TusIdeasNosMueven/HomeIdeasView.vue')
-        }
+        },
+        {
+          path: 'encuestas/ideas/detalle/:id',
+          component: () => import('../views/UsersGestor/Encuestas/TusIdeasNosMueven/IdeaDetalleView.vue')
+        },
       ]
     }
 

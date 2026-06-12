@@ -230,12 +230,48 @@ export function useIdeas() {
         }
     }
 
+    // ACTUALIZAR ESTADO "GESTOR"
+    const actualizarEstadoIdea = async (id, estado) => {
+
+        try {
+
+            loading.value = true
+            error.value = null
+
+            const response = await axios.put(
+                `${API_URL}/ideas/${id}/estado`,
+                { estado },
+                {
+                    headers: getAuthHeaders()
+                }
+            )
+
+            return response.data
+
+        } catch (err) {
+
+            console.error(err)
+
+            error.value =
+                err.response?.data?.detail ||
+                'Error al actualizar estado'
+
+            throw err
+
+        } finally {
+
+            loading.value = false
+
+        }
+    }
+
     return {
         obtenerIdeaPorId,
         editarIdea,
         registrarIdea,
         enviarIdea,
         obtenerMisIdeas,
+        actualizarEstadoIdea,
         loading,
         error
     }
