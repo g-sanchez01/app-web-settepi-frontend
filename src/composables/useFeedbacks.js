@@ -78,6 +78,12 @@ export function useFeedbacks() {
             if (filters.idfeedback)
                 params.idfeedback = filters.idfeedback
 
+            if (filters.nomina)
+                params.nomina = filters.nomina
+
+            if (filters.area)
+                params.area = filters.area
+
             if (filters.tipo)
                 params.tipo = filters.tipo
 
@@ -86,6 +92,9 @@ export function useFeedbacks() {
 
             if (filters.fecha)
                 params.fecha = filters.fecha
+
+            if (filters.nombre)
+                params.nombre = filters.nombre
 
             const response = await axios.get(
                 `${API_URL}/feedbacks/settepi-te-escucha`,
@@ -111,9 +120,39 @@ export function useFeedbacks() {
         }
     }
 
+     const obtenerFeedbackPorId = async (id) => {
+
+        try {
+            loading.value = true
+            error.value = null
+
+            const response = await axios.get(
+                `${API_URL}/feedbacks/${id}`,
+                {
+                    headers: getAuthHeaders()
+                }
+            )
+
+            return response.data
+
+        } catch (err) {
+            console.error(err)
+
+            error.value =
+                err.response?.data?.detail ||
+                'Error al obtener feedback'
+
+            throw err
+
+        } finally {
+            loading.value = false
+        }
+    }
+
     return {
         registrarFeedback,
         obtenerMisFeedbacks,
+        obtenerFeedbackPorId,
         loading,
         error
     }

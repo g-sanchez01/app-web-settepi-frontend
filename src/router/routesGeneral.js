@@ -25,7 +25,7 @@ export const ROUTES = {
 
             FEEDBACKS: {
                 LISTA: '/gestor/encuestas/settepi-te-escucha',
-                DETALLE: (id) => `/gestor/encuestas/settepi-te-escucha/${id}`
+                DETALLE: (id) => `/gestor/encuestas/settepi-te-escucha/detalle/${id}`
             }
         }
     }

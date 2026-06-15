@@ -107,6 +107,14 @@ const router = createRouter({
           path: 'encuestas/ideas/detalle/:id',
           component: () => import('../views/UsersGestor/Encuestas/TusIdeasNosMueven/IdeaDetalleView.vue')
         },
+        {
+          path: 'encuestas/settepi-te-escucha',
+          component: () => import('../views/UsersGestor/Encuestas/Feedback/HomeFeedbackView.vue')
+        },
+        {
+          path: 'encuestas/settepi-te-escucha/detalle/:id',
+          component: () => import('../views/UsersGestor/Encuestas/Feedback/FeedbackDetalleView.vue')
+        },
       ]
     }
 
