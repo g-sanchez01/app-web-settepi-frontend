@@ -19,3 +19,11 @@ export const ESTADO_STYLES = {
     [ESTADOS_IDEAS.PENDIENTE]: 'bg-yellow-100 text-yellow-700',
     [ESTADOS_IDEAS.FINALIZADA]: 'bg-rose-100 text-rose-700',
 };
+
+export const ESTADOS_BLOQUEADOS = [
+    'ENVIADA',
+    'PENDIENTE',
+    'EN PROCESO',
+    'APROBADA',
+    'RECHAZADA'
+]

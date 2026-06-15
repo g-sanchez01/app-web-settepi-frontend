@@ -3,6 +3,7 @@
     import IdeaFilter from '@/components/gestor/encuesta-ideas/IdeaFilter.vue';
     import IdeasHeader from '@/components/gestor/encuesta-ideas/IdeasHeader.vue';
     import IdeasTable from '@/components/gestor/encuesta-ideas/IdeasTable.vue';
+    import IdeaTableMobile from '@/components/gestor/encuesta-ideas/mobile/IdeaTableMobile.vue';
     import { useIdeas } from '@/composables/useIdeas';
 
     const { obtenerMisIdeas, loading } = useIdeas()
@@ -73,6 +74,14 @@
         <!--Desktop-->
         <div class="hidden md:block">
             <IdeasTable
+                :ideas="ideas"
+                :loading="loading"
+            />
+        </div>
+
+        <!--Mobile-->
+        <div class="block md:hidden">
+            <IdeaTableMobile
                 :ideas="ideas"
                 :loading="loading"
             />

@@ -3,7 +3,7 @@
     import { useRouter } from 'vue-router'
     import { formatDateTime } from '@/utils/formatDate';
     import { useIdeas } from '@/composables/useIdeas';
-    import { ESTADO_STYLES } from '@/constants/status.constants'
+    import { ESTADO_STYLES, ESTADOS_BLOQUEADOS } from '@/constants/status.constants'
     import { useToast } from '@/composables/ui/useToast'
     import { ROUTES } from '@/router/routesGeneral';
 
@@ -72,9 +72,9 @@
                     <div class="flex items-center gap-2 bg-gray-50 p-1 rounded-lg">
                         
                         <button
-                            :disabled="idea.estado === 'ENVIADA'"
+                            :disabled="ESTADOS_BLOQUEADOS.includes(idea.estado)"
                             class="text-blue-500 w-9 h-9 flex items-center justify-center rounded-lg hover:bg-blue-100 transition"
-                            :class="idea.estado === 'ENVIADA'
+                            :class="ESTADOS_BLOQUEADOS.includes(idea.estado)
                                 ? 'text-blue-200 cursor-not-allowed'
                                 : 'text-blue-500 hover:text-blue-300 cursor-pointer'"
                             @click="editIdea(idea)"
@@ -83,9 +83,9 @@
                         </button>
 
                         <button
-                            :disabled="idea.estado === 'ENVIADA'"
+                            :disabled="ESTADOS_BLOQUEADOS.includes(idea.estado)"
                             class="text-indigo-500 w-9 h-9 flex items-center justify-center rounded-lg hover:bg-indigo-100 transition"
-                            :class="idea.estado === 'ENVIADA'
+                            :class="ESTADOS_BLOQUEADOS.includes(idea.estado)
                                 ? 'text-indigo-200 cursor-not-allowed'
                                 : 'text-indigo-400 hover:text-indigo-300 cursor-pointer'"
                             @click="handleEnviarIdea(idea)"
