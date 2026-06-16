@@ -1,6 +1,7 @@
 <script setup>
     import FeedbackDetalleHeader from '@/components/gestor/encuesta-feedback/FeedbackDetalleHeader.vue';
     import FeedbackDetalle from '@/components/gestor/encuesta-feedback/FeedbackDetalle.vue';
+    import FeedbackDetalleCardMobile from '@/components/gestor/encuesta-feedback/mobile/FeedbackDetalleCardMobile.vue';
 
 </script>
 
@@ -11,6 +12,11 @@
         <!-- Desktop -->
         <div class="hidden md:block">
             <FeedbackDetalle />
+        </div>
+
+        <!-- Mobile -->
+        <div class="block md:hidden">
+            <FeedbackDetalleCardMobile />
         </div>
     </div>
 </template>

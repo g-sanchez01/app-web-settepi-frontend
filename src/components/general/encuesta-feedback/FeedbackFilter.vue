@@ -58,7 +58,7 @@
                 <option value="">Todos los estados</option>
                 <option value="PENDIENTE">PENDIENTE</option>
                 <option value="EN PROCESO">EN PROCESO</option>
-                <option value="FINALIZADA">FINALIZADA</option>
+                <option value="FINALIZADO">FINALIZADO</option>
             </select>
 
             <!-- Fecha -->

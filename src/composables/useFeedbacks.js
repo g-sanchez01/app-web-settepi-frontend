@@ -88,13 +88,19 @@ export function useFeedbacks() {
                 params.tipo = filters.tipo
 
             if (filters.estado)
-                params.estado = filters.tipo
+                params.estado = filters.estado
 
             if (filters.fecha)
                 params.fecha = filters.fecha
 
             if (filters.nombre)
                 params.nombre = filters.nombre
+
+            if (filters.offset !== undefined)
+                params.offset = filters.offset
+
+            if (filters.limit !== undefined)
+                params.limit = filters.limit
 
             const response = await axios.get(
                 `${API_URL}/feedbacks/settepi-te-escucha`,

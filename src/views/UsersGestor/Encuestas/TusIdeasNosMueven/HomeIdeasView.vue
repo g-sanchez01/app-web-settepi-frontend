@@ -17,11 +17,14 @@
 
     const cargarIdeas  = async (filters = {}) => {
         try {
-            ideas.value = await obtenerMisIdeas(
-            filtrosActuales.value,
-            currentPage.value,
-            limit
-        )
+            const offset = (currentPage.value - 1) * limit
+
+            ideas.value = await obtenerMisIdeas({
+                ...filters,
+                offset,
+                limit
+            })
+            
         } catch (err) {
             console.error(err)
         }
@@ -95,7 +98,7 @@
             <button
                 @click="paginaAnterior"
                 :disabled="currentPage === 1"
-                class="px-4 py-2 border rounded-lg disabled:opacity-50"
+                class="px-4 py-2 border rounded-lg disabled:opacity-50 cursor-pointer"
             >
                 Anterior
             </button>
@@ -107,7 +110,7 @@
             <button
                 @click="siguientePagina"
                 :disabled="ideas.length < limit"
-                class="px-4 py-2 border rounded-lg disabled:opacity-50"
+                class="px-4 py-2 border rounded-lg disabled:opacity-50 cursor-pointer"
             >
                 Siguiente
             </button>

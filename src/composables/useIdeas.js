@@ -105,6 +105,12 @@ export function useIdeas() {
             if (filters.fecha)
                 params.fecha = filters.fecha
 
+            if (filters.offset !== undefined)
+                params.offset = filters.offset
+
+            if (filters.limit !== undefined)
+                params.limit = filters.limit
+
             const response = await axios.get(
                 `${API_URL}/ideas/mis-ideas`,
                 {

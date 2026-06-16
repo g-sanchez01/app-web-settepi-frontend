@@ -117,6 +117,15 @@
                         </p>
                     </div>
 
+                    <div>
+                        <label class="text-xs font-semibold text-gray-500 uppercase">
+                            Departamento
+                        </label>
+                        <p class="mt-1 text-gray-900 font-medium">
+                            {{ feedback.departamento }}
+                        </p>
+                    </div>
+
 
                     <div>
                         <label class="text-xs font-semibold text-gray-500 uppercase">
