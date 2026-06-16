@@ -149,9 +149,45 @@ export function useFeedbacks() {
         }
     }
 
+    // ACTUALIZAR ESTADO "GESTOR"
+    const actualizarEstadoFeedback = async (id, estado) => {
+
+        try {
+
+            loading.value = true
+            error.value = null
+
+            const response = await axios.put(
+                `${API_URL}/feedbacks/${id}/estado`,
+                { estado },
+                {
+                    headers: getAuthHeaders()
+                }
+            )
+
+            return response.data
+
+        } catch (err) {
+
+            console.error(err)
+
+            error.value =
+                err.response?.data?.detail ||
+                'Error al actualizar estado'
+
+            throw err
+
+        } finally {
+
+            loading.value = false
+
+        }
+    }
+
     return {
         registrarFeedback,
         obtenerMisFeedbacks,
+        actualizarEstadoFeedback,
         obtenerFeedbackPorId,
         loading,
         error

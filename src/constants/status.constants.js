@@ -6,7 +6,7 @@ export const ESTADOS_IDEAS = {
     BORRADOR: 'BORRADOR',
     PENDIENTE: 'PENDIENTE',
     EN_PROCESO: 'EN PROCESO',
-    FINALIZADA: 'FINALIZADA'
+    FINALIZADO: 'FINALIZADO'
 };
 
 export const ESTADO_STYLES = {
@@ -17,7 +17,7 @@ export const ESTADO_STYLES = {
     [ESTADOS_IDEAS.RECHAZADA]: 'bg-red-100 text-red-700',
     [ESTADOS_IDEAS.BORRADOR]: 'bg-orange-100 text-orange-700',
     [ESTADOS_IDEAS.PENDIENTE]: 'bg-yellow-100 text-yellow-700',
-    [ESTADOS_IDEAS.FINALIZADA]: 'bg-rose-100 text-rose-700',
+    [ESTADOS_IDEAS.FINALIZADO]: 'bg-rose-100 text-rose-700',
 };
 
 export const ESTADOS_BLOQUEADOS = [

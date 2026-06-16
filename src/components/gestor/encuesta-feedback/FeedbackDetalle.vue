@@ -8,7 +8,7 @@
 
     const route = useRoute()
 
-    const { obtenerFeedbackPorId, loading } = useFeedbacks()
+    const { obtenerFeedbackPorId, actualizarEstadoFeedback, loading } = useFeedbacks()
 
     const feedback = ref(null)
 
@@ -26,23 +26,23 @@
         cargarFeedback()
     })
 
-    /*const cambiarEstado = async (estado) => {
+    const cambiarEstado = async (estado) => {
 
         try {
 
-            await actualizarEstadoIdea(
-                idea.value.idRegistroIdea,
+            await actualizarEstadoFeedback(
+                feedback.value.idfeedback,
                 estado
             )
 
-            idea.value.estado = estado
+            feedback.value.estado = estado
 
         } catch (error) {
 
             console.error(error)
 
         }
-    }*/
+    }
 </script>
 
 <template>
@@ -167,7 +167,7 @@
                     <div class="flex flex-wrap gap-3">
 
                         <button
-                            v-if="feedback.estado === 'ENVIADA'"
+                            v-if="feedback.estado === 'PENDIENTE'"
                             @click="cambiarEstado('EN PROCESO')"
                             class="px-4 py-2 rounded-lg bg-yellow-100 text-yellow-700 hover:bg-yellow-200 cursor-pointer"
                         >
@@ -176,18 +176,10 @@
 
                         <button
                             v-if="feedback.estado === 'EN PROCESO'"
-                            @click="cambiarEstado('APROBADA')"
+                            @click="cambiarEstado('FINALIZADO')"
                             class="px-4 py-2 rounded-lg bg-green-100 text-green-700 hover:bg-green-200 cursor-pointer"
                         >
-                            Aprobar
-                        </button>
-
-                        <button
-                            v-if="feedback.estado === 'EN PROCESO'"
-                            @click="cambiarEstado('RECHAZADA')"
-                            class="px-4 py-2 rounded-lg bg-red-100 text-red-700 hover:bg-red-200 cursor-pointer"
-                        >
-                            Rechazar
+                            FINALIZAR
                         </button>
 
                     </div>
