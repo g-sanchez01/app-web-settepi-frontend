@@ -8,64 +8,64 @@ import {
 } from 'lucide-vue-next'
 
 
-export const statsIdeas = [
+export const statsIdeas = (data = {}) => [
     {
         title: 'Total Ideas',
-        value: 124,
+        value: data.total, 
         icon: ClipboardList,
         iconColor: 'text-blue-600',
         bgColor: 'bg-blue-100'
     },
     {
         title: 'En proceso',
-        value: 47,
+        value: data.en_proceso,
         icon: LoaderCircle,
         iconColor: 'text-purple-600',
         bgColor: 'bg-purple-100'
     },
     {
         title: 'Pendientes',
-        value: 63,
+        value: data.pendiente,
         icon: Clock3,
         iconColor: 'text-orange-600',
         bgColor: 'bg-orange-100'
     },
     {
         title: 'Finalizadas',
-        value: 14,
+        value: data.finalizada,
         icon: CheckCircle,
         iconColor: 'text-green-600',
         bgColor: 'bg-green-100'
     }
 ]
 
-export const statsFeedbacks = [
+export const generarStatsFeedbacks = (data = {}) => [
     {
         title: 'Total Feedbacks',
-        value: 124,
+        value: data.total, 
         icon: ClipboardList,
         iconColor: 'text-blue-600',
         bgColor: 'bg-blue-100'
     },
     {
         title: 'En proceso',
-        value: 47,
+        value: data.en_proceso,
         icon: LoaderCircle,
         iconColor: 'text-purple-600',
         bgColor: 'bg-purple-100'
     },
     {
         title: 'Pendientes',
-        value: 63,
+        value: data.pendiente,
         icon: Clock3,
         iconColor: 'text-orange-600',
         bgColor: 'bg-orange-100'
     },
     {
         title: 'Finalizadas',
-        value: 14,
+        value: data.finalizada,
         icon: CheckCircle,
         iconColor: 'text-green-600',
-        bgColor: 'bg-blue-100'
+        bgColor: 'bg-green-100'
     }
 ]

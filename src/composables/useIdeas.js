@@ -271,6 +271,39 @@ export function useIdeas() {
         }
     }
 
+    const obtenerEstadisticasIdeas = async () => {
+
+        try {
+
+            loading.value = true
+            error.value = null
+
+            const response = await axios.get(
+                `${API_URL}/ideas/estadisticas`,
+                {
+                    headers: getAuthHeaders()
+                }
+            )
+
+            return response.data
+
+        } catch (err) {
+
+            console.error(err)
+
+            error.value =
+                err.response?.data?.detail ||
+                'Error al obtener estadísticas'
+
+            throw err
+
+        } finally {
+
+            loading.value = false
+
+        }
+    }
+
     return {
         obtenerIdeaPorId,
         editarIdea,
@@ -278,6 +311,7 @@ export function useIdeas() {
         enviarIdea,
         obtenerMisIdeas,
         actualizarEstadoIdea,
+        obtenerEstadisticasIdeas,
         loading,
         error
     }

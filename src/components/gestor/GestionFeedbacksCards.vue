@@ -1,5 +1,20 @@
 <script setup>
-    import { statsFeedbacks } from '@/data/gestor/stats';
+    import { computed } from 'vue'
+    import { generarStatsFeedbacks } from '@/data/gestor/stats'
+
+    const props = defineProps({
+        statsData: {
+            type: Object,
+            default: () => null
+        }
+    })
+
+    const stats = computed(() => {
+        if (!props.statsData) return []
+
+        return generarStatsFeedbacks(props.statsData)
+    })
+
 </script>
 
 <template>
@@ -13,7 +28,7 @@
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
 
             <div
-                v-for="card in statsFeedbacks"
+                v-for="card in stats"
                 :key="card.title"
                 class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm hover:shadow-md transition"
             >

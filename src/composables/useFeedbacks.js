@@ -190,11 +190,45 @@ export function useFeedbacks() {
         }
     }
 
+    const obtenerEstadisticasFeedbacks = async () => {
+
+        try {
+
+            loading.value = true
+            error.value = null
+
+            const response = await axios.get(
+                `${API_URL}/feedbacks/estadisticas`,
+                {
+                    headers: getAuthHeaders()
+                }
+            )
+
+            return response.data
+
+        } catch (err) {
+
+            console.error(err)
+
+            error.value =
+                err.response?.data?.detail ||
+                'Error al obtener estadísticas'
+
+            throw err
+
+        } finally {
+
+            loading.value = false
+
+        }
+    }
+
     return {
         registrarFeedback,
         obtenerMisFeedbacks,
         actualizarEstadoFeedback,
         obtenerFeedbackPorId,
+        obtenerEstadisticasFeedbacks,
         loading,
         error
     }
