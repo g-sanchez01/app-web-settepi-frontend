@@ -16,6 +16,23 @@ export const ROUTES = {
         }
     },
 
+    LIDER: {
+        ENCUESTAS: {
+            MIS_IDEAS: {
+                LISTA: '/lider/encuestas/mis-ideas',
+                NUEVA: '/lider/encuestas/mis-ideas/idea-nueva',
+                EDITAR: (id) => `/lider/encuestas/mis-ideas/edit-idea/${id}`,
+                DETALLE: (id) => `/lider/encuestas/mis-ideas/${id}`
+            },
+
+            FEEDBACKS: {
+                LISTA: '/lider/encuestas/settepi-te-escucha',
+                NUEVA: '/lider/encuestas/settepi-te-escucha/nueva-situacion',
+                DETALLE: (id) => `/lider/encuestas/settepi-te-escucha/${id}`
+            }
+        }
+    },
+
     GESTOR: {
         ENCUESTAS: {
             IDEAS: {

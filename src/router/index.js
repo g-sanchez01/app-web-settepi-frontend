@@ -116,6 +116,53 @@ const router = createRouter({
           component: () => import('../views/UsersGestor/Encuestas/Feedback/FeedbackDetalleView.vue')
         },
       ]
+    },
+
+    // LIDER
+    {
+      path: '/lider',
+      component: () => import('../views/UsersLider/layouts/LiderLayout.vue'),
+      meta: {
+        requiresAuth: true,
+        roles: [ROLES.LIDER]
+      },
+
+      children: [
+        {
+          path: '',
+          redirect: '/lider/home'
+        },
+        {
+          path: 'home',
+          component: () => import('../views/UsersLider/HomeView.vue')
+
+        },
+        {
+          path: 'encuestas',
+          component: () => import('../views/UsersLider/EncuestasView.vue')
+
+        },
+        {
+          path: 'encuestas/mis-ideas',
+          component: () => import('../views/UsersLider/Encuestas/TusIdeasNosMueven/HomeIdeasView.vue')
+        },
+        {
+          path: 'encuestas/mis-ideas/idea-nueva',
+          component: () => import('../views/UsersLider/Encuestas/TusIdeasNosMueven/IdeaNuevaView.vue')
+        },
+         {
+          path: 'encuestas/mis-ideas/edit-idea/:id',
+          component: () => import('../views/UsersLider/Encuestas/TusIdeasNosMueven/IdeaEditView.vue')
+        },
+        {
+          path: 'encuestas/settepi-te-escucha',
+          component: () => import('../views/UsersLider/Encuestas/Feedback/HomeFeedbackView.vue')
+        },
+        {
+          path: 'perfil',
+          component: () => import('../views/UsersLider/MiPerfilView.vue')
+        },
+      ]
     }
 
     
