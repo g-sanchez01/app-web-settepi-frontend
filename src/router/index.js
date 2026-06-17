@@ -159,6 +159,10 @@ const router = createRouter({
           component: () => import('../views/UsersLider/Encuestas/Feedback/HomeFeedbackView.vue')
         },
         {
+          path: 'encuestas/settepi-te-escucha/nueva-situacion',
+          component: () => import('../views/UsersLider/Encuestas/Feedback/FeedbackNuevoView.vue')
+        },
+        {
           path: 'perfil',
           component: () => import('../views/UsersLider/MiPerfilView.vue')
         },
