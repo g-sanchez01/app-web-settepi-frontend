@@ -6,6 +6,8 @@
     import GestionFeedbacksCards from '@/components/gestor/GestionFeedbacksCards.vue'
     import OptionsEncuestasCards from '@/components/gestor/OptionsEncuestasCards.vue'
     import RecentActivities from '@/components/gestor/RecentActivities.vue'
+    import GestionIdeasCardsMobile from '@/components/gestor/mobile/GestionIdeasCardsMobile.vue'
+    import GestionFeedbacksCardsMobile from '@/components/gestor/mobile/GestionFeedbacksCardsMobile.vue'
 
     import { useFeedbacks } from '@/composables/useFeedbacks'
     import { useIdeas } from '@/composables/useIdeas'
@@ -22,9 +24,6 @@
                 obtenerEstadisticasFeedbacks(),
                 obtenerEstadisticasIdeas()
             ])
-
-            console.log('FEEDBACKS:', feedbacks)
-            console.log('IDEAS:', ideas)
 
             statsFeedbacks.value = feedbacks
             statsIdeas.value = ideas
@@ -47,15 +46,26 @@
         <!--Dashboard Encuestas-->
         <div class="mt-8 grid grid-cols-1 xl:grid-cols-2 gap-12">
             
-            <!--Ideas-->
-            <div class="xl:pr-6 xl:border-r border-slate-200">
+            <!--Ideas DESKTOP -->
+            <div class="hidden lg:block xl:pr-6 xl:border-r border-slate-200">
                 <GestionIdeasCards :stats-data="statsIdeas"/>
             </div>
 
-            <!--Feedbacks-->
-            <div class="xl:pl-5">
+            <!--Ideas MOBILE -->
+            <div class="block lg:hidden">
+                <GestionIdeasCardsMobile :stats-data="statsIdeas" />
+            </div>
+
+            <!--Feedbacks DESKTOP-->
+            <div class="hidden lg:block xl:pr-6 xl:border-r border-slate-200">
                 <GestionFeedbacksCards :stats-data="statsFeedbacks" />
             </div>
+
+            <!--Feedbacks MOBILE -->
+            <div class="block lg:hidden">
+                <GestionFeedbacksCardsMobile :stats-data="statsFeedbacks" />
+            </div>
+
             
         </div>
        
