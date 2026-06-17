@@ -163,6 +163,10 @@ const router = createRouter({
           component: () => import('../views/UsersLider/Encuestas/Feedback/FeedbackNuevoView.vue')
         },
         {
+          path: 'mi-equipo',
+          component: () => import('../views/UsersLider/MiEquipoView.vue')
+        },
+        {
           path: 'perfil',
           component: () => import('../views/UsersLider/MiPerfilView.vue')
         },

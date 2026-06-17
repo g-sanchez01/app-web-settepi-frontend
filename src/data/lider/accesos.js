@@ -20,6 +20,6 @@ import { FileText, User, Users} from 'lucide-vue-next';
             descripcion: 'Revisa a tu equipo',
             icono: Users,
             color: 'bg-emerald-600',
-            ruta: '/lider/mi-perfil'
+            ruta: '/lider/mi-equipo'
         }
     ]
