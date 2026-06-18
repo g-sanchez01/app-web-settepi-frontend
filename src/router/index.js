@@ -167,6 +167,10 @@ const router = createRouter({
           component: () => import('../views/UsersLider/MiEquipoView.vue')
         },
         {
+          path: 'mi-equipo/asignacion/:numero_nomina',
+          component: () => import('../views/UsersLider/MiEquipo/AsignacionFormularioView.vue')
+        },
+        {
           path: 'perfil',
           component: () => import('../views/UsersLider/MiPerfilView.vue')
         },

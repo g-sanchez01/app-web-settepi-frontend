@@ -1,5 +1,9 @@
 <script setup>
     import AppSpinner from '@/components/ui/AppSpinner.vue';
+    import { useRouter } from 'vue-router'
+    import { ROUTES } from '@/router/routesGeneral';
+
+    const router = useRouter()
 
     defineProps({
         equipo: {
@@ -11,6 +15,11 @@
             default: false
         }
     })
+
+    const asignarColaboradorMes = (colaborador) => {
+        // redireccion
+        router.push(ROUTES.LIDER.MI_EQUIPO.ASIGNAR(colaborador.numero_nomina))
+    }
 
 </script>
 
@@ -66,7 +75,7 @@
 
                         <td class="px-6 py-5">
                             <button
-                                @click="asignarEmpleadoMes(empleado)"
+                                @click="asignarColaboradorMes(empleado)"
                                 class="bg-[#005B96] hover:bg-[#1E73B8] text-white px-5 py-3 rounded-xl transition flex items-center gap-2 cursor-pointer"
                             >
                                 🏆

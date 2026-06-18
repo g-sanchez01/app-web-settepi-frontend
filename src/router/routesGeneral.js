@@ -30,7 +30,12 @@ export const ROUTES = {
                 NUEVA: '/lider/encuestas/settepi-te-escucha/nueva-situacion',
                 DETALLE: (id) => `/lider/encuestas/settepi-te-escucha/${id}`
             }
-        }
+        },
+
+        MI_EQUIPO: {
+                LISTA: '/lider/mi-equipo',
+                ASIGNAR: (numero_nomina) => `/lider/mi-equipo/asignacion/${numero_nomina}`
+            }
     },
 
     GESTOR: {
