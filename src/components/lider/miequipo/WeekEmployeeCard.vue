@@ -1,28 +1,25 @@
 <script setup>
-    import { Users } from 'lucide-vue-next';
+    import { onMounted } from 'vue';
+    import { useWeekEmployee } from '@/composables/useWeekEmployee';
 
-    defineProps({
-        empleado: {
-            type: Object,
-            default: () => ({
-                nombre: 'María González',
-                puesto: 'Coordinadora',
-                fecha: 'Mayo 2026',
-                foto: null
-            })
-        }
+    const { colaborador, fetchWeekEmploye } = useWeekEmployee()
+
+    onMounted(() => {
+        fetchWeekEmploye()
     })
 
     const getIniciales = (nombre) => {
         if (!nombre) return 'NA'
 
         return nombre
-            .split(' ')
-            .slice(0, 2)
-            .map(n => n[0])
-            .join('')
-            .toUpperCase()
+        .split(' ')
+        .slice(0, 2)
+        .map(n => n[0])
+        .join('')
+        .toUpperCase()
     }
+
+
 </script>
 
 <template>
@@ -32,9 +29,9 @@
             <!-- Foto -->
             <div class="shrink-0">
                 <img
-                    v-if="empleado.foto"
-                    :src="empleado.foto"
-                    :alt="empleado.nombre"
+                    v-if="colaborador?.foto"
+                    :src="colaborador.foto"
+                    :alt="colaborador.nombre"
                     class="w-28 h-28 rounded-full object-cover border-4 border-yellow-400"
                 >
 
@@ -42,7 +39,7 @@
                     v-else
                     class="w-28 h-28 rounded-full bg-gradient-to-br from-blue-400 to-yellow-400 flex items-center justify-center text-white font-bold text-4xl border-4 border-white shadow-lg"
                 >
-                    {{ getIniciales(empleado.nombre) }}
+                    {{ getIniciales(colaborador?.nombre) }}
                 </div>
             </div>
 
@@ -61,18 +58,18 @@
                         </h2>
 
                         <p class="text-slate-500">
-                            {{ empleado.fecha }}
+                            {{ colaborador?.fecha }}
                         </p>
                     </div>
                 </div>
 
                 <div class="mt-5">
                     <h3 class="text-2xl font-bold text-slate-900">
-                        {{ empleado.nombre }}
+                        {{ colaborador?.nombre }}
                     </h3>
 
                     <p class="text-lg text-slate-600 mt-1">
-                        {{ empleado.puesto }}
+                        {{ colaborador?.puesto }}
                     </p>
                 </div>
             </div>

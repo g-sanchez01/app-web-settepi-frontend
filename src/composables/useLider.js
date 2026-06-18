@@ -10,6 +10,8 @@ export function useLider() {
     const loading = ref(false)
     const error = ref(null)
 
+    const totalIntegrantes = ref(0)
+
     const getAuthHeaders = () => ({
         Authorization: `Bearer ${localStorage.getItem('token')}`
     })
@@ -62,9 +64,28 @@ export function useLider() {
         }
     }
 
+    const obtenerTotalIntegrantes = async () => {
+        try {
+
+            const response = await axios.get(
+                `${API_URL}/lider/equipo/total`,
+                {
+                    headers: getAuthHeaders()
+                }
+            )
+
+            totalIntegrantes.value = response.data.total
+
+        } catch (err) {
+            console.error(err)
+        }
+    }
+
     return {
         equipo,
         obtenerEquipo,
+        obtenerTotalIntegrantes,
+        totalIntegrantes,
         loading,
         error
     }

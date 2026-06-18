@@ -8,8 +8,7 @@
     import WeekEmployeeCard from '@/components/lider/miequipo/WeekEmployeeCard.vue';
     import HistorialWeekEmployeeTable from '@/components/lider/miequipo/HistorialWeekEmployeeTable.vue';
 
-    const { obtenerEquipo, loading } = useLider()
-
+    const { obtenerEquipo, obtenerTotalIntegrantes, totalIntegrantes, loading } = useLider()
 
     const equipo = ref([])
     const emit = defineEmits(['asignar'])
@@ -34,6 +33,8 @@
 
     onMounted(async () => {
         await cargarColaboradores()
+        await cargarColaboradores()
+        await obtenerTotalIntegrantes()
     })
 
     const aplicarFiltros = async (filters) => {
@@ -73,7 +74,10 @@
         <EquipoHeader/>
 
         <div class="mb-8">
-            <TeamCard/>
+            <TeamCard
+                titulo="Integrantes"
+                :cantidad="totalIntegrantes"
+            />
         </div>
         
         <div class="mb-8">
