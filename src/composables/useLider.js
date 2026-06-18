@@ -14,21 +14,36 @@ export function useLider() {
         Authorization: `Bearer ${localStorage.getItem('token')}`
     })
 
-    const obtenerEquipo = async () => {
+    const obtenerEquipo = async ( filters = {} ) => {
+        
 
         try {
+
+            const params = {
+                offset: filters.offset || 0,
+                limit: filters.limit || 5
+            }
 
             loading.value = true
             error.value = null
 
+            if (filters.numero_nomina)
+                params.numero_nomina = filters.numero_nomina
+
+            if (filters.puesto)
+                params.puesto = filters.puesto
+
             const response = await axios.get(
                 `${API_URL}/lider/equipo`,
                 {
-                    headers: getAuthHeaders()
+                    headers: getAuthHeaders(),
+                    params
                 }
             )
 
             equipo.value = response.data
+
+            return response.data
 
         } catch (err) {
 

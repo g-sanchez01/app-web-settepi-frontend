@@ -1,21 +1,25 @@
 <script setup>
-    import { onMounted } from 'vue';
-    import { useLider } from '@/composables/useLider';
+    import AppSpinner from '@/components/ui/AppSpinner.vue';
 
-    const { equipo, obtenerEquipo } = useLider()
-
-    const asignarEmpleadoMes = (empleado) => {
-        console.log('Asignar:', empleado)
-    }
-
-    onMounted(() => {
-        obtenerEquipo()
+    defineProps({
+        equipo: {
+            type: Array,
+            default: () => []
+        },
+        loading: {
+            type: Boolean,
+            default: false
+        }
     })
 
 </script>
 
 <template>
     <div class="bg-white rounded-3xl shadow-sm p-8">
+        <AppSpinner
+           :show="loading" logo="/images/logoAzul.png" text=" "
+        />
+        
         <h2 class="text-3xl font-bold text-slate-900 mb-8">
             Integrantes del Equipo
         </h2>
