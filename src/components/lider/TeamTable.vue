@@ -1,9 +1,16 @@
 <script setup>
-    import { team } from '@/data/lider/team';
+    import { onMounted } from 'vue';
+    import { useLider } from '@/composables/useLider';
+
+    const { equipo, obtenerEquipo } = useLider()
 
     const asignarEmpleadoMes = (empleado) => {
         console.log('Asignar:', empleado)
     }
+
+    onMounted(() => {
+        obtenerEquipo()
+    })
 
 </script>
 
@@ -37,12 +44,12 @@
 
                 <tbody>
                     <tr
-                        v-for="empleado in team"
+                        v-for="empleado in equipo"
                         :key="empleado.nomina"
                         class="border-b border-slate-200"
                     >
                         <td class="px-6 py-5 text-slate-700">
-                            {{ empleado.nomina }}
+                            {{ empleado.numero_nomina }}
                         </td>
 
                         <td class="px-6 py-5 text-slate-900 font-medium">
