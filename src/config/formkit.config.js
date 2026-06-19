@@ -6,12 +6,34 @@ export default defaultConfig({
     classes: generateClasses({
       global: {
         outer: 'mb-3',
+
+        //  INNER (NORMAL vs DISABLED)
+        inner: (node) => {
+          return node.props.disabled
+            ? `
+              relative rounded-lg border border-gray-200 bg-gray-100
+              cursor-not-allowed
+            `
+            : `
+              relative rounded-lg border border-gray-300 bg-white
+              focus-within:border-indigo-500 focus-within:ring-2 focus-within:ring-indigo-200
+              transition
+            `
+        },
+
         label: 'block text-lg font-medium text-gray-700 mb-2',
+
         inner: 'relative rounded-lg border border-gray-300 bg-white focus-within:border-indigo-500 focus-within:ring-2 focus-within:ring-indigo-200 transition',
+        
         input: 'w-full px-3 py-2 text-gray-800 placeholder-gray-400 bg-transparent outline-none',
+
         textarea: 'w-full px-3 py-2 text-gray-800 placeholder-gray-400 bg-transparent outline-none resize-none',
+
         help: 'text-xs text-gray-400 mt-1',
+
         message: 'bg-red-600 text-white text-center text-sm font-bold uppercase p-2 my-5'
+
+        
       }
     })
   }

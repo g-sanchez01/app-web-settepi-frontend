@@ -32,13 +32,43 @@ export function useWeekEmployee() {
         } finally {
             loading.value = false
         }
+
+    }
+
+    // =================================
+    // APROBAR COLABORADOR DEL MES
+    // =================================
+
+    const solicitarColaboradorMes = async (payload) => {
+        loading.value = true
+        error.value = null
+
+        try {
+            const { data } = await axios.post(
+                    `${API_URL}/lider/colaborador-mes`,
+                    payload,
+                {
+                    headers: getAuthHeaders()
+                },
+            )
+
+            return data
+
+        } catch (err) {
+            console.log(err.response?.data)
+            error.value = err.response?.data?.message || 'Error al crear solicitud'
+            throw err
+        } finally {
+            loading.value = false
+        }
     }
 
     return {
         colaborador,
         loading,
         error,
-        fetchWeekEmploye
+        fetchWeekEmploye,
+        solicitarColaboradorMes
     }
 
     
