@@ -1,6 +1,7 @@
 <script setup>
     import { onMounted } from 'vue';
     import { useWeekEmployee } from '@/composables/useWeekEmployee';
+    import { formatMonthYear } from '@/utils/formatDate';
 
     const { colaborador, fetchWeekEmploye } = useWeekEmployee()
 
@@ -58,7 +59,7 @@
                         </h2>
 
                         <p class="text-slate-500">
-                            {{ colaborador?.fecha }}
+                            {{ formatMonthYear(colaborador?.fecha_asignacion) }}
                         </p>
                     </div>
                 </div>
@@ -69,7 +70,7 @@
                     </h3>
 
                     <p class="text-lg text-slate-600 mt-1">
-                        {{ colaborador?.puesto }}
+                        {{ colaborador?.puesto_real }}
                     </p>
                 </div>
             </div>

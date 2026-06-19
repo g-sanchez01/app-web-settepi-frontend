@@ -23,3 +23,17 @@ export const formatDateTime = (date) => {
 
     return `${day}-${month}-${year}`
 }
+
+export const formatMonthYear = (date) => {
+
+    if (!date) return ''
+
+    const d = new Date(date)
+
+    const result = d.toLocaleDateString('es-MX', {
+        month: 'long',
+        year: 'numeric'
+    })
+
+    return result.charAt(0).toUpperCase() + result.slice(1)
+}

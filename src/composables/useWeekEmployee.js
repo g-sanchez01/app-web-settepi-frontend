@@ -19,7 +19,7 @@ export function useWeekEmployee() {
 
         try {
             const { data } = await axios.get(
-                `${API_URL}/lider/colaborador-mes`,
+                `${API_URL}/lider/colaborador-mes/actual`,
                 {
                     headers: getAuthHeaders()
                 }
