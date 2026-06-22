@@ -226,6 +226,10 @@ const router = createRouter({
           component: () => import('../views/UserAdmin/MiEquipo/AsignacionFormularioView.vue')
         },
         {
+          path: 'empleado-mes',
+          component: () => import('../views/UserAdmin/WeekEmployeeView.vue')
+        },
+        {
           path: 'perfil',
           component: () => import('../views/UserAdmin/MiPerfilView.vue')
         },
