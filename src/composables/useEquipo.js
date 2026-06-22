@@ -1,10 +1,13 @@
 import { ref } from 'vue'
+import { ROLE_ROUTES } from '@/constants/roleRoutes'
 import axios from 'axios'
 
-export function useLider() {
+export function useEquipo() {
 
     // Server QA
     const API_URL = 'http://127.0.0.1:8000'
+
+    const role = localStorage.getItem('role')
 
     const equipo = ref([])
     const loading = ref(false)
@@ -21,6 +24,8 @@ export function useLider() {
 
         try {
 
+            const route = ROLE_ROUTES[role] 
+
             const params = {
                 offset: filters.offset || 0,
                 limit: filters.limit || 5
@@ -36,7 +41,7 @@ export function useLider() {
                 params.puesto = filters.puesto
 
             const response = await axios.get(
-                `${API_URL}/lider/equipo`,
+                `${API_URL}/${route}/equipo`,
                 {
                     headers: getAuthHeaders(),
                     params
@@ -67,8 +72,10 @@ export function useLider() {
     const obtenerTotalIntegrantes = async () => {
         try {
 
+            const route = ROLE_ROUTES[role] 
+
             const response = await axios.get(
-                `${API_URL}/lider/equipo/total`,
+                `${API_URL}/${route}/equipo/total`,
                 {
                     headers: getAuthHeaders()
                 }

@@ -50,5 +50,24 @@ export const ROUTES = {
                 DETALLE: (id) => `/gestor/encuestas/settepi-te-escucha/detalle/${id}`
             }
         }
+    },
+
+    ADMIN: {
+        ENCUESTAS: {
+            IDEAS: {
+                LISTA: '/admin/encuestas/ideas',
+                DETALLE: (id) => `/admin/encuestas/ideas/detalle/${id}`
+            },
+
+            FEEDBACKS: {
+                LISTA: '/admin/encuestas/settepi-te-escucha',
+                DETALLE: (id) => `/admin/encuestas/settepi-te-escucha/detalle/${id}`
+            }
+        },
+
+        MI_EQUIPO: {
+                LISTA: '/admin/mi-equipo',
+                ASIGNAR: (numero_nomina) => `/admin/mi-equipo/asignacion/${numero_nomina}`
+        }
     }
 }

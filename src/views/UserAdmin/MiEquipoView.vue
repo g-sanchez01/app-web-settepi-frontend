@@ -2,13 +2,13 @@
     import { ref, onMounted } from 'vue';
     import { useEquipo } from '@/composables/useEquipo';
     import { useWeekEmployee } from '@/composables/useWeekEmployee';
-    import EquipoHeader from '@/components/lider/miequipo/EquipoHeader.vue';
-    import TeamFilter from '@/components/lider/miequipo/TeamFilter.vue';
-    import TeamCard from '@/components/lider/miequipo/TeamCard.vue';
-    import TeamTable from '@/components/lider/miequipo/TeamTable.vue';
-    import TeamTableMobile from '@/components/lider/miequipo/mobile/TeamTableMobile.vue';
-    import WeekEmployeeCard from '@/components/lider/miequipo/WeekEmployeeCard.vue';
-    import HistorialWeekEmployeeTable from '@/components/lider/miequipo/HistorialWeekEmployeeTable.vue';
+    import EquipoHeader from '@/components/admin/miequipo/EquipoHeader.vue';
+    import TeamCard from '@/components/admin/miequipo/TeamCard.vue';
+    import WeekEmployeeCard from '@/components/admin/miequipo/WeekEmployeeCard.vue';
+    import TeamFilter from '@/components/admin/miequipo/TeamFilter.vue';
+    import TeamTable from '@/components/admin/miequipo/TeamTable.vue';
+    import TeamTableMobile from '@/components/admin/miequipo/mobile/TeamTableMobile.vue';
+    import HistorialWeekEmployeeTable from '@/components/admin/miequipo/HistorialWeekEmployeeTable.vue';
 
     const { obtenerEquipo, obtenerTotalIntegrantes, totalIntegrantes, loading } = useEquipo()
     const { fetchSolicitudActiva, solicitudActiva} = useWeekEmployee()
@@ -82,7 +82,7 @@
                 :cantidad="totalIntegrantes"
             />
         </div>
-        
+
         <div class="mb-8">
             <WeekEmployeeCard/>
         </div>
@@ -91,6 +91,7 @@
         <TeamFilter class="mb-8"
             @filter="aplicarFiltros"
         />
+
 
         <!--Desktop-->
         <div class="mb-8 hidden md:block">
@@ -110,6 +111,7 @@
                 @asignar="asignarEmpleadoMes"
             />
         </div>
+
 
         <!-- PAGINACIÓN -->
         <div
@@ -140,8 +142,6 @@
             <HistorialWeekEmployeeTable/>
         </div>
 
-        
-        
     </div>
 </template>
 

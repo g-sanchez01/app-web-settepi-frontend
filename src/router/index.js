@@ -202,6 +202,30 @@ const router = createRouter({
 
         },
         {
+          path: 'encuestas/ideas',
+          component: () => import('../views/UserAdmin/Encuestas/TusIdeasNosMueven/HomeIdeasView.vue')
+        },
+        {
+          path: 'encuestas/ideas/detalle/:id',
+          component: () => import('../views/UserAdmin/Encuestas/TusIdeasNosMueven/IdeaDetalleView.vue')
+        },
+        {
+          path: 'encuestas/settepi-te-escucha',
+          component: () => import('../views/UserAdmin/Encuestas/Feedback/HomeFeedbackView.vue')
+        },
+        {
+          path: 'encuestas/settepi-te-escucha/detalle/:id',
+          component: () => import('../views/UserAdmin/Encuestas/Feedback/FeedbackDetalleView.vue')
+        },
+        {
+          path: 'mi-equipo',
+          component: () => import('../views/UserAdmin/MiEquipoView.vue')
+        },
+        {
+          path: 'mi-equipo/asignacion/:numero_nomina',
+          component: () => import('../views/UserAdmin/MiEquipo/AsignacionFormularioView.vue')
+        },
+        {
           path: 'perfil',
           component: () => import('../views/UserAdmin/MiPerfilView.vue')
         },
