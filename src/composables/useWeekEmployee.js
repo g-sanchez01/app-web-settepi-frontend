@@ -6,6 +6,7 @@ export function useWeekEmployee() {
     const API_URL = 'http://127.0.0.1:8000'
 
     const colaborador = ref(null)
+    const historial = ref([])
     const solicitudActiva = ref(false)
     const loading = ref(false)
     const error = ref(null)
@@ -40,9 +41,37 @@ export function useWeekEmployee() {
     }
 
     // =================================
+    // OBTENER HISTORIAL
+    // =================================
+    const fetchHistorial = async () => {
+
+        loading.value = true
+        error.value = null
+
+        try {
+            const { data } = await axios.get(
+                `${API_URL}/lider/colaborador-mes/historial`,
+                {
+                    headers: getAuthHeaders()
+                }
+            )
+
+            historial.value = data
+
+        } catch (err) {
+            error.value =
+                err.response?.data?.message ||
+                'Error al obtener historial'
+
+            console.error(err)
+        } finally {
+            loading.value = false
+        }
+    }
+
+    // =================================
     // SOLICITAR COLABORADOR DEL MES
     // =================================
-
     const solicitarColaboradorMes = async (payload) => {
         loading.value = true
         error.value = null
@@ -88,10 +117,12 @@ export function useWeekEmployee() {
 
     return {
         colaborador,
+        historial,
         solicitudActiva,
         loading,
         error,
         fetchWeekEmploye,
+        fetchHistorial,
         fetchSolicitudActiva,
         solicitarColaboradorMes
     }

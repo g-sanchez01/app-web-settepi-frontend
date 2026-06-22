@@ -37,3 +37,18 @@ export const formatMonthYear = (date) => {
 
     return result.charAt(0).toUpperCase() + result.slice(1)
 }
+
+export const formatMonthYearFromNumbers = (mes, anio) => {
+    if (!mes || !anio) return ''
+
+    const date = new Date(anio, mes - 1, 1)
+
+    let result = date.toLocaleDateString('es-MX', {
+        month: 'long',
+        year: 'numeric'
+    })
+
+    // "junio de 2026" → "Junio 2026"
+    result = result.replace(' de ', ' ')
+    return result.charAt(0).toUpperCase() + result.slice(1)
+}

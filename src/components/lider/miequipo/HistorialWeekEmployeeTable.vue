@@ -1,5 +1,9 @@
 <script setup>
-    import { empleadosMes } from '@/data/lider/weekemployees';
+    import { onMounted } from 'vue'
+    import { useWeekEmployee } from '@/composables/useWeekEmployee';
+    import { formatMonthYearFromNumbers } from '@/utils/formatDate';
+
+    const { historial, fetchHistorial } = useWeekEmployee()
 
     const getIniciales = (nombre) => {
         if (!nombre) return 'NA'
@@ -11,6 +15,10 @@
             .join('')
             .toUpperCase()
     }
+
+    onMounted(async () => {
+        await fetchHistorial()
+    })
 
 </script>
 
@@ -27,8 +35,8 @@
         <!-- Lista -->
         <div>
             <div
-                v-for="empleado in empleadosMes"
-                :key="empleado.id"
+                v-for="empleado in historial"
+                :key="`${empleado.numero_nomina}-${empleado.mes}-${empleado.anio}`"
                 class="flex items-center justify-between px-6 py-4 border-b border-slate-100 last:border-b-0 hover:bg-slate-50 transition"
             >
                 <div class="flex items-center gap-4">
@@ -56,7 +64,7 @@
                 <!-- Fecha -->
                 <div class="text-right">
                     <p class="text-sm font-medium text-slate-900">
-                        {{ empleado.fecha }}
+                        {{ formatMonthYearFromNumbers(empleado.mes, empleado.anio) }}
                     </p>
 
                     <span
