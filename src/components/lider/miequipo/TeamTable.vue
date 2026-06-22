@@ -1,11 +1,13 @@
 <script setup>
     import AppSpinner from '@/components/ui/AppSpinner.vue';
+    import { computed } from 'vue';
     import { useRouter } from 'vue-router'
     import { ROUTES } from '@/router/routesGeneral';
+    import { ESTADO_STYLES, ESTADOS_EMPLEADO_MES } from '@/constants/status.constants';
 
     const router = useRouter()
 
-    defineProps({
+    const props = defineProps({
         equipo: {
             type: Array,
             default: () => []
@@ -15,6 +17,14 @@
             default: false
         }
     })
+
+    const existeSolicitudActiva = computed(() =>
+        props.equipo.some(
+            empleado =>
+                empleado.estado_solicitud === ESTADOS_EMPLEADO_MES.PENDIENTE ||
+                empleado.estado_solicitud === ESTADOS_EMPLEADO_MES.APROBADA
+        )
+    )
 
     const asignarColaboradorMes = (colaborador) => {
         // redireccion
@@ -50,8 +60,14 @@
                         </th>
 
                         <th class="px-6 py-5 text-lg font-semibold text-slate-900">
+                            Estado
+                        </th>
+
+                        <th class="px-6 py-5 text-lg font-semibold text-slate-900">
                             Acción
                         </th>
+
+                        
                     </tr>
                 </thead>
 
@@ -74,9 +90,32 @@
                         </td>
 
                         <td class="px-6 py-5">
+                            <span
+                                v-if="empleado.estado_solicitud"
+                                class="px-3 py-1 rounded-full text-sm font-semibold"
+                                :class="ESTADO_STYLES[empleado.estado_solicitud]"
+                            >
+                                {{ empleado.estado_solicitud }}
+                            </span>
+
+                            <span
+                                v-else
+                                class="px-3 py-1 rounded-full text-sm font-semibold bg-slate-100 text-slate-600"
+                            >
+                                SIN SOLICITUD
+                            </span>
+                        </td>
+
+                        <td class="px-6 py-5">
                             <button
                                 @click="asignarColaboradorMes(empleado)"
-                                class="bg-[#005B96] hover:bg-[#1E73B8] text-white px-5 py-3 rounded-xl transition flex items-center gap-2 cursor-pointer"
+                                :disabled="existeSolicitudActiva"
+                                class="px-5 py-3 rounded-xl transition flex items-center gap-2"
+                                :class="[
+                                    existeSolicitudActiva
+                                        ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
+                                        : 'bg-[#005B96] hover:bg-[#1E73B8] text-white cursor-pointer'
+                                ]"
                             >
                                 🏆
                                 Asignar

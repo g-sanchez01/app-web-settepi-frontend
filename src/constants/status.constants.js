@@ -9,6 +9,13 @@ export const ESTADOS_IDEAS = {
     FINALIZADO: 'FINALIZADO'
 };
 
+export const ESTADOS_EMPLEADO_MES = {
+    PENDIENTE: 'PENDIENTE',
+    APROBADA: 'APROBADA',
+    RECHAZADA: 'RECHAZADA',
+    SIN_SOLICITUD: 'SIN SOLICITUD'
+};
+
 export const ESTADO_STYLES = {
     [ESTADOS_IDEAS.ENVIADA]: 'bg-yellow-100 text-yellow-700',
     [ESTADOS_IDEAS.PROGRESO]: 'bg-blue-100 text-blue-700',
@@ -18,6 +25,8 @@ export const ESTADO_STYLES = {
     [ESTADOS_IDEAS.BORRADOR]: 'bg-orange-100 text-orange-700',
     [ESTADOS_IDEAS.PENDIENTE]: 'bg-yellow-100 text-yellow-700',
     [ESTADOS_IDEAS.FINALIZADO]: 'bg-rose-100 text-rose-700',
+
+    [ESTADOS_EMPLEADO_MES.SIN_SOLICITUD]: 'bg-gray-100 text-gray-700',
 };
 
 export const ESTADOS_BLOQUEADOS = [
@@ -27,3 +36,4 @@ export const ESTADOS_BLOQUEADOS = [
     'APROBADA',
     'RECHAZADA'
 ]
+
