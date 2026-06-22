@@ -1,5 +1,6 @@
 import { ref } from 'vue'
 import axios from 'axios'
+import { ROLE_ROUTES } from '@/constants/roleRoutes'
 
 export function useWeekEmployee() {
     // Server QA
@@ -18,13 +19,16 @@ export function useWeekEmployee() {
     // =================================
     // OBTENER COLABORADOR DEL MES
     // =================================
-    const fetchWeekEmploye = async () => {
+    const fetchWeekEmploye = async (role) => {
+        
         loading.value = true
         error.value = null
 
         try {
+            const route = ROLE_ROUTES[role] || 'general'
+
             const { data } = await axios.get(
-                `${API_URL}/lider/colaborador-mes/actual`,
+                `${API_URL}/${route}/colaborador-mes/actual`,
                 {
                     headers: getAuthHeaders()
                 }
@@ -41,7 +45,7 @@ export function useWeekEmployee() {
     }
 
     // =================================
-    // OBTENER HISTORIAL
+    // OBTENER HISTORIAL (SOLO LIDER)
     // =================================
     const fetchHistorial = async () => {
 

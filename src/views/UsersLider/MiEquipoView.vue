@@ -6,6 +6,7 @@
     import TeamFilter from '@/components/lider/miequipo/TeamFilter.vue';
     import TeamCard from '@/components/lider/miequipo/TeamCard.vue';
     import TeamTable from '@/components/lider/miequipo/TeamTable.vue';
+    import TeamTableMobile from '@/components/lider/miequipo/mobile/TeamTableMobile.vue';
     import WeekEmployeeCard from '@/components/lider/miequipo/WeekEmployeeCard.vue';
     import HistorialWeekEmployeeTable from '@/components/lider/miequipo/HistorialWeekEmployeeTable.vue';
 
@@ -91,10 +92,20 @@
             @filter="aplicarFiltros"
         />
 
-        <div class="mb-8">
+        <!--Desktop-->
+        <div class="mb-8 hidden md:block">
             <TeamTable
                 :equipo="equipo"
                 :loading="loading"
+                :solicitud-activa="solicitudActiva"
+                @asignar="asignarEmpleadoMes"
+            />
+        </div>
+
+        <!-- MOBILE -->
+        <div class="mb-8 block md:hidden">
+            <TeamTableMobile
+                :equipo="equipo"
                 :solicitud-activa="solicitudActiva"
                 @asignar="asignarEmpleadoMes"
             />

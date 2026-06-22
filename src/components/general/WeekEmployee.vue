@@ -1,5 +1,24 @@
 <script setup>
-    import { mensajes } from '@/data/general/mensajesEmpleadoMes';
+    import { onMounted } from 'vue';
+    import { useWeekEmployee } from '@/composables/useWeekEmployee';
+    import { formatMonthYear } from '@/utils/formatDate';
+
+    const { colaborador, fetchWeekEmploye } = useWeekEmployee()
+
+    onMounted(() => {
+        fetchWeekEmploye()
+    })
+
+    const getIniciales = (nombre) => {
+        if (!nombre) return 'NA'
+
+        return nombre
+        .split(' ')
+        .slice(0, 2)
+        .map(n => n[0])
+        .join('')
+        .toUpperCase()
+    }
 </script>
 
 <template>
@@ -14,7 +33,7 @@
 
             <div>
                 <h2 class="text-xl font-bold text-[#0F172A]">Empleado del Mes</h2>
-                <p class="text-sm text-gray-500">Mayo 2026</p>
+                <p class="text-sm text-gray-500">{{ formatMonthYear(colaborador?.fecha_asignacion) }}</p>
             </div>
 
         </div>
@@ -39,8 +58,8 @@
             </div>
 
             <!--Puesto-->
-            <h3 class="mt-5 text-xl md:text-2xl font-bold text-slate-800">María Gonzalez</h3>
-            <p class="text-sm text-gray-500 mt-1">Coordinadora de Logística</p>
+            <h3 class="mt-5 text-xl md:text-2xl font-bold text-slate-800">{{ colaborador?.nombre }}</h3>
+            <p class="text-sm text-gray-500 mt-1">{{ colaborador?.puesto_real }}</p>
 
             <!--Estrellas-->
             <div class="flex items-center gap-1 mt-3 text-yellow-400">

@@ -26,55 +26,65 @@
     <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
 
         <!-- Header -->
-        <div class="px-6 py-5 border-b border-slate-200">
-            <h2 class="text-xl font-semibold text-slate-900">
+        <div class="px-5 py-4 border-b border-slate-200">
+            <h2 class="text-lg sm:text-xl font-semibold text-slate-900">
                 Historial Empleado del Mes
             </h2>
         </div>
 
         <!-- Lista -->
-        <div>
+        <div class="divide-y divide-slate-100">
+
             <div
                 v-for="empleado in historial"
                 :key="`${empleado.numero_nomina}-${empleado.mes}-${empleado.anio}`"
-                class="flex items-center justify-between px-6 py-4 border-b border-slate-100 last:border-b-0 hover:bg-slate-50 transition"
+                class="p-4 sm:p-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4
+                       hover:bg-slate-50 transition"
             >
+
+                <!-- LEFT -->
                 <div class="flex items-center gap-4">
 
                     <!-- Avatar -->
                     <div
-                        class="w-12 h-12 rounded-full bg-gradient-to-br from-[#4F8FCF] to-yellow-400 flex items-center justify-center text-white font-bold"
+                        class="w-11 h-11 sm:w-12 sm:h-12 rounded-full 
+                               bg-gradient-to-br from-[#4F8FCF] to-yellow-400 
+                               flex items-center justify-center text-white font-bold text-sm"
                     >
                         {{ getIniciales(empleado.nombre) }}
                     </div>
 
-                    <!-- Información -->
+                    <!-- INFO -->
                     <div>
-                        <p class="font-semibold text-slate-900">
+                        <p class="font-semibold text-slate-900 text-sm sm:text-base">
                             {{ empleado.nombre }}
                         </p>
 
-                        <p class="text-sm text-slate-500">
+                        <p class="text-xs sm:text-sm text-slate-500">
                             {{ empleado.puesto }}
                         </p>
                     </div>
-
                 </div>
 
-                <!-- Fecha -->
-                <div class="text-right">
+                <!-- RIGHT -->
+                <div class="flex sm:flex-col items-center sm:items-end justify-between sm:justify-center gap-2">
+
                     <p class="text-sm font-medium text-slate-900">
                         {{ formatMonthYearFromNumbers(empleado.mes, empleado.anio) }}
                     </p>
 
                     <span
-                        class="inline-flex items-center gap-1 mt-1 px-3 py-1 rounded-full bg-yellow-100 text-yellow-700 text-xs font-semibold"
+                        class="inline-flex items-center gap-1 px-3 py-1 rounded-full 
+                               bg-yellow-100 text-yellow-700 text-xs font-semibold"
                     >
-                        🏆 Empleado del Mes
+                        🏆 <span class="hidden sm:inline">Empleado del Mes</span>
+                        <span class="sm:hidden">Top</span>
                     </span>
+
                 </div>
 
             </div>
+
         </div>
 
     </div>
