@@ -1,9 +1,8 @@
 <script setup>
     import AppSpinner from '@/components/ui/AppSpinner.vue';
-    import { computed } from 'vue';
     import { useRouter } from 'vue-router'
     import { ROUTES } from '@/router/routesGeneral';
-    import { ESTADO_STYLES, ESTADOS_EMPLEADO_MES } from '@/constants/status.constants';
+    import { ESTADO_STYLES } from '@/constants/status.constants';
 
     const router = useRouter()
 
@@ -15,16 +14,12 @@
         loading: {
             type: Boolean,
             default: false
+        },
+        solicitudActiva: {
+            type: Boolean,
+            default: false
         }
     })
-
-    const existeSolicitudActiva = computed(() =>
-        props.equipo.some(
-            empleado =>
-                empleado.estado_solicitud === ESTADOS_EMPLEADO_MES.PENDIENTE ||
-                empleado.estado_solicitud === ESTADOS_EMPLEADO_MES.APROBADA
-        )
-    )
 
     const asignarColaboradorMes = (colaborador) => {
         // redireccion
@@ -109,15 +104,14 @@
                         <td class="px-6 py-5">
                             <button
                                 @click="asignarColaboradorMes(empleado)"
-                                :disabled="existeSolicitudActiva"
+                                :disabled="props.solicitudActiva"
                                 class="px-5 py-3 rounded-xl transition flex items-center gap-2"
                                 :class="[
-                                    existeSolicitudActiva
+                                    props.solicitudActiva
                                         ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
                                         : 'bg-[#005B96] hover:bg-[#1E73B8] text-white cursor-pointer'
                                 ]"
                             >
-                                🏆
                                 Asignar
                             </button>
                         </td>

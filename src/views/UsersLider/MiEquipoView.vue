@@ -1,6 +1,7 @@
 <script setup>
     import { ref, onMounted } from 'vue';
     import { useLider } from '@/composables/useLider';
+    import { useWeekEmployee } from '@/composables/useWeekEmployee';
     import EquipoHeader from '@/components/lider/miequipo/EquipoHeader.vue';
     import TeamFilter from '@/components/lider/miequipo/TeamFilter.vue';
     import TeamCard from '@/components/lider/miequipo/TeamCard.vue';
@@ -9,6 +10,7 @@
     import HistorialWeekEmployeeTable from '@/components/lider/miequipo/HistorialWeekEmployeeTable.vue';
 
     const { obtenerEquipo, obtenerTotalIntegrantes, totalIntegrantes, loading } = useLider()
+    const { fetchSolicitudActiva, solicitudActiva} = useWeekEmployee()
 
     const equipo = ref([])
     const emit = defineEmits(['asignar'])
@@ -32,7 +34,7 @@
     }
 
     onMounted(async () => {
-        await cargarColaboradores()
+        await fetchSolicitudActiva()
         await cargarColaboradores()
         await obtenerTotalIntegrantes()
     })
@@ -93,6 +95,7 @@
             <TeamTable
                 :equipo="equipo"
                 :loading="loading"
+                :solicitud-activa="solicitudActiva"
                 @asignar="asignarEmpleadoMes"
             />
         </div>

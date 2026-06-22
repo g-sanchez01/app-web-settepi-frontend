@@ -6,6 +6,7 @@ export function useWeekEmployee() {
     const API_URL = 'http://127.0.0.1:8000'
 
     const colaborador = ref(null)
+    const solicitudActiva = ref(false)
     const loading = ref(false)
     const error = ref(null)
 
@@ -13,6 +14,9 @@ export function useWeekEmployee() {
         Authorization: `Bearer ${localStorage.getItem('token')}`
     })
 
+    // =================================
+    // OBTENER COLABORADOR DEL MES
+    // =================================
     const fetchWeekEmploye = async () => {
         loading.value = true
         error.value = null
@@ -36,7 +40,7 @@ export function useWeekEmployee() {
     }
 
     // =================================
-    // APROBAR COLABORADOR DEL MES
+    // SOLICITAR COLABORADOR DEL MES
     // =================================
 
     const solicitarColaboradorMes = async (payload) => {
@@ -63,11 +67,32 @@ export function useWeekEmployee() {
         }
     }
 
+    // =================================
+    // SOLICITUD VALIDACION COLABORADOR DEL MES
+    // =================================
+    const fetchSolicitudActiva = async () => {
+    try {
+        const { data } = await axios.get(
+            `${API_URL}/lider/colaborador-mes/solicitud-activa`,
+            {
+                headers: getAuthHeaders()
+            }
+        )
+
+        solicitudActiva.value = data.activa
+
+    } catch (err) {
+        console.error(err)
+    }
+}
+
     return {
         colaborador,
+        solicitudActiva,
         loading,
         error,
         fetchWeekEmploye,
+        fetchSolicitudActiva,
         solicitarColaboradorMes
     }
 
