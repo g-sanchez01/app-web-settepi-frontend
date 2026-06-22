@@ -175,6 +175,37 @@ const router = createRouter({
           component: () => import('../views/UsersLider/MiPerfilView.vue')
         },
       ]
+    },
+
+    // ADMIN
+    {
+      path: '/admin',
+      component: () => import('../views/UserAdmin/layouts/AdminLayout.vue'),
+      meta: {
+        requiresAuth: true,
+        roles: [ROLES.ADMIN]
+      },
+
+      children: [
+        {
+          path: '',
+          redirect: '/admin/home'
+        },
+        {
+          path: 'home',
+          component: () => import('../views/UserAdmin/HomeView.vue')
+
+        },
+        {
+          path: 'encuestas',
+          component: () => import('../views/UserAdmin/EncuestasView.vue')
+
+        },
+        {
+          path: 'perfil',
+          component: () => import('../views/UserAdmin/MiPerfilView.vue')
+        },
+      ]
     }
 
     
