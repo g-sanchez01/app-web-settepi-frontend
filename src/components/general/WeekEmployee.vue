@@ -72,14 +72,14 @@
 
         </div>
 
-        <!--Mensajes-->
+        <!--Mensajes
         <div class="mt-6">
 
             <h4 class="font-semibold text-slate-700 mb-3">
                 Dejar un mensaje de felicitación
             </h4>
 
-            <!--Input-->
+            --Input
             <div class="flex gap-2">
                 <input 
                     type="text"
@@ -98,9 +98,9 @@
 
             </div>
 
-        </div>
+        </div>-->
 
-        <!--Lista de Mensajes-->
+        <!--Lista de Mensajes
         <div class="mt-5 space-y-3">
 
             <div
@@ -117,7 +117,7 @@
                 
             </div>
 
-        </div>
+        </div>-->
 
     </div>
 </template>
