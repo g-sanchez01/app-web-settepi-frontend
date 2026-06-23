@@ -21,7 +21,7 @@
             id: '',
             numero_nomina: '',
             departamento: '',
-            fecha: '',
+            fecha_solicitud: '',
             estado: ''
         }
 
@@ -71,7 +71,7 @@
 
             <!-- Fecha -->
             <input
-                v-model="filters.fecha"
+                v-model="filters.fecha_solicitud"
                 type="date"
                 class="border rounded-lg px-3 py-2"
             />

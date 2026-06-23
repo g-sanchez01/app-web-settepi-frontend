@@ -6,12 +6,13 @@
     import EmpleadoMesTable from '@/components/admin/empleado-mes/EmpleadoMesTable.vue';
     import EmpleadoMesFilter from '@/components/admin/empleado-mes/EmpleadoMesFilter.vue';
 
-    const { solicitudes, fetchSolicitudes, total } = useColaboradorMesAdmin()
+    const { solicitudes, fetchSolicitudes, fetchTotalAsignados, totalAsignados, total } = useColaboradorMesAdmin()
 
     const filters = ref({})
 
     onMounted(() => {
         fetchSolicitudes()
+        fetchTotalAsignados()
     })
 
     const aplicarFiltros = (f) => {
@@ -33,7 +34,7 @@
 
             <StatsCard
                 titulo="Empleados Asignados"
-                :cantidad="0"
+                :cantidad="totalAsignados"
             />
         </div>
 

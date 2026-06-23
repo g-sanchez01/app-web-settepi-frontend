@@ -7,6 +7,7 @@ export function useColaboradorMesAdmin() {
     const API_URL = 'http://127.0.0.1:8000'
 
     const solicitudes = ref([])
+    const totalAsignados = ref(0)
     const loading = ref(false)
     const error = ref(null)
     const total = ref(0)
@@ -58,11 +59,24 @@ export function useColaboradorMesAdmin() {
         }
     }
 
+    const fetchTotalAsignados = async () => {
+        const { data } = await axios.get(
+            `${API_URL}/admin/colaborador-mes/asignados/total`,
+            {
+                headers: getAuthHeaders()
+            }
+        )
+
+        totalAsignados.value = data.total
+    }
+
     return {
         solicitudes,
         loading,
         error,
         total,
-        fetchSolicitudes
+        totalAsignados,
+        fetchSolicitudes,
+        fetchTotalAsignados
     }
 }
