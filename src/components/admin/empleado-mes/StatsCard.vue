@@ -1,5 +1,5 @@
 <script setup>
-
+    import { Users } from 'lucide-vue-next'
     defineProps({
             titulo: {
                 type: String,

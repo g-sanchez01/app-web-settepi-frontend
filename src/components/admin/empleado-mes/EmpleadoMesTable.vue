@@ -1,18 +1,24 @@
 <script setup>
     import AppSpinner from '@/components/ui/AppSpinner.vue';
-    import { ref } from 'vue';
     import { useRouter } from 'vue-router';
-    import { solicitudes } from '@/data/admin/solicitudesEmpleadoMes';
     import { ESTADO_STYLES } from '@/constants/status.constants';
     import { ROUTES } from '@/router/routesGeneral';
+    import { formatDateTime } from '@/utils/formatDate';
 
-    const loading = ref(false)
-    const solicitud = ref(solicitudes)
+    const props = defineProps({
+        solicitudes: {
+            type: Array,
+            default: () => []
+        },
+        loading: Boolean
+    })
+
     const router = useRouter()
 
     const asignarColaboradorMes = (colaborador) => {
-        // redireccion
-        router.push(ROUTES.ADMIN.EMPLEADO_MES.ASIGNAR(colaborador.numero_nomina))
+        router.push(
+            ROUTES.ADMIN.EMPLEADO_MES.ASIGNAR(colaborador.numero_nomina)
+        )
     }
 
 </script>
@@ -62,8 +68,8 @@
 
                 <tbody>
                     <tr
-                        v-for="empleado in solicitud"
-                        :key="empleado.nomina"
+                        v-for="empleado in solicitudes"
+                        :key="empleado.numero_nomina"
                         class="border-b border-slate-200"
                     >
                         <td class="px-6 py-5 text-slate-700">
@@ -79,16 +85,16 @@
                         </td>
 
                         <td class="px-6 py-5 text-slate-700">
-                            {{ empleado.fecha }}
+                            {{ formatDateTime(empleado.fecha_solicitud) }}
                         </td>
 
                         <td class="px-6 py-5">
                             <span
-                                v-if="empleado.estado_solicitud"
+                                v-if="empleado.estado"
                                 class="px-3 py-1 rounded-full text-sm font-semibold"
-                                :class="ESTADO_STYLES[empleado.estado_solicitud]"
+                                :class="ESTADO_STYLES[empleado.estado]"
                             >
-                                {{ empleado.estado_solicitud }}
+                                {{ empleado.estado }}
                             </span>
 
                             <span

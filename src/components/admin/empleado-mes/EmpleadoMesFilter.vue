@@ -8,7 +8,7 @@
         id: '',
         numero_nomina: '',
         departamento: '',
-        fecha: '',
+        fecha_solicitud: '',
         estado: ''
     })
 
@@ -44,7 +44,7 @@
 
             <!-- Nomina -->
             <input
-                v-model="filters.nomina"
+                v-model="filters.numero_nomina"
                 type="text"
                 placeholder="Nomina"
                 class="border rounded-lg px-3 py-2"
