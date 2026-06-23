@@ -1,4 +1,5 @@
 <script setup>
+    import BackButton from '@/components/admin/BackButton.vue';
 
 </script>
 
@@ -9,15 +10,13 @@
         <div class="w-full">
 
             <h1 class="text-2xl md:text-5xl font-bold text-[#0B1F44]">Empleado del Mes</h1>
-            <p class="mt-3 text-base text-slate-600">
-                Gestiona las solicitudes y asigna al empleado del mes de cada departamento.
-            </p>
         </div>
+
+        <BackButton fallback-route="{ name: 'empleado-mes' }" label="Regresar"/>
        
 
     </header>
 
-    
 
 </template>
 

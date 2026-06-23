@@ -68,6 +68,11 @@ export const ROUTES = {
         MI_EQUIPO: {
                 LISTA: '/admin/mi-equipo',
                 ASIGNAR: (numero_nomina) => `/admin/mi-equipo/asignacion/${numero_nomina}`
+        },
+
+        EMPLEADO_MES: {
+                LISTA: '/admin/empleado-mes',
+                ASIGNAR: (numero_nomina) => `/admin/empleado-mes/asignacion/${numero_nomina}`
         }
     }
 }
