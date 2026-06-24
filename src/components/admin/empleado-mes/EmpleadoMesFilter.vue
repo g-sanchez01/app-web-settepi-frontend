@@ -59,7 +59,11 @@
                 <option value="COMUNICACION">COMUNICACION</option>
                 <option value="RECURSOS HUMANOS">RECURSOS HUMANOS</option>
                 <option value="RELACIONES PUBLICAS">RELACIONES PUBLICAS</option>
+                <option value="TRANSPORTACION">TRANSPORTACION</option>
+                <option value="RELACIONES PUBLICAS">RELACIONES PUBLICAS</option>
+                <option value="PLANEACION Y LOGISTICA">PLANEACION Y LOGISTICA</option>
                 <option value="RECLUTAMIENTO">RECLUTAMIENTO</option>
+                <option value="CAPITAL HUMANO">CAPITAL HUMANO</option>
                 <option value="MANTENIMIENTO">MANTENIMIENTO</option>
                 <option value="GESTORIA">GESTORIA</option>
                 <option value="ADMINISTRACION">ADMINISTRACION</option>
@@ -85,7 +89,6 @@
                 <option value="ACEPTADO">ACEPTADO</option>
                 <option value="PENDIENTE">PENDIENTE</option>
                 <option value="RECHAZADA">RECHAZADA</option>
-                <option value="SIN SOLICITUD">SIN SOLICITUD</option>
             </select>
 
         </div>

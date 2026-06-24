@@ -1,5 +1,4 @@
 <script setup>
-    import { Users } from 'lucide-vue-next'
     defineProps({
             titulo: {
                 type: String,
@@ -8,6 +7,14 @@
             cantidad: {
                 type: Number,
                 default: 18
+            },
+            icono: {
+                type: Object,
+                required: true
+            },
+            colorIcono: {
+                type: String,
+                default: 'text-[#005B96]'
             }
     })
 
@@ -21,8 +28,9 @@
     >
         <!-- Header -->
         <div>
-            <Users
-                class="w-7 h-7 sm:w-8 sm:h-8 text-[#005B96] mb-2 sm:mb-3"
+            <component
+                :is="icono"
+                :class="['w-7 h-7 sm:w-8 sm:h-8 mb-2 sm:mb-3', colorIcono]"
                 :stroke-width="2"
             />
 

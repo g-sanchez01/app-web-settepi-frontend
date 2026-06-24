@@ -8,6 +8,7 @@ export function useColaboradorMesAdmin() {
 
     const solicitudes = ref([])
     const totalAsignados = ref(0)
+    const totalPendientes = ref(0)
     const loading = ref(false)
     const error = ref(null)
     const total = ref(0)
@@ -50,7 +51,6 @@ export function useColaboradorMesAdmin() {
             )
 
             solicitudes.value = data.data
-            total.value = data.total
 
         } catch (err) {
             error.value = err.response?.data?.detail || 'Error al obtener solicitudes'
@@ -70,13 +70,25 @@ export function useColaboradorMesAdmin() {
         totalAsignados.value = data.total
     }
 
+    const fetchTotalPendientes = async () => {
+        const { data } = await axios.get(
+            `${API_URL}/admin/colaborador-mes/pendientes/total`,
+            {
+                headers: getAuthHeaders()
+            }
+        )
+
+        totalPendientes.value = data.total
+    }
+
     return {
         solicitudes,
         loading,
         error,
-        total,
         totalAsignados,
+        totalPendientes,
         fetchSolicitudes,
-        fetchTotalAsignados
+        fetchTotalAsignados,
+        fetchTotalPendientes
     }
 }
