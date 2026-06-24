@@ -12,7 +12,7 @@ export const ESTADOS_IDEAS = {
 export const ESTADOS_EMPLEADO_MES = {
     PENDIENTE: 'PENDIENTE',
     ACEPTADO: 'ACEPTADO',
-    RECHAZADA: 'RECHAZADA',
+    RECHAZADO: 'RECHAZADO',
     SIN_SOLICITUD: 'SIN SOLICITUD'
 };
 
@@ -27,7 +27,8 @@ export const ESTADO_STYLES = {
     [ESTADOS_IDEAS.FINALIZADO]: 'bg-rose-100 text-rose-700',
 
     [ESTADOS_EMPLEADO_MES.SIN_SOLICITUD]: 'bg-gray-100 text-gray-700',
-    [ESTADOS_EMPLEADO_MES.ACEPTADO]: 'bg-green-100 text-green-700'
+    [ESTADOS_EMPLEADO_MES.ACEPTADO]: 'bg-green-100 text-green-700',
+    [ESTADOS_EMPLEADO_MES.RECHAZADO]: 'bg-red-100 text-red-700'
 };
 
 export const ESTADOS_BLOQUEADOS = [

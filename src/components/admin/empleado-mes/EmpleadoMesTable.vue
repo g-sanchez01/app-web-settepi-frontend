@@ -17,7 +17,7 @@
 
     const asignarColaboradorMes = (colaborador) => {
         router.push(
-            ROUTES.ADMIN.EMPLEADO_MES.ASIGNAR(colaborador.numero_nomina)
+            ROUTES.ADMIN.EMPLEADO_MES.ASIGNAR(colaborador.id)
         )
     }
 
@@ -69,7 +69,7 @@
                 <tbody>
                     <tr
                         v-for="empleado in solicitudes"
-                        :key="empleado.numero_nomina"
+                        :key="empleado.id"
                         class="border-b border-slate-200"
                     >
                         <td class="px-6 py-5 text-slate-700">

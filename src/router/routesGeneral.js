@@ -72,7 +72,7 @@ export const ROUTES = {
 
         EMPLEADO_MES: {
                 LISTA: '/admin/empleado-mes',
-                ASIGNAR: (numero_nomina) => `/admin/empleado-mes/asignacion/${numero_nomina}`
+                ASIGNAR: (id) => `/admin/empleado-mes/asignacion/${id}`
         }
     }
 }

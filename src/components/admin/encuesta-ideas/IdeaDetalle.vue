@@ -12,8 +12,6 @@
 
     const idea = ref(null)
 
-
-
     const cargarIdea = async () => {
         try {
             idea.value = await obtenerIdeaPorId(route.params.id)

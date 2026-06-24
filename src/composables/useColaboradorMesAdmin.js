@@ -81,6 +81,89 @@ export function useColaboradorMesAdmin() {
         totalPendientes.value = data.total
     }
 
+    const obtenerSolicitudPorId = async (id) => {
+
+        try {
+            loading.value = true
+            error.value = null
+
+            const response = await axios.get(
+                `${API_URL}/admin/colaborador-mes/${id}`,
+                {
+                    headers: getAuthHeaders()
+                }
+            )
+
+            return response.data
+
+        } catch (err) {
+            console.error(err)
+
+            error.value =
+                err.response?.data?.detail ||
+                'Error al obtener solicitud'
+
+            throw err
+
+        } finally {
+            loading.value = false
+        }
+    }
+
+    const aprobarSolicitud = async (id) => {
+        loading.value = true
+        error.value = null
+
+        try {
+            const { data } = await axios.put(
+                `${API_URL}/admin/colaborador-mes/aprobar/${id}`,
+                {},
+                {
+                    headers: getAuthHeaders()
+                }
+            )
+
+            solicitudes.value = solicitudes.value.map(s =>
+                s.id === id ? data : s
+            )
+
+            return data
+
+        } catch (err) {
+            error.value = err?.response?.data?.detail || 'Error al aprobar la solicitud'
+            console.error(err)
+        } finally {
+            loading.value = false
+        }
+    }
+
+    const rechazarSolicitud = async (id) => {
+        loading.value = true
+        error.value = null
+
+        try {
+            const { data } = await axios.put(
+                `${API_URL}/admin/colaborador-mes/rechazar/${id}`,
+                {},
+                {
+                    headers: getAuthHeaders()
+                }
+            )
+
+            solicitudes.value = solicitudes.value.map(s =>
+                s.id === id ? data : s
+            )
+
+            return data
+
+        } catch (err) {
+            error.value = err?.response?.data?.detail || 'Error al rechazar la solicitud'
+            console.error(err)
+        } finally {
+            loading.value = false
+        }
+    }
+
     return {
         solicitudes,
         loading,
@@ -89,6 +172,9 @@ export function useColaboradorMesAdmin() {
         totalPendientes,
         fetchSolicitudes,
         fetchTotalAsignados,
-        fetchTotalPendientes
+        fetchTotalPendientes,
+        obtenerSolicitudPorId,
+        aprobarSolicitud,
+        rechazarSolicitud
     }
 }

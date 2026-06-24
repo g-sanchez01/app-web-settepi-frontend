@@ -1,43 +1,72 @@
 <script setup>
-    import { ref } from 'vue';
-    import { useRoute } from 'vue-router';
+    import { ref, onMounted } from 'vue';
+    import { useRoute, useRouter } from 'vue-router';
     import { formatDateTime } from '@/utils/formatDate';
     import { ESTADO_STYLES } from '@/constants/status.constants';
+    import { useColaboradorMesAdmin } from '@/composables/useColaboradorMesAdmin';
+    import { useToast } from '@/composables/ui/useToast'
+    import { ROUTES } from '@/router/routesGeneral';
     import AppSpinner from '@/components/ui/AppSpinner.vue'
 
     const route = useRoute()
+    const router = useRouter()
+    const toast = useToast()
 
-    const solicitud = ref({
-        id: 1,
-        nomina: '123456',
-        nombre: 'Juan Pérez',
-        departamento: 'Producción',
-        puesto: 'Supervisor',
-        fecha: '2026-06-23T10:30:00',
-        motivo_solicitud: `
-        • KPI de Calidad: 98%
-        • KPI de Productividad: 95%
-        • KPI de Asistencia: 100%
-        • KPI de Seguridad: Sin incidentes reportados
+    const { obtenerSolicitudPorId, aprobarSolicitud, rechazarSolicitud, loading } = useColaboradorMesAdmin()
 
-        Colaborador destacado por su desempeño durante el mes.
-            `,
-        estado: 'ENVIADA'
+    const solicitud = ref(null)
+
+    const cargarSolicitud = async () => {
+        
+        try {
+            solicitud.value = await obtenerSolicitudPorId(route.params.id)
+            
+        } catch (error) {
+            console.error(error)
+        }
+    }
+
+    onMounted(() => {
+        cargarSolicitud()
     })
 
-    const cambiarEstado = async (estado) => {
-        solicitud.value.estado = estado
+    const aprobar = async () => {
+        try {
+            await aprobarSolicitud(route.params.id)
+
+            toast.showToast('Solicitud aprobada con éxito', 'success')
+
+            router.push(ROUTES.ADMIN.EMPLEADO_MES.LISTA)
+
+        } catch (error) {
+            console.error(error)
+            toast.showToast('Error al aprobar solicitud', 'error')
+        }
+    }
+
+    const rechazar = async () => {
+        try {
+            await rechazarSolicitud(route.params.id)
+
+            toast.showToast('Solicitud rechazada con éxito', 'success')
+
+            router.push(ROUTES.ADMIN.EMPLEADO_MES.LISTA)
+
+        } catch (error) {
+            console.error(error)
+            toast.showToast('Error al rechazar solicitud', 'error')
+        }
     }
 </script>
 
 <template>
     <div class="max-w-6xl mx-auto p-4 lg:p-8">
 
-        <!--<AppSpinner
+        <AppSpinner
             :show="loading"
             logo="/images/logoAzul.png"
             text=""
-        />-->
+        />
         
         <div v-if="solicitud" class="bg-white rounded-3xl shadow-sm border border-gray-200 overflow-hidden">
 
@@ -67,7 +96,7 @@
                             Nómina
                         </label>
                         <p class="mt-1 text-gray-900 font-medium">
-                            {{ solicitud.nomina }}
+                            {{ solicitud.numero_nomina }}
                         </p>
                     </div>
 
@@ -103,7 +132,7 @@
                             Fecha
                         </label>
                         <p class="mt-1 text-gray-900 font-medium">
-                            {{ formatDateTime(solicitud.fecha) }}
+                            {{ formatDateTime(solicitud.fecha_solicitud) }}
                         </p>
                     </div>
 
@@ -145,24 +174,16 @@
                     <div class="flex flex-wrap gap-3">
 
                         <button
-                            v-if="solicitud.estado === 'ENVIADA'"
-                            @click="cambiarEstado('EN PROCESO')"
-                            class="px-4 py-2 rounded-lg bg-yellow-100 text-yellow-700 hover:bg-yellow-200 cursor-pointer"
-                        >
-                            Iniciar Proceso
-                        </button>
-
-                        <button
-                            v-if="solicitud.estado === 'EN PROCESO'"
-                            @click="cambiarEstado('APROBADA')"
+                            v-if="solicitud.estado === 'PENDIENTE'"
+                            @click="aprobar"
                             class="px-4 py-2 rounded-lg bg-green-100 text-green-700 hover:bg-green-200 cursor-pointer"
                         >
                             Aprobar
                         </button>
 
                         <button
-                            v-if="solicitud.estado === 'EN PROCESO'"
-                            @click="cambiarEstado('RECHAZADA')"
+                            v-if="solicitud.estado === 'PENDIENTE'"
+                            @click="rechazar"
                             class="px-4 py-2 rounded-lg bg-red-100 text-red-700 hover:bg-red-200 cursor-pointer"
                         >
                             Rechazar

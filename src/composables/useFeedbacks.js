@@ -126,7 +126,7 @@ export function useFeedbacks() {
         }
     }
 
-     const obtenerFeedbackPorId = async (id) => {
+    const obtenerFeedbackPorId = async (id) => {
 
         try {
             loading.value = true

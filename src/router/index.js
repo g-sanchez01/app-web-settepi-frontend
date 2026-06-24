@@ -230,7 +230,7 @@ const router = createRouter({
           component: () => import('../views/UserAdmin/WeekEmployeeView.vue')
         },
         {
-          path: 'empleado-mes/asignacion/:numero_nomina',
+          path: 'empleado-mes/asignacion/:id',
           component: () => import('../views/UserAdmin/WeekEmployeeFormView.vue')
         },
         {
