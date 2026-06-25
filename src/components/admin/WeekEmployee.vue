@@ -33,13 +33,50 @@
 
             <div>
                 <h2 class="text-xl font-bold text-[#0F172A]">Empleado del Mes</h2>
-                <p class="text-sm text-gray-500">{{ formatMonthYear(colaborador?.fecha_asignacion) }}</p>
+                <p class="text-sm text-gray-500">{{
+                        colaborador?.fecha_asignacion
+                            ? formatMonthYear(colaborador.fecha_asignacion)
+                            : 'Sin asignación'
+                    }}
+                </p>
             </div>
 
         </div>
 
+        <!-- Estado vacío -->
+        <div
+            v-if="!colaborador?.nombre"
+            class="bg-gradient-to-br from-[#F8FAFC] to-[#E2E8F0]
+                   border border-slate-200
+                   rounded-3xl
+                   p-8
+                   flex flex-col items-center text-center"
+        >
+            <div
+                class="w-24 h-24 rounded-full
+                       bg-slate-100
+                       flex items-center justify-center
+                       border-4 border-white shadow-lg"
+            >
+                <i class="pi pi-trophy text-slate-300 text-4xl"></i>
+            </div>
+
+            <h3 class="mt-5 text-xl font-bold text-slate-700">
+                Empleado del mes no asignado
+            </h3>
+
+            <p class="text-sm text-slate-500 mt-2 max-w-xs">
+                Aún no se ha reconocido a ningún colaborador este mes.
+            </p>
+
+            <p class="text-xs text-slate-400 mt-3">
+                En cuanto se asigne, aparecerá aquí automáticamente ✨
+            </p>
+        </div>
+
         <!--Card Principal-->
         <div
+            v-else
            class="bg-gradient-to-br from-[#F8FAFC] to-[#E2E8F0]
                 border border-yellow-200
                 rounded-3xl
@@ -54,7 +91,7 @@
                     text-white text-5xl font-bold
                     border-4 border-white shadow-lg"
             >
-                MG
+                {{ getIniciales(colaborador?.nombre) }}
             </div>
 
             <!--Puesto-->

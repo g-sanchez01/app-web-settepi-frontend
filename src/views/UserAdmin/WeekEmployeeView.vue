@@ -6,7 +6,7 @@
     import StatsCard from '@/components/admin/empleado-mes/StatsCard.vue';
     import EmpleadoMesTable from '@/components/admin/empleado-mes/EmpleadoMesTable.vue';
     import EmpleadoMesFilter from '@/components/admin/empleado-mes/EmpleadoMesFilter.vue';
-
+    import EmpleadoMesTableMobile from '@/components/admin/empleado-mes/mobile/EmpleadoMesTableMobile.vue';
     const { solicitudes, fetchSolicitudes, fetchTotalAsignados, fetchTotalPendientes, totalAsignados, totalPendientes } = useColaboradorMesAdmin()
 
     const filters = ref({})
@@ -86,6 +86,11 @@
         <!--Desktop-->
         <div class="mb-8 hidden md:block">
             <EmpleadoMesTable :solicitudes="solicitudes"/>
+        </div>
+
+        <!-- Mobile -->
+        <div class="mb-8 md:hidden">
+            <EmpleadoMesTableMobile :solicitudes="solicitudes"/>
         </div>
 
         <!-- PAGINACIÓN -->

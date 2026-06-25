@@ -1,5 +1,24 @@
 <script setup>
-    import { mensajes } from '@/data/gestor/mensajesEmpleadoMes';
+    import { onMounted } from 'vue';
+    import { useWeekEmployee } from '@/composables/useWeekEmployee';
+    import { formatMonthYear } from '@/utils/formatDate';
+
+    const { colaborador, fetchWeekEmploye } = useWeekEmployee()
+
+    onMounted(() => {
+        fetchWeekEmploye()
+    })
+
+    const getIniciales = (nombre) => {
+        if (!nombre) return 'NA'
+
+        return nombre
+        .split(' ')
+        .slice(0, 2)
+        .map(n => n[0])
+        .join('')
+        .toUpperCase()
+    }
 </script>
 
 <template>
@@ -14,13 +33,50 @@
 
             <div>
                 <h2 class="text-xl font-bold text-[#0F172A]">Empleado del Mes</h2>
-                <p class="text-sm text-gray-500">Mayo 2026</p>
+                <p class="text-sm text-gray-500">{{
+                        colaborador?.fecha_asignacion
+                            ? formatMonthYear(colaborador.fecha_asignacion)
+                            : 'Sin asignación'
+                    }}
+                </p>
             </div>
 
         </div>
 
+        <!-- Estado vacío -->
+        <div
+            v-if="!colaborador?.nombre"
+            class="bg-gradient-to-br from-[#F8FAFC] to-[#E2E8F0]
+                   border border-slate-200
+                   rounded-3xl
+                   p-8
+                   flex flex-col items-center text-center"
+        >
+            <div
+                class="w-24 h-24 rounded-full
+                       bg-slate-100
+                       flex items-center justify-center
+                       border-4 border-white shadow-lg"
+            >
+                <i class="pi pi-trophy text-slate-300 text-4xl"></i>
+            </div>
+
+            <h3 class="mt-5 text-xl font-bold text-slate-700">
+                Empleado del mes no asignado
+            </h3>
+
+            <p class="text-sm text-slate-500 mt-2 max-w-xs">
+                Aún no se ha reconocido a ningún colaborador este mes.
+            </p>
+
+            <p class="text-xs text-slate-400 mt-3">
+                En cuanto se asigne, aparecerá aquí automáticamente ✨
+            </p>
+        </div>
+
         <!--Card Principal-->
         <div
+            v-else
            class="bg-gradient-to-br from-[#F8FAFC] to-[#E2E8F0]
                 border border-yellow-200
                 rounded-3xl
@@ -35,12 +91,12 @@
                     text-white text-5xl font-bold
                     border-4 border-white shadow-lg"
             >
-                MG
+                {{ getIniciales(colaborador?.nombre) }}
             </div>
 
             <!--Puesto-->
-            <h3 class="mt-5 text-xl md:text-2xl font-bold text-slate-800">María Gonzalez</h3>
-            <p class="text-sm text-gray-500 mt-1">Coordinadora de Logística</p>
+            <h3 class="mt-5 text-xl md:text-2xl font-bold text-slate-800">{{ colaborador?.nombre }}</h3>
+            <p class="text-sm text-gray-500 mt-1">{{ colaborador?.puesto_real }}</p>
 
             <!--Estrellas-->
             <div class="flex items-center gap-1 mt-3 text-yellow-400">
@@ -53,14 +109,14 @@
 
         </div>
 
-        <!--Mensajes-->
+        <!--Mensajes
         <div class="mt-6">
 
             <h4 class="font-semibold text-slate-700 mb-3">
                 Dejar un mensaje de felicitación
             </h4>
 
-            <!--Input-->
+            --Input
             <div class="flex gap-2">
                 <input 
                     type="text"
@@ -79,9 +135,9 @@
 
             </div>
 
-        </div>
+        </div>-->
 
-        <!--Lista de Mensajes-->
+        <!--Lista de Mensajes
         <div class="mt-5 space-y-3">
 
             <div
@@ -98,7 +154,7 @@
                 
             </div>
 
-        </div>
+        </div>-->
 
     </div>
 </template>

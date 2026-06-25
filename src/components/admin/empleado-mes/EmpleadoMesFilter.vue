@@ -88,7 +88,7 @@
                 <option value="">Todos los estados</option>
                 <option value="ACEPTADO">ACEPTADO</option>
                 <option value="PENDIENTE">PENDIENTE</option>
-                <option value="RECHAZADA">RECHAZADA</option>
+                <option value="RECHAZADO">RECHAZADO</option>
             </select>
 
         </div>
