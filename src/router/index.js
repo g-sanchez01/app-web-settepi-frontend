@@ -238,6 +238,32 @@ const router = createRouter({
           component: () => import('../views/UserAdmin/MiPerfilView.vue')
         },
       ]
+    },
+
+    // ADMIN_DEV
+    {
+      path: '/admin-dev',
+      component: () => import('../views/UserAdminDev/layouts/AdminDevLayout.vue'),
+      meta: {
+        requiresAuth: true,
+        roles: [ROLES.ADMIN_DEV]
+      },
+
+      children: [
+        {
+          path: '',
+          redirect: '/admin-dev/home'
+        },
+        {
+          path: 'home',
+          component: () => import('../views/UserAdminDev/HomeView.vue')
+
+        },
+        {
+          path: 'perfil',
+          component: () => import('../views/UserAdminDev/MiPerfilView.vue')
+        },
+      ]
     }
 
     
