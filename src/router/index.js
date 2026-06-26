@@ -260,6 +260,27 @@ const router = createRouter({
 
         },
         {
+          path: 'encuestas',
+          component: () => import('../views/UserAdminDev/EncuestasView.vue')
+
+        },
+        {
+          path: 'encuestas/ideas',
+          component: () => import('../views/UserAdminDev/Encuestas/TusIdeasNosMueven/HomeIdeasView.vue')
+        },
+        {
+          path: 'encuestas/ideas/detalle/:id',
+          component: () => import('../views/UserAdminDev/Encuestas/TusIdeasNosMueven/IdeaDetalleView.vue')
+        },
+        {
+          path: 'encuestas/settepi-te-escucha',
+          component: () => import('../views/UserAdminDev/Encuestas/Feedback/HomeFeedbackView.vue')
+        },
+        {
+          path: 'encuestas/settepi-te-escucha/detalle/:id',
+          component: () => import('../views/UserAdminDev/Encuestas/Feedback/FeedbackDetalleView.vue')
+        },
+        {
           path: 'perfil',
           component: () => import('../views/UserAdminDev/MiPerfilView.vue')
         },

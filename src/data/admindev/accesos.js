@@ -6,34 +6,34 @@ import { Users, FileText, User, Trophy, UserRoundCog } from 'lucide-vue-next';
             descripcion: 'Gestiona las encuestas',
             icono: FileText,
             color: 'bg-cyan-600',
-            ruta: '/admin/encuestas'
+            ruta: '/admin-dev/encuestas'
         },
         {
             titulo: 'Mi Perfil',
             descripcion: 'Información personal',
             icono: User,
             color: 'bg-pink-600',
-            ruta: '/admin/perfil'
+            ruta: '/admin-dev/perfil'
         },
         {
             titulo: 'Mi Equipo',
             descripcion: 'Revisa a tu equipo',
             icono: Users,
             color: 'bg-emerald-600',
-            ruta: '/admin/mi-equipo'
+            ruta: '/admin-dev/mi-equipo'
         },
         {
             titulo: 'Empleado del Mes',
             descripcion: 'Revisa las solicitudes',
             icono: Trophy,
             color: 'bg-yellow-500',
-            ruta: '/admin/empleado-mes'
+            ruta: '/admin-dev/empleado-mes'
         },
         {
             titulo: 'Usuarios',
             descripcion: 'Gestiona los usuarios',
             icono: UserRoundCog,
             color: 'bg-violet-500',
-            ruta: '/admin/empleado-mes'
+            ruta: '/admin-dev/empleado-mes'
         }
     ]

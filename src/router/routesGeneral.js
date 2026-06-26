@@ -74,5 +74,29 @@ export const ROUTES = {
                 LISTA: '/admin/empleado-mes',
                 ASIGNAR: (id) => `/admin/empleado-mes/asignacion/${id}`
         }
+    },
+
+    ADMIN_DEV: {
+        ENCUESTAS: {
+            IDEAS: {
+                LISTA: '/admin-dev/encuestas/ideas',
+                DETALLE: (id) => `/admin-dev/encuestas/ideas/detalle/${id}`
+            },
+
+            FEEDBACKS: {
+                LISTA: '/admin-dev/encuestas/settepi-te-escucha',
+                DETALLE: (id) => `/admin-dev/encuestas/settepi-te-escucha/detalle/${id}`
+            }
+        },
+
+        MI_EQUIPO: {
+                LISTA: '/admin-dev/mi-equipo',
+                ASIGNAR: (numero_nomina) => `/admin-dev/mi-equipo/asignacion/${numero_nomina}`
+        },
+
+        EMPLEADO_MES: {
+                LISTA: '/admin-dev/empleado-mes',
+                ASIGNAR: (id) => `/admin-dev/empleado-mes/asignacion/${id}`
+        }
     }
 }
