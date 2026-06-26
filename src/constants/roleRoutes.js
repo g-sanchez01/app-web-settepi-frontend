@@ -5,5 +5,5 @@ export const ROLE_ROUTES = Object.freeze({
   [ROLES.GENERAL]: 'general',
   [ROLES.ADMIN]: 'admin', // o el que corresponda
   [ROLES.GESTOR]: 'gestor',
-  [ROLES.ADMIN_DEV]: 'admin-dev'
+  [ROLES.ADMIN_DEV]: 'admindev'
 })

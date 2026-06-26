@@ -281,6 +281,22 @@ const router = createRouter({
           component: () => import('../views/UserAdminDev/Encuestas/Feedback/FeedbackDetalleView.vue')
         },
         {
+          path: 'mi-equipo',
+          component: () => import('../views/UserAdminDev/MiEquipoView.vue')
+        },
+        {
+          path: 'mi-equipo/asignacion/:numero_nomina',
+          component: () => import('../views/UserAdminDev/MiEquipo/AsignacionFormularioView.vue')
+        },
+        {
+          path: 'empleado-mes',
+          component: () => import('../views/UserAdminDev/WeekEmployeeView.vue')
+        },
+        {
+          path: 'empleado-mes/asignacion/:id',
+          component: () => import('../views/UserAdminDev/WeekEmployeeFormView.vue')
+        },
+        {
           path: 'perfil',
           component: () => import('../views/UserAdminDev/MiPerfilView.vue')
         },
