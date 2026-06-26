@@ -1,6 +1,6 @@
 <script setup>
-    import AsignacionHeader from '@/components/admindev/miequipo/AsignacionHeader.vue';
-    import AsignacionForm from '@/components/admindev/miequipo/AsignacionForm.vue';
+    import AsignacionHeader from '@/components/admin/miequipo/AsignacionHeader.vue';
+    import AsignacionForm from '@/components/admin/miequipo/AsignacionForm.vue';
 </script>
 
 <template>
