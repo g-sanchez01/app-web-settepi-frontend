@@ -23,7 +23,7 @@
 
     const asignarColaboradorMes = (colaborador) => {
         // redireccion
-        router.push(ROUTES.ADMIN.MI_EQUIPO.ASIGNAR(colaborador.numero_nomina))
+        router.push(ROUTES.ADMIN_DEV.MI_EQUIPO.ASIGNAR(colaborador.numero_nomina))
     }
 
 </script>

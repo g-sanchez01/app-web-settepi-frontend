@@ -1,6 +1,7 @@
 <script setup>
     import FeedbackDetalleHeader from '@/components/admindev/encuesta-feedback/FeedbackDetalleHeader.vue';
     import FeedbackDetalle from '@/components/admindev/encuesta-feedback/FeedbackDetalle.vue';
+    import FeedbackDetalleCardMobile from '@/components/admindev/encuesta-feedback/mobile/FeedbackDetalleCardMobile.vue';
 </script>
 
 <template>

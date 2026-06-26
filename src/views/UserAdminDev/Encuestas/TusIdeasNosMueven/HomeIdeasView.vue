@@ -3,6 +3,7 @@
     import IdeasHeader from '@/components/admindev/encuesta-ideas/IdeasHeader.vue';
     import IdeaFilter from '@/components/admindev/encuesta-ideas/IdeaFilter.vue';
     import IdeasTable from '@/components/admindev/encuesta-ideas/IdeasTable.vue';
+    import IdeaTableMobile from '@/components/admindev/encuesta-ideas/mobile/IdeaTableMobile.vue';
     import { useIdeas } from '@/composables/useIdeas';
 
     const { obtenerMisIdeas, loading } = useIdeas()

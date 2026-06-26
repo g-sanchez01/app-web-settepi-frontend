@@ -3,6 +3,7 @@
     import FeedbackFilter from '@/components/admin/encuesta-feedback/FeedbackFilter.vue';
     import FeedbackHeader from '@/components/admin/encuesta-feedback/FeedbackHeader.vue';
     import FeedbacksTable from '@/components/admin/encuesta-feedback/FeedbacksTable.vue';
+    import FeedbackTableMobile from '@/components/admin/encuesta-feedback/mobile/FeedbackTableMobile.vue';
     import { useFeedbacks } from '@/composables/useFeedbacks';
 
     const { obtenerMisFeedbacks, loading } = useFeedbacks()
@@ -72,6 +73,14 @@
         <!--Desktop-->
         <div class="hidden md:block">
             <FeedbacksTable
+                :feedbacks="feedbacks"
+                :loading="loading"
+            />
+        </div>
+
+        <!--Mobile-->
+        <div class="block md:hidden">
+            <FeedbackTableMobile
                 :feedbacks="feedbacks"
                 :loading="loading"
             />

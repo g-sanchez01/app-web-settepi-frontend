@@ -35,7 +35,7 @@
 
             // redireccion
             router.push(
-                ROUTES.ADMIN.MI_EQUIPO.LISTA
+                ROUTES.ADMIN_DEV.MI_EQUIPO.LISTA
             )
         } catch (err) {
             console.error(err)
