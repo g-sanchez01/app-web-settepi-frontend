@@ -297,6 +297,10 @@ const router = createRouter({
           component: () => import('../views/UserAdminDev/WeekEmployeeFormView.vue')
         },
         {
+          path: 'usuarios',
+          component: () => import('../views/UserAdminDev/UsuariosView.vue')
+        },
+        {
           path: 'perfil',
           component: () => import('../views/UserAdminDev/MiPerfilView.vue')
         },

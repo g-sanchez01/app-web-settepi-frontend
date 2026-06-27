@@ -34,6 +34,6 @@ import { Users, FileText, User, Trophy, UserRoundCog } from 'lucide-vue-next';
             descripcion: 'Gestiona los usuarios',
             icono: UserRoundCog,
             color: 'bg-violet-500',
-            ruta: '/admin-dev/empleado-mes'
+            ruta: '/admin-dev/usuarios'
         }
     ]
