@@ -97,6 +97,11 @@ export const ROUTES = {
         EMPLEADO_MES: {
                 LISTA: '/admin-dev/empleado-mes',
                 ASIGNAR: (id) => `/admin-dev/empleado-mes/asignacion/${id}`
+        },
+
+        USUARIOS: {
+                LISTA: '/admin-dev/usuarios',
+                DETALLE: (nomina) => `/admin-dev/usuarios/ver/${nomina}`
         }
     }
 }

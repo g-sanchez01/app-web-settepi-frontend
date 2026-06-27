@@ -16,6 +16,11 @@ export const ESTADOS_EMPLEADO_MES = {
     SIN_SOLICITUD: 'SIN SOLICITUD'
 };
 
+export const ESTADOS_USUARIOS = {
+    ACTIVO: 'ACTIVO',
+    BAJA: 'BAJA',
+};
+
 export const ESTADO_STYLES = {
     [ESTADOS_IDEAS.ENVIADA]: 'bg-yellow-100 text-yellow-700',
     [ESTADOS_IDEAS.PROGRESO]: 'bg-blue-100 text-blue-700',
@@ -28,7 +33,10 @@ export const ESTADO_STYLES = {
 
     [ESTADOS_EMPLEADO_MES.SIN_SOLICITUD]: 'bg-gray-100 text-gray-700',
     [ESTADOS_EMPLEADO_MES.ACEPTADO]: 'bg-green-100 text-green-700',
-    [ESTADOS_EMPLEADO_MES.RECHAZADO]: 'bg-red-100 text-red-700'
+    [ESTADOS_EMPLEADO_MES.RECHAZADO]: 'bg-red-100 text-red-700',
+
+    [ESTADOS_USUARIOS.ACTIVO]: 'bg-green-100 text-green-700',
+    [ESTADOS_USUARIOS.BAJA]: 'bg-red-100 text-red-700'
 };
 
 export const ESTADOS_BLOQUEADOS = [
