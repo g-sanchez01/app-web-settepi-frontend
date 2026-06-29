@@ -7,6 +7,7 @@
 
     const router = useRouter()
 
+
     const props = defineProps({
         ideas: {
             type: Array,

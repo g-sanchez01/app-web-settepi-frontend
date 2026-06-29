@@ -4,12 +4,15 @@
     import { useColaboradorMesAdmin } from '@/composables/useColaboradorMesAdmin';
     import { formatDateTime } from '@/utils/formatDate';
     import { ESTADO_STYLES } from '@/constants/status.constants';
+    import { ROUTES } from '@/router/routesGeneral';
+    import { useToast } from '@/composables/ui/useToast';
     import AppSpinner from '@/components/ui/AppSpinner.vue'
 
     const route = useRoute()
     const router = useRouter()
+    const toast = useToast()
 
-    const { obtenerSolicitudPorId, aprobarSolicitud, rechazarSolicitud } = useColaboradorMesAdmin()
+    const { obtenerSolicitudPorId, aprobarSolicitud, rechazarSolicitud, loading } = useColaboradorMesAdmin()
 
     const solicitud = ref(null)
 

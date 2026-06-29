@@ -35,7 +35,31 @@
         <!-- Lista -->
         <div class="divide-y divide-slate-100">
 
+            <!-- Estado vacío -->
             <div
+                v-if="historial.length === 0"
+                class="flex flex-col items-center justify-center py-14 px-6 text-center"
+            >
+                <div
+                    class="w-16 h-16 rounded-full bg-slate-100 flex items-center justify-center text-3xl mb-4"
+                >
+                    🏆
+                </div>
+
+                <h3 class="text-lg font-semibold text-slate-700">
+                    Aún no hay historial
+                </h3>
+
+                <p class="mt-2 text-sm text-slate-500 max-w-md">
+                    Todavía no se ha registrado ningún
+                    <strong>Empleado del Mes</strong>.
+                    Cuando se realice la primera asignación,
+                    aparecerá aquí el historial.
+                </p>
+            </div>
+
+            <div
+                v-else
                 v-for="empleado in historial"
                 :key="`${empleado.numero_nomina}-${empleado.mes}-${empleado.anio}`"
                 class="p-4 sm:p-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4

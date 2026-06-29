@@ -4,9 +4,12 @@
     import { useFeedbacks } from '@/composables/useFeedbacks';
     import { formatDateTime } from '@/utils/formatDate';
     import { ESTADO_STYLES } from '@/constants/status.constants';
+    import { useToast } from '@/composables/ui/useToast';
     import AppSpinner from '@/components/ui/AppSpinner.vue'
 
     const route = useRoute()
+
+    const toast = useToast()
 
     const { obtenerFeedbackPorId, actualizarEstadoFeedback, loading } = useFeedbacks()
 
@@ -34,6 +37,8 @@
                 feedback.value.idfeedback,
                 estado
             )
+
+            toast.showToast('Estado de la situación actualizado', 'success')
 
             feedback.value.estado = estado
 

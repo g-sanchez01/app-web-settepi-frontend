@@ -50,14 +50,6 @@
 
                 </div>
             </div>
-                
-
-                <!-- ESTADO (solo desktop o opcional móvil pequeño) -->
-                <span
-                    class="hidden md:inline bg-yellow-100 text-yellow-700 text-sm font-semibold px-4 py-2 rounded-full"
-                >
-                    {{ encuesta.estado }}
-                </span>
 
             </div>
 
@@ -80,9 +72,6 @@
             <div
                 class="hidden md:flex border-t border-gray-200 pt-4 items-center justify-between mt-6"
             >
-                <span class="text-gray-500">
-                    Vence: {{ encuesta.fechaLimite }}
-                </span>
 
                 <button
                     @click="irEncuesta"

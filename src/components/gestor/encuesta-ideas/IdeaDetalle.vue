@@ -4,9 +4,12 @@
     import { useIdeas } from '@/composables/useIdeas';
     import { formatDateTime } from '@/utils/formatDate';
     import { ESTADO_STYLES } from '@/constants/status.constants';
+    import { useToast } from '@/composables/ui/useToast';
     import AppSpinner from '@/components/ui/AppSpinner.vue'
 
     const route = useRoute()
+
+    const toast = useToast()
 
     const { obtenerIdeaPorId, actualizarEstadoIdea, loading } = useIdeas()
 
@@ -34,6 +37,8 @@
                 idea.value.idRegistroIdea,
                 estado
             )
+
+            toast.showToast('Estado de la idea actualizado', 'success')
 
             idea.value.estado = estado
 

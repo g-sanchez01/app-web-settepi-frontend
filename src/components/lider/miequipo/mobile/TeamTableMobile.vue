@@ -1,10 +1,19 @@
 <script setup>
+    import AppSpinner from '@/components/ui/AppSpinner.vue';
+    import { useRouter } from 'vue-router'
+    import { ROUTES } from '@/router/routesGeneral';
     import { ESTADO_STYLES } from '@/constants/status.constants';
 
-    defineProps({
+    const router = useRouter()
+
+    const props = defineProps({
         equipo: {
             type: Array,
             default: () => []
+        },
+        loading: {
+            type: Boolean,
+            default: false
         },
         solicitudActiva: {
             type: Boolean,
@@ -12,11 +21,19 @@
         }
     })
 
-    defineEmits(['asignar'])
+    const asignarColaboradorMes = (colaborador) => {
+        // redireccion
+        router.push(ROUTES.LIDER.MI_EQUIPO.ASIGNAR(colaborador.numero_nomina))
+    }
+
 </script>
 
 <template>
     <div class="space-y-4">
+        <AppSpinner
+           :show="loading" logo="/images/logoAzul.png" text=" "
+        />
+
         <div
             v-for="empleado in equipo"
             :key="empleado.numero_nomina"
@@ -73,7 +90,7 @@
 
             <!-- ACTION -->
             <button
-                @click="$emit('asignar', empleado)"
+                @click="asignarColaboradorMes(empleado)"
                 :disabled="solicitudActiva"
                 class="w-full py-3 rounded-xl font-semibold transition-all duration-200
                        flex items-center justify-center gap-2"

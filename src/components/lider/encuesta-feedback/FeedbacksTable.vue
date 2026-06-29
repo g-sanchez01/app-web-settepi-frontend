@@ -41,6 +41,13 @@
 
             <tbody class="divide-y divide-gray-200">
 
+                <!-- SI NO HAY Feedbacks -->
+                <tr v-if="!loading && feedbacks.length === 0"">
+                    <td colspan="6" class="px-6 py-10 text-center text-gray-500">
+                        No tienes situaciones registradas.
+                    </td>
+                </tr>
+
                 <tr
                     v-for="feedback in feedbacks"
                     :key="feedback.idfeedback"
