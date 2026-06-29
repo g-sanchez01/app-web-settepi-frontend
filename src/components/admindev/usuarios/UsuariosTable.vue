@@ -17,7 +17,7 @@
 
     const verUsuario = (usuario) => {
         router.push(
-            ROUTES.ADMIN_DEV.USUARIOS.DETALLE(usuario.nomina)
+            ROUTES.ADMIN_DEV.USUARIOS.DETALLE(usuario.numero_nomina)
         )
     }
 

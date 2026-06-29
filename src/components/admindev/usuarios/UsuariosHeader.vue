@@ -1,5 +1,13 @@
 <script setup>
+    import { UserRoundPlus } from 'lucide-vue-next'
+    import { useRouter } from 'vue-router';
+    import { ROUTES } from '@/router/routesGeneral';
 
+    const router = useRouter()
+
+    const goToNuevoUsuario = () => {
+        router.push(ROUTES.ADMIN_DEV.USUARIOS.NUEVA)
+    }
 </script>
 
 <template>
@@ -17,8 +25,16 @@
        
 
     </header>
-
-    
-
+    <!-- Derecha (Botón) -->
+    <div class="w-full sm:w-auto flex sm:justify-end">
+        <button
+            @click="goToNuevoUsuario"
+            class="w-full sm:w-auto flex items-center justify-center gap-5 bg-green-600 hover:bg-green-700 
+            text-white px-5 py-2 rounded-xl shadow-sm transition cursor-pointer"
+        >
+            <UserRoundPlus/>
+            <span>Agregar nuevo usuario</span>
+        </button>
+    </div>
 </template>
 

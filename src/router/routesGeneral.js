@@ -101,7 +101,8 @@ export const ROUTES = {
 
         USUARIOS: {
                 LISTA: '/admin-dev/usuarios',
-                DETALLE: (nomina) => `/admin-dev/usuarios/ver/${nomina}`
+                NUEVA: '/admin-dev/usuarios/agregar-usuario',
+                DETALLE: (numero_nomina) => `/admin-dev/usuarios/detalle/${numero_nomina}`
         }
     }
 }

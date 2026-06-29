@@ -7,6 +7,7 @@ export function useColaborador() {
     const API_URL = 'http://127.0.0.1:8000'
 
     const colaborador = ref(null)
+    const usuario = ref(null)
     const usuarios = ref([])
     const totalUsuarios = ref(0)
     const loading = ref(false)
@@ -83,13 +84,44 @@ export function useColaborador() {
             totalUsuarios.value = data.total
         }
 
+    const obtenerUsuarioNomina = async (numero_nomina) => {
+        loading.value = true
+        error.value = null
+
+        try {
+
+           const { data } = await axios.get(
+                `${API_URL}/admindev/usuarios/${numero_nomina}`,
+                {
+                    headers: getAuthHeaders()
+                }
+            )
+
+            usuario.value = data
+            return data
+
+        } catch (err) {
+            error.value = err
+            console.error('Error al obtener usuario:', err)
+            return null
+
+        } finally {
+            loading.value = false
+        }
+        
+    }
+
+    
+
     return {
         colaborador,
+        usuario,
         usuarios,
         totalUsuarios,
         loading,
         getByNomina,
         getUsers,
-        fetchTotalUsuarios
+        fetchTotalUsuarios,
+        obtenerUsuarioNomina
     }
 }

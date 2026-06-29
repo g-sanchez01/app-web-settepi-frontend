@@ -301,6 +301,14 @@ const router = createRouter({
           component: () => import('../views/UserAdminDev/UsuariosView.vue')
         },
         {
+          path: 'usuarios/agregar-usuario',
+          component: () => import('../views/UserAdminDev/Usuarios/UsuarioNuevoFormView.vue')
+        },
+        {
+          path: 'usuarios/detalle/:numero_nomina',
+          component: () => import('../views/UserAdminDev/Usuarios/UsuarioDetalleView.vue')
+        },
+        {
           path: 'perfil',
           component: () => import('../views/UserAdminDev/MiPerfilView.vue')
         },
