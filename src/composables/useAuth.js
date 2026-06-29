@@ -48,6 +48,21 @@ export function useAuth() {
             const userResponse = await api.get('/auth/me')
 
             const user = userResponse.data
+
+            // 🚨 BLOQUEO DE USUARIOS BAJA
+            if (user.estado === 'BAJA') {
+
+                error.value = 'Tu cuenta está desactivada. Contacta al administrador.'
+
+                localStorage.removeItem('token')
+                localStorage.removeItem('user')
+                localStorage.removeItem('role')
+
+                router.push('/login')
+
+                return
+            }
+
             const role = user.rol
 
             localStorage.setItem(

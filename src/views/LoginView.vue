@@ -158,7 +158,7 @@
 
                 <p
                     v-if="error"
-                    class="text-red-300 text-center mt-4"
+                    class="text-red-300 text-center mt-4 whitespace-pre-line"
                 >
                     {{ error }}
                 </p>
