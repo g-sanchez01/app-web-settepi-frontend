@@ -71,7 +71,6 @@
     onMounted(() => {
         cargarUsuario()
     })
-   
 </script>
 
 <template>
@@ -82,99 +81,99 @@
             logo="/images/logoAzul.png"
             text=""
         />
-        
+
         <div v-if="usuario" class="bg-white rounded-3xl shadow-sm border border-gray-200 overflow-hidden">
 
-            <!--Header-->
-            <div class="bg-gradient-to-r from-blue-800 to-blue-600 px-8 py-6">
-                <h1 class="text-2xl font-bold text-white text-center">Información del usuario</h1>
+            <!-- HEADER -->
+            <div class="bg-gradient-to-r from-blue-800 to-blue-600 px-5 py-5 lg:px-8 lg:py-6">
+                <h1 class="text-xl lg:text-2xl font-bold text-white text-center">
+                    Información del usuario
+                </h1>
             </div>
 
-             <!--Contenido-->
-            <div class="p-8">
+            <div class="p-5 lg:p-8">
 
-                <!--Datos Generales-->
-                <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+                <!-- MOBILE: 2 COLUMN GRID (REAL ADAPTADO) -->
+                <div class="grid grid-cols-2 gap-3 md:hidden">
+
+                    <div
+                        v-for="item in [
+                            ['Nómina', usuario.numero_nomina],
+                            ['Nombre', usuario.nombre],
+                            ['Teléfono', usuario.telefono],
+                            ['Departamento', usuario.departamento],
+                            ['Puesto', usuario.puesto],
+                            ['Rol', usuario.rol],
+                            ['Creación', formatDateTime(usuario.fecha_creacion)],
+                            ['Actualización', formatDateTime(usuario.fecha_actualizacion)]
+                        ]"
+                        :key="item[0]"
+                        class="bg-gray-50 border border-gray-200 rounded-xl p-3 flex flex-col justify-between min-h-[72px]"
+                    >
+                        <span class="text-[10px] uppercase text-gray-500 font-semibold tracking-wide">
+                            {{ item[0] }}
+                        </span>
+
+                        <span class="text-sm text-gray-900 font-semibold break-words leading-tight mt-1">
+                            {{ item[1] }}
+                        </span>
+                    </div>
+
+                </div>
+
+                <!-- DESKTOP GRID -->
+                <div class="hidden md:grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+
                     <div>
-                        <label class="text-xs font-semibold text-gray-500 uppercase">
-                            Nomina
-                        </label>
-
-                        <p class="mt-1 text-gray-900 font-medium">
-                            {{ usuario.numero_nomina }}
-                        </p>
+                        <label class="text-xs font-semibold text-gray-500 uppercase">Nomina</label>
+                        <p class="mt-1 text-gray-900 font-medium">{{ usuario.numero_nomina }}</p>
                     </div>
 
                     <div>
-                        <label class="text-xs font-semibold text-gray-500 uppercase">
-                            Nombre
-                        </label>
-                        <p class="mt-1 text-gray-900 font-medium">
-                            {{ usuario.nombre }}
-                        </p>
+                        <label class="text-xs font-semibold text-gray-500 uppercase">Nombre</label>
+                        <p class="mt-1 text-gray-900 font-medium">{{ usuario.nombre }}</p>
                     </div>
 
                     <div>
-                        <label class="text-xs font-semibold text-gray-500 uppercase">
-                            Telefono
-                        </label>
-                        <p class="mt-1 text-gray-900 font-medium">
-                            {{ usuario.telefono }}
-                        </p>
+                        <label class="text-xs font-semibold text-gray-500 uppercase">Telefono</label>
+                        <p class="mt-1 text-gray-900 font-medium">{{ usuario.telefono }}</p>
                     </div>
 
                     <div>
-                        <label class="text-xs font-semibold text-gray-500 uppercase">
-                            Departamento
-                        </label>
-                        <p class="mt-1 text-gray-900 font-medium">
-                            {{ usuario.departamento }}
-                        </p>
+                        <label class="text-xs font-semibold text-gray-500 uppercase">Departamento</label>
+                        <p class="mt-1 text-gray-900 font-medium">{{ usuario.departamento }}</p>
                     </div>
 
                     <div>
-                        <label class="text-xs font-semibold text-gray-500 uppercase">
-                            Puesto
-                        </label>
-                        <p class="mt-1 text-gray-900 font-medium">
-                            {{ usuario.puesto }}
-                        </p>
+                        <label class="text-xs font-semibold text-gray-500 uppercase">Puesto</label>
+                        <p class="mt-1 text-gray-900 font-medium">{{ usuario.puesto }}</p>
                     </div>
 
                     <div>
-                        <label class="text-xs font-semibold text-gray-500 uppercase">
-                            Fecha Creacion
-                        </label>
+                        <label class="text-xs font-semibold text-gray-500 uppercase">Fecha Creacion</label>
                         <p class="mt-1 text-gray-900 font-medium">
                             {{ formatDateTime(usuario.fecha_creacion) }}
                         </p>
                     </div>
 
                     <div>
-                        <label class="text-xs font-semibold text-gray-500 uppercase">
-                            Fecha Actualizacion
-                        </label>
+                        <label class="text-xs font-semibold text-gray-500 uppercase">Fecha Actualizacion</label>
                         <p class="mt-1 text-gray-900 font-medium">
                             {{ formatDateTime(usuario.fecha_actualizacion) }}
                         </p>
                     </div>
 
                     <div>
-                        <label class="text-xs font-semibold text-gray-500 uppercase">
-                            Rol
-                        </label>
-                        <p class="mt-1 text-gray-900 font-medium">
-                            {{ usuario.rol }}
-                        </p>
+                        <label class="text-xs font-semibold text-gray-500 uppercase">Rol</label>
+                        <p class="mt-1 text-gray-900 font-medium">{{ usuario.rol }}</p>
                     </div>
-
-                    
 
                 </div>
 
-                <!--Footer Estado-->
-                <div class="border-t border-gray-200 bg-gray-50 px-8 py-6 mt-8">
-                    <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                <!-- FOOTER -->
+                <div class="border-t border-gray-200 bg-gray-50 px-5 py-5 lg:px-8 lg:py-6 mt-6 lg:mt-8">
+
+                    <div class="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
 
                         <div>
                             <p class="text-sm text-gray-500 font-medium">
@@ -183,19 +182,17 @@
                         </div>
 
                         <span
-                            class="inline-flex items-center px-5 py-2 rounded-full text-sm font-semibold"
+                            class="inline-flex items-center px-4 py-1.5 rounded-full text-sm font-semibold w-fit"
                             :class="ESTADO_STYLES[usuario.estado]"
                         >
                             {{ usuario.estado }}
                         </span>
-
                     </div>
 
-                    <!-- Acciones -->
-                    <div class="mt-6 flex justify-end">
+                    <div class="mt-5 lg:mt-6">
                         <button
                             @click="toggleUsuarioEstado"
-                            class="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg
+                            class="w-full md:w-auto inline-flex justify-center items-center gap-2 px-5 py-3 rounded-lg
                                 font-semibold hover:scale-[1.02] active:scale-95
                                 transition-all duration-200 cursor-pointer"
                             :class="usuario.estado === 'ACTIVO'
@@ -208,14 +205,12 @@
                             }}
                         </button>
                     </div>
-                    
+
                 </div>
 
             </div>
 
         </div>
-
-       
     </div>
 </template>
 

@@ -6,6 +6,7 @@
     import StatsUsuariosCard from '@/components/admindev/usuarios/StatsUsuariosCard.vue';
     import UsuariosFilter from '@/components/admindev/usuarios/UsuariosFilter.vue';
     import UsuariosTable from '@/components/admindev/usuarios/UsuariosTable.vue';
+    import UsuariosTableMobile from '@/components/admindev/usuarios/mobile/UsuariosTableMobile.vue';
 
     const { getUsers, fetchTotalUsuarios, usuarios, totalUsuarios } = useColaborador()
     const filters = ref({})
@@ -77,6 +78,13 @@
         <!--Desktop-->
         <div class="mb-8 hidden md:block">
             <UsuariosTable :usuarios="usuarios"/>
+        </div>
+
+        <!--Mobile-->
+        <div class="mb-8 block md:hidden">
+            <UsuariosTableMobile
+                :usuarios="usuarios"
+            />
         </div>
 
         <!-- PAGINACIÓN -->
