@@ -78,23 +78,6 @@
                 }"
             />
 
-            <!-- Zona -->
-            <FormKit
-                type="select"
-                name="zona"
-                label="Zona"
-                :options="[
-                { label: 'Selecciona una zona', value: '', disabled: true },
-                { label: 'APODACA', value: 'APODACA' },
-                { label: 'ESCOBEDO', value: 'ESCOBEDO' },
-                { label: 'PESQUERIA', value: 'PESQUERIA' }
-                ]"
-                validation="required"
-                :validation-messages="{
-                    required: 'La zona es requerida',
-                }"
-            />
-
             <!-- Descripción -->
             <FormKit
                 type="textarea"
