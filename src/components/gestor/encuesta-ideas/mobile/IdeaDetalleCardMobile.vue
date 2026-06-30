@@ -116,16 +116,6 @@
 
                     <div>
                         <p class="text-gray-400 text-xs uppercase">
-                            Zona
-                        </p>
-
-                        <p class="font-medium text-gray-800">
-                            {{ idea.zona }}
-                        </p>
-                    </div>
-
-                    <div>
-                        <p class="text-gray-400 text-xs uppercase">
                             Departamento
                         </p>
 

@@ -93,9 +93,6 @@ export function useIdeas() {
             if (filters.tituloIdea)
                 params.tituloIdea = filters.tituloIdea
 
-            if (filters.zona)
-                params.zona = filters.zona
-
             if (filters.departamento)
                 params.departamento = filters.departamento
 
