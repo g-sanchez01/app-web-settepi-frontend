@@ -40,7 +40,6 @@
                 <tr>
                     <th class="px-4 py-3 font-semibold">ID</th>
                     <th class="px-4 py-3 font-semibold">Nomina</th>
-                    <th class="px-4 py-3 font-semibold">Zona</th>
                     <th class="px-4 py-3 font-semibold">Departamento</th>
                     <th class="px-4 py-3 font-semibold">Título</th>
                     <th class="px-4 py-3 font-semibold">Fecha y Hora</th>
@@ -69,10 +68,6 @@
 
                     <td class="px-6 py-4 font-medium text-gray-700">
                         {{ idea.nomina }}
-                    </td>
-
-                    <td class="px-6 py-4 font-medium text-gray-700">
-                        {{ idea.zona }}
                     </td>
 
                     <td class="px-6 py-4 font-medium text-gray-700">

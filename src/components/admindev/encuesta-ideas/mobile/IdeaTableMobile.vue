@@ -82,13 +82,6 @@
                         </p>
                     </div>
 
-                    <div>
-                        <p class="text-xs text-gray-400">Zona</p>
-                        <p class="font-medium text-gray-700">
-                            {{ idea.zona }}
-                        </p>
-                    </div>
-
                     <div class="col-span-2">
                         <p class="text-xs text-gray-400">Departamento</p>
                         <p class="font-medium text-gray-700">

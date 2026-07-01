@@ -38,7 +38,7 @@
         // volver a la primera página al filtrar
         currentPage.value = 1
 
-        await cargarIdeas()
+        await cargarIdeas(filters)
     }
 
     const siguientePagina = async () => {
