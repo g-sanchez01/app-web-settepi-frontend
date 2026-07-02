@@ -6,7 +6,6 @@
     const filters = ref({
         idRegistroIdea: '',
         nomina: '',
-        zona: '',
         departamento: '',
         tituloIdea: '',
         fecha: '',
@@ -21,7 +20,6 @@
         filters.value = {
             idRegistroIdea: '',
             nomina: '',
-            zona: '',
             departamento: '',
             tituloIdea: '',
             fecha: '',
@@ -60,17 +58,6 @@
                 placeholder="Titulo"
                 class="border rounded-lg px-3 py-2"
             />
-
-            <!-- ZONA -->
-            <select
-                v-model="filters.zona"
-                class="border rounded-lg px-3 py-2"
-            >
-                <option value="">Todas las zonas</option>
-                <option value="APODACA">APODACA</option>
-                <option value="ESCOBEDO">ESCOBEDO</option>
-                <option value="PESQUERIA">PESQUERIA</option>
-            </select>
 
             <!-- DEPARTAMENTO -->
             <select

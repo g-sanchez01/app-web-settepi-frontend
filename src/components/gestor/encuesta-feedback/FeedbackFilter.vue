@@ -58,17 +58,31 @@
                 class="border rounded-lg px-3 py-2"
             >
                 <option value="">Todas las areas</option>
-                <option value="COMUNICACION INTERNA">COMUNICACION INTERNA</option>
-                <option value="RECURSOS HUMANOS">RECURSOS HUMANOS</option>
-                <option value="RELACIONES PUBLICAS">RELACIONES PUBLICAS</option>
-                <option value="RECLUTAMIENTO">RECLUTAMIENTO</option>
-                <option value="MANTENIMIENTO">MANTENIMIENTO</option>
-                <option value="GESTORIA">GESTORIA</option>
                 <option value="ADMINISTRACION">ADMINISTRACION</option>
-                <option value="NOMINAS">NOMINAS</option>
-                <option value="COMBUSTIBLES">COMBUSTIBLES</option>
-                <option value="OPERACIONES">OPERACIONES</option>
+                <option value="ADMINISTRACION DE PERSONAL">ADMINISTRACION DE PERSONAL</option>
+                <option value="ALMACEN">ALMACEN</option>
+                <option value="ATENCION AL COLBAORADOR">ATENCION AL COLBAORADOR</option>
+                <option value="ATRACCION DE TALENTO">ATRACCION DE TALENTO</option>
+                <option value="CABINA">CABINA</option>
+                <option value="CALIDAD">CALIDAD</option>
+                <option value="CAPACITACION Y DESARROLLO">CAPACITACION Y DESARROLLO</option>
+                <option value="CAPITAL HUMANO">CAPITAL HUMANO</option>
+                <option value="COBRANZA">COBRANZA</option>
+                <option value="COMERCIAL">COMERCIAL</option>
+                <option value="COMPRAS">COMPRAS</option>
+                <option value="COMUNICACION INTERNA">COMUNICACION INTERNA</option>
+                <option value="COORDINACION">COORDINACION</option>
+                <option value="FACTURACION">FACTURACION</option>
+                <option value="GESTORIA">GESTORIA</option>
+                <option value="LLANTAS">LLANTAS</option>
+                <option value="MANTENIMIENTO">MANTENIMIENTO</option>
+                <option value="PLANEACION Y LOGISTICA">PLANEACION Y LOGISTICA</option>
+                <option value="RELACIONES LABORALES">RELACIONES LABORALES</option>
+                <option value="RELACIONES PUBLICAS">RELACIONES PUBLICAS</option>
                 <option value="SEGURIDAD VIAL">SEGURIDAD VIAL</option>
+                <option value="SERVICIOS ESPECIALES">SERVICIOS ESPECIALES</option>
+                <option value="SERVICIOS GENERALES">SERVICIOS GENERALES</option>
+                <option value="TRANSPORTACION">TRANSPORTACION</option>
             </select>
 
             <!-- Estado -->

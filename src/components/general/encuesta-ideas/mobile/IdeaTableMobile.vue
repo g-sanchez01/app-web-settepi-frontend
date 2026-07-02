@@ -56,6 +56,7 @@
         />
 
         <div class="md:hidden space-y-3">
+
             <div
                 v-for="idea in ideas"
                 :key="idea.id"

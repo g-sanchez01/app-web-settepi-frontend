@@ -109,19 +109,19 @@
 
                     <div>
                         <label class="text-xs font-semibold text-gray-500 uppercase">
-                            Zona
+                            Departamento
                         </label>
                         <p class="mt-1 text-gray-900 font-medium">
-                            {{ idea.zona }}
+                            {{ idea.departamento }}
                         </p>
                     </div>
 
                     <div>
                         <label class="text-xs font-semibold text-gray-500 uppercase">
-                            Departamento
+                            Area
                         </label>
                         <p class="mt-1 text-gray-900 font-medium">
-                            {{ idea.departamento }}
+                            {{ idea.area }}
                         </p>
                     </div>
 

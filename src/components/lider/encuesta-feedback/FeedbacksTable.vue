@@ -32,7 +32,7 @@
                 <tr>
                     <th class="px-4 py-3 font-semibold">ID</th>
                     <th class="px-4 py-3 font-semibold">Tipo</th>
-                    <th class="px-4 py-3 font-semibold">Area</th>
+                    <th class="px-4 py-3 font-semibold">Area Dirigida</th>
                     <th class="px-4 py-3 font-semibold">Comentario</th>
                     <th class="px-4 py-3 font-semibold">Fecha y Hora</th>
                     <th class="px-4 py-3 font-semibold">Estado</th>

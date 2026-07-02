@@ -155,7 +155,7 @@
 
                 <div>
                     <p class="font-semibold">{{ user.name }}</p>
-                    <p class="text-sm text-white/70">{{ user.department }}</p>
+                    <p class="text-sm text-white/70">{{ user.area }}</p>
                 </div>
 
             </div>

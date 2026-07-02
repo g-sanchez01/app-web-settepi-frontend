@@ -20,6 +20,13 @@
         <!--Derecha (solo tamaño md en adelante)-->
         <div class="hidden md:flex flex-col md:flex-row items-center gap-3 md:gap-5 text-center md:text-right">
 
+            <div v-if="user.department !== user.area">
+                <p class="text-slate-500 text-sm">Área</p>
+                <p class="text-lg md:text-2xl font-bold text-slate-900">
+                    {{ user.area }}
+                </p>
+            </div>
+
             <div>
                 <p class="text-slate-500 text-sm">Departamento</p>
                 <p class="text-lg md:text-2xl font-bold text-slate-900">{{ user.department }}</p>

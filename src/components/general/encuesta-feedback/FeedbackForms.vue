@@ -79,19 +79,27 @@
                 label="Area"
                 :options="[
                     { label: '--- Selecciona el area dirigida ---', value: '', disabled: true },
+                    { label: 'CAPITAL HUMANO', value: 'CAPITAL HUMANO' },
+                    { label: 'COBRANZA', value: 'COBRANZA' },
+                    { label: 'COMERCIAL', value: 'COMERCIAL' },
+                    { label: 'COMPRAS', value: 'COMPRAS' },
                     { label: 'COMUNICACION INTERNA', value: 'COMUNICACION INTERNA' },
-                    { label: 'RECURSOS HUMANOS', value: 'RECURSOS HUMANOS' },
-                    { label: 'MANTENIMIENTO', value: 'MANTENIMIENTO' },
+                    { label: 'COORDINACION', value: 'COORDINACION' },
+                    { label: 'FACTURACION', value: 'FACTURACION' },
                     { label: 'GESTORIA', value: 'GESTORIA' },
-                    { label: 'ADMINISTRACION', value: 'ADMINISTRACION' },
-                    { label: 'NOMINAS', value: 'NOMINAS' },
-                    { label: 'COMBUSTIBLES', value: 'COMBUSTIBLES' },
-                    { label: 'OPERACIONES', value: 'OPERACIONES' },
-                    { label: 'SEGURIDAD VIAL', value: 'SEGURIDAD VIAL' }
+                    { label: 'LLANTAS', value: 'LLANTAS' },
+                    { label: 'MANTENIMIENTO', value: 'MANTENIMIENTO' },
+                    { label: 'PLANEACION Y LOGISTICA', value: 'PLANEACION Y LOGISTICA' },
+                    { label: 'RELACIONES LABORALES', value: 'RELACIONES LABORALES' },
+                    { label: 'RELACIONES PUBLICAS', value: 'RELACIONES PUBLICAS' },
+                    { label: 'SEGURIDAD VIAL', value: 'SEGURIDAD VIAL' },
+                    { label: 'SERVICIOS ESPECIALESL', value: 'SERVICIOS ESPECIALESL' },
+                    { label: 'SERVICIOS GENERALES', value: 'SERVICIOS GENERALES' },
+                    { label: 'TRANSPORTACION', value: 'TRANSPORTACION' },
                 ]"
                 validation="required"
                 :validation-messages="{
-                    required: 'El tipo es requerido',
+                    required: 'El area es requerida',
                 }"
             />
 

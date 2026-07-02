@@ -6,7 +6,7 @@
 
     const filters = ref({
         numero_nomina: '',
-        puesto: ''
+        area: ''
     })
 
     const aplicarFiltros = () => {
@@ -16,7 +16,7 @@
     const limpiarFiltros = () => {
         filters.value = {
             numero_nomina: '',
-            puesto: ''
+            area: ''
         }
 
         emit('filter', { ...filters.value })
@@ -42,11 +42,11 @@
 
             <!-- Puesto -->
             <div class="flex flex-col w-full">
-                <label class="text-xs text-slate-500 mb-1">Puesto</label>
+                <label class="text-xs text-slate-500 mb-1">Area</label>
                 <input
-                    v-model="filters.puesto"
+                    v-model="filters.area"
                     type="text"
-                    placeholder="Ej. Analista"
+                    placeholder="Ej. ATRACCION DE TALENTO"
                     class="border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-300"
                 />
             </div>

@@ -96,7 +96,7 @@
 
                     <div>
                         <p class="text-gray-400 text-xs uppercase">
-                            Area
+                            Area Dirigida
                         </p>
 
                         <p class="font-medium text-gray-800">

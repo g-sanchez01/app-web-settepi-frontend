@@ -115,6 +115,8 @@ export function useUser() {
 
         department: storedUser?.departamento || '',
 
+        area: storedUser?.area || 'Sin Area',
+
         entryDate: 'No disponible',
 
         years: 0,
