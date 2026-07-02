@@ -67,7 +67,15 @@
                 </thead>
 
                 <tbody>
+                    <!-- SI NO HAY SOLICITUDES -->
+                    <tr v-if="!loading && solicitudes.length === 0">
+                        <td colspan="6" class="px-6 py-10 text-center text-gray-500">
+                            No hay solicitudes
+                        </td>
+                    </tr>
+
                     <tr
+                        v-else
                         v-for="empleado in solicitudes"
                         :key="empleado.id"
                         class="border-b border-slate-200"

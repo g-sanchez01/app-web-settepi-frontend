@@ -122,20 +122,49 @@
                 label="Departamento"
                 :options="[
                     { label: '--- Selecciona el departamento ---', value: '', disabled: true },
-                    { label: 'COMUNICACION INTERNA', value: 'COMUNICACION INTERNA' },
-                    { label: 'RECURSOS HUMANOS', value: 'RECURSOS HUMANOS' },
-                    { label: 'MANTENIMIENTO', value: 'MANTENIMIENTO' },
-                    { label: 'GESTORIA', value: 'GESTORIA' },
                     { label: 'ADMINISTRACION', value: 'ADMINISTRACION' },
-                    { label: 'NOMINAS', value: 'NOMINAS' },
-                    { label: 'COMBUSTIBLES', value: 'COMBUSTIBLES' },
-                    { label: 'OPERACIONES', value: 'OPERACIONES' },
+                    { label: 'CAPITAL HUMANO', value: 'CAPITAL HUMANO' },
+                    { label: 'GESTORIA', value: 'GESTORIA' },
+                    { label: 'MANTENIMIENTO', value: 'MANTENIMIENTO' },
+                    { label: 'RELACIONES PUBLICAS', value: 'RELACIONES PUBLICAS' },
                     { label: 'SEGURIDAD VIAL', value: 'SEGURIDAD VIAL' },
-                    { label: 'TRANSPORTACION', value: 'TRANSPORTACION' }
+                    { label: 'SERVICIOS ESPECIALES', value: 'SERVICIOS ESPECIALES' },
+                    { label: 'SERVICIOS GENERALES', value: 'SERVICIOS GENERALES' },
                 ]"
                 validation="required"
                 :validation-messages="{
                     required: 'El departamento es requerido',
+                }"
+            />
+
+            <!-- Area -->
+            <FormKit
+                type="select"
+                name="area"
+                label="Area"
+                :options="[
+                    { label: '--- Selecciona el area ---', value: '', disabled: true },
+                    { label: 'CAPITAL HUMANO', value: 'CAPITAL HUMANO' },
+                    { label: 'COBRANZA', value: 'COBRANZA' },
+                    { label: 'COMERCIAL', value: 'COMERCIAL' },
+                    { label: 'COMPRAS', value: 'COMPRAS' },
+                    { label: 'COMUNICACION INTERNA', value: 'COMUNICACION INTERNA' },
+                    { label: 'COORDINACION', value: 'COORDINACION' },
+                    { label: 'FACTURACION', value: 'FACTURACION' },
+                    { label: 'GESTORIA', value: 'GESTORIA' },
+                    { label: 'LLANTAS', value: 'LLANTAS' },
+                    { label: 'MANTENIMIENTO', value: 'MANTENIMIENTO' },
+                    { label: 'PLANEACION Y LOGISTICA', value: 'PLANEACION Y LOGISTICA' },
+                    { label: 'RELACIONES LABORALES', value: 'RELACIONES LABORALES' },
+                    { label: 'RELACIONES PUBLICAS', value: 'RELACIONES PUBLICAS' },
+                    { label: 'SEGURIDAD VIAL', value: 'SEGURIDAD VIAL' },
+                    { label: 'SERVICIOS ESPECIALES', value: 'SERVICIOS ESPECIALESL' },
+                    { label: 'SERVICIOS GENERALES', value: 'SERVICIOS GENERALES' },
+                    { label: 'TRANSPORTACION', value: 'TRANSPORTACION' },
+                ]"
+                validation="required"
+                :validation-messages="{
+                    required: 'El area es requerido',
                 }"
             />
 

@@ -57,20 +57,15 @@
                 class="border rounded-md px-3 py-2 text-sm h-10"
             >
                 <option value="">Departamento</option>
-                <option value="COMUNICACION">COMUNICACION</option>
-                <option value="RECURSOS HUMANOS">RECURSOS HUMANOS</option>
-                <option value="RELACIONES PUBLICAS">RELACIONES PUBLICAS</option>
-                <option value="TRANSPORTACION">TRANSPORTACION</option>
-                <option value="PLANEACION Y LOGISTICA">PLANEACION Y LOGISTICA</option>
-                <option value="RECLUTAMIENTO">RECLUTAMIENTO</option>
-                <option value="CAPITAL HUMANO">CAPITAL HUMANO</option>
-                <option value="MANTENIMIENTO">MANTENIMIENTO</option>
-                <option value="GESTORIA">GESTORIA</option>
                 <option value="ADMINISTRACION">ADMINISTRACION</option>
-                <option value="NOMINAS">NOMINAS</option>
-                <option value="COMBUSTIBLES">COMBUSTIBLES</option>
-                <option value="OPERACIONES">OPERACIONES</option>
+                <option value="CAPITAL HUMANO">CAPITAL HUMANO</option>
+                <option value="GESTORIA">GESTORIA</option>
+                <option value="MANTENIMIENTO">MANTENIMIENTO</option>
+                <option value="RELACIONES PUBLICAS">RELACIONES PUBLICAS</option>
                 <option value="SEGURIDAD VIAL">SEGURIDAD VIAL</option>
+                <option value="SERVICIOS ESPECIALES">SERVICIOS ESPECIALES</option>
+                <option value="SERVICIOS GENERALES">SERVICIOS GENERALES</option>
+                <option value="TRANSPORTACION">TRANSPORTACION</option>
             </select>
 
             <!-- Fecha -->

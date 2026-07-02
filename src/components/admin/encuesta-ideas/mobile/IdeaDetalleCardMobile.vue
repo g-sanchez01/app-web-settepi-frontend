@@ -126,6 +126,16 @@
 
                     <div>
                         <p class="text-gray-400 text-xs uppercase">
+                            Area
+                        </p>
+
+                        <p class="font-medium text-gray-800">
+                            {{ idea.area }}
+                        </p>
+                    </div>
+
+                    <div>
+                        <p class="text-gray-400 text-xs uppercase">
                             Teléfono
                         </p>
 

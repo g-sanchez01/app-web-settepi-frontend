@@ -92,6 +92,8 @@
 
                     <p class="text-base sm:text-lg text-slate-600 mt-1">
                         {{ colaborador?.puesto_real }}
+                        <span class="mx-2 text-slate-400">•</span>
+                        <span class="font-medium">{{ colaborador?.area }}</span>
                     </p>
                 </div>
             </div>

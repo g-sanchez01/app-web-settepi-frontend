@@ -136,6 +136,16 @@
 
                     <div>
                         <p class="text-gray-400 text-xs uppercase">
+                            Area
+                        </p>
+
+                        <p class="font-medium text-gray-800">
+                            {{ solicitud.area }}
+                        </p>
+                    </div>
+
+                    <div>
+                        <p class="text-gray-400 text-xs uppercase">
                             Puesto
                         </p>
 

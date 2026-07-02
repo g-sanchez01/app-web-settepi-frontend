@@ -40,7 +40,7 @@
                 />
             </div>
 
-            <!-- Puesto -->
+            <!-- Area -->
             <div class="flex flex-col w-full">
                 <label class="text-xs text-slate-500 mb-1">Area</label>
                 <input

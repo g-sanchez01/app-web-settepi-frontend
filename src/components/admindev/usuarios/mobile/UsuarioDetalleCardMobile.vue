@@ -100,8 +100,9 @@
                         v-for="item in [
                             ['Nómina', usuario.numero_nomina],
                             ['Nombre', usuario.nombre],
-                            ['Teléfono', usuario.telefono],
+                            ['Teléfono', usuario.telefono || 'No disponible'],
                             ['Departamento', usuario.departamento],
+                            ['Area', usuario.area],
                             ['Puesto', usuario.puesto],
                             ['Rol', usuario.rol],
                             ['Creación', formatDateTime(usuario.fecha_creacion)],
@@ -142,6 +143,11 @@
                     <div>
                         <label class="text-xs font-semibold text-gray-500 uppercase">Departamento</label>
                         <p class="mt-1 text-gray-900 font-medium">{{ usuario.departamento }}</p>
+                    </div>
+
+                    <div>
+                        <label class="text-xs font-semibold text-gray-500 uppercase">Area</label>
+                        <p class="mt-1 text-gray-900 font-medium">{{ usuario.area }}</p>
                     </div>
 
                     <div>

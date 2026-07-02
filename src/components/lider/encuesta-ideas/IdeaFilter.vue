@@ -53,6 +53,7 @@
                 class="border rounded-lg px-3 py-2"
             >
                 <option value="">Todos los estado</option>
+                <option value="BORRADOR">BORRADOR</option>
                 <option value="ENVIADA">ENVIADA</option>
                 <option value="EN PROCESO">EN PROCESO</option>
                 <option value="APROBADA">APROBADA</option>

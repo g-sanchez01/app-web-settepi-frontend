@@ -29,6 +29,20 @@
 
 <template>
     <div class="space-y-4">
+        <!-- Sin usuarios -->
+        <div
+            v-if="!loading && equipo.length === 0"
+            class="bg-white rounded-2xl shadow-sm border border-slate-100 py-10 px-6 text-center"
+        >
+            <p class="text-lg font-semibold text-slate-700">
+                No hay usuarios
+            </p>
+
+            <p class="mt-1 text-sm text-slate-500">
+                No se encontraron integrantes para mostrar.
+            </p>
+        </div>
+        
         <div
             v-for="empleado in equipo"
             :key="empleado.numero_nomina"

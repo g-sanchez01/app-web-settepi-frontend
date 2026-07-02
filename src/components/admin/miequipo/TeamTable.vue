@@ -71,7 +71,15 @@
                 </thead>
 
                 <tbody>
+                    <!-- SI NO HAY COLABORADOR -->
+                    <tr v-if="!loading && equipo.length === 0">
+                        <td colspan="6" class="px-6 py-10 text-center text-gray-500">
+                            No se encontro al colaborador
+                        </td>
+                    </tr>
+
                     <tr
+                        v-else
                         v-for="empleado in equipo"
                         :key="empleado.numero_nomina"
                         class="border-b border-slate-200 hover:bg-slate-50 transition"

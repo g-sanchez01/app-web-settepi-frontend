@@ -81,6 +81,13 @@
                 </div>
 
                 <div>
+                    <p class="text-xs text-slate-400">Area</p>
+                    <p class="text-sm text-slate-700">
+                        {{ empleado.area }}
+                    </p>
+                </div>
+
+                <div>
                     <p class="text-xs text-slate-400">Puesto</p>
                     <p class="text-sm text-slate-700">
                         {{ empleado.puesto }}

@@ -37,8 +37,8 @@ export function useEquipo() {
             if (filters.numero_nomina)
                 params.numero_nomina = filters.numero_nomina
 
-            if (filters.puesto)
-                params.puesto = filters.puesto
+            if (filters.area)
+                params.area = filters.area
 
             const response = await axios.get(
                 `${API_URL}/${route}/equipo`,

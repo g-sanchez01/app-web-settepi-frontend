@@ -76,7 +76,7 @@
                 <!-- Datos -->
                 <div class="mt-4 grid grid-cols-2 gap-3 text-sm">
                     <div>
-                        <p class="text-xs text-gray-400">Area</p>
+                        <p class="text-xs text-gray-400">Area Dirigida</p>
                         <p class="font-medium text-gray-700">
                             {{ feedback.area }}
                         </p>

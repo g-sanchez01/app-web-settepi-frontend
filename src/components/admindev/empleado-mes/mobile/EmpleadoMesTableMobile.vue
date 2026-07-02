@@ -30,6 +30,16 @@
     />
 
     <div class="space-y-4">
+        <!-- Sin registros -->
+        <div
+            v-if="!loading && solicitudes.length === 0"
+            class="bg-white rounded-2xl shadow-sm border border-slate-100 p-8 text-center"
+        >
+            <p class="text-slate-500">
+                No hay solicitudes
+            </p>
+        </div>
+
         <div
             v-for="empleado in solicitudes"
             :key="empleado.id"

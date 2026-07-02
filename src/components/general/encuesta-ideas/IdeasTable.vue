@@ -1,5 +1,6 @@
 <script setup>
     import AppSpinner from '@/components/ui/AppSpinner.vue';
+    import { ref } from 'vue'
     import { useRouter } from 'vue-router'
     import { formatDateTime } from '@/utils/formatDate';
     import { useIdeas } from '@/composables/useIdeas';
@@ -9,6 +10,8 @@
 
     const router = useRouter()
     const toast = useToast()
+
+    const loadingEnviar = ref(false)
 
     const { enviarIdea } = useIdeas()
 
@@ -29,11 +32,11 @@
     }
 
     const handleEnviarIdea = async (idea) => {
+        loadingEnviar.value = true
+        
         try {
 
-            await enviarIdea(
-                idea.idRegistroIdea
-            )
+            await enviarIdea(idea.idRegistroIdea)
 
             toast.showToast('Tu idea fue enviada con éxito', 'success')
             
@@ -42,6 +45,8 @@
         } catch (err) {
             console.error(err)
             toast.showToast('Error al envíar idea', 'error')
+        } finally {
+            loadingEnviar.value = false
         }
     }
 
@@ -51,7 +56,7 @@
     <div class="w-full overflow-x-auto rounded-2xl border border-gray-100 bg-white shadow-sm mt-5">
 
         <AppSpinner
-           :show="loading" logo="/images/logoAzul.png" text=" "
+           :show="loading || loadingEnviar" logo="/images/logoAzul.png" text=" "
         />
 
         <table class="min-w-full text-sm text-left">
@@ -110,7 +115,7 @@
                     <!-- EDITAR -->
                     <td class="px-6 py-4">
                         <button
-                            :disabled="ESTADOS_BLOQUEADOS.includes(idea.estado)"
+                            :disabled="ESTADOS_BLOQUEADOS.includes(idea.estado) || loadingEnviar"
                             class="inline-flex items-center justify-center w-9 h-9 rounded-lg transition"
                             :class="ESTADOS_BLOQUEADOS.includes(idea.estado)
                                 ? 'text-blue-200 cursor-not-allowed'
@@ -124,7 +129,7 @@
                     <!-- ENVIAR -->
                     <td class="px-6 py-4">
                         <button
-                            :disabled="ESTADOS_BLOQUEADOS.includes(idea.estado)"
+                            :disabled="ESTADOS_BLOQUEADOS.includes(idea.estado) || loadingEnviar"
                             class="inline-flex items-center justify-center w-9 h-9 rounded-lg transition"
                             :class="ESTADOS_BLOQUEADOS.includes(idea.estado)
                                 ? 'text-indigo-200 cursor-not-allowed'

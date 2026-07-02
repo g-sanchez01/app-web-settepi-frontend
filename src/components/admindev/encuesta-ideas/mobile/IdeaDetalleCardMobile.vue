@@ -114,15 +114,6 @@
                         </p>
                     </div>
 
-                    <div>
-                        <p class="text-gray-400 text-xs uppercase">
-                            Zona
-                        </p>
-
-                        <p class="font-medium text-gray-800">
-                            {{ idea.zona }}
-                        </p>
-                    </div>
 
                     <div>
                         <p class="text-gray-400 text-xs uppercase">
@@ -131,6 +122,16 @@
 
                         <p class="font-medium text-gray-800">
                             {{ idea.departamento }}
+                        </p>
+                    </div>
+
+                    <div>
+                        <p class="text-gray-400 text-xs uppercase">
+                            Area
+                        </p>
+
+                        <p class="font-medium text-gray-800">
+                            {{ idea.area }}
                         </p>
                     </div>
 

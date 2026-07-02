@@ -23,71 +23,87 @@
 
     const asignarColaboradorMes = (colaborador) => {
         // redireccion
-        router.push(ROUTES.LIDER.MI_EQUIPO.ASIGNAR(colaborador.numero_nomina))
+        router.push(ROUTES.ADMIN.MI_EQUIPO.ASIGNAR(colaborador.numero_nomina))
     }
 
 </script>
 
 <template>
-    <div class="bg-white rounded-3xl shadow-sm p-8">
+    <div class="bg-white rounded-2xl shadow-sm p-5">
         <AppSpinner
-           :show="loading" logo="/images/logoAzul.png" text=" "
+            :show="loading"
+            logo="/images/logoAzul.png"
+            text=" "
         />
-        
-        <h2 class="text-3xl font-bold text-slate-900 mb-8">
+
+        <h2 class="text-2xl font-bold text-slate-900 mb-5">
             Integrantes del Equipo
         </h2>
 
         <div class="overflow-x-auto">
-            <table class="w-full">
+            <table class="w-full text-sm">
                 <thead>
                     <tr class="bg-slate-100 text-left">
-                        <th class="px-6 py-5 text-lg font-semibold text-slate-900">
+                        <th class="px-4 py-3 font-semibold text-slate-900">
                             Nómina
                         </th>
 
-                        <th class="px-6 py-5 text-lg font-semibold text-slate-900">
+                        <th class="px-4 py-3 font-semibold text-slate-900">
                             Nombre
                         </th>
 
-                        <th class="px-6 py-5 text-lg font-semibold text-slate-900">
+                        <th class="px-4 py-3 font-semibold text-slate-900">
+                            Área
+                        </th>
+
+                        <th class="px-4 py-3 font-semibold text-slate-900">
                             Puesto
                         </th>
 
-                        <th class="px-6 py-5 text-lg font-semibold text-slate-900">
+                        <th class="px-4 py-3 font-semibold text-slate-900">
                             Estado
                         </th>
 
-                        <th class="px-6 py-5 text-lg font-semibold text-slate-900">
+                        <th class="px-4 py-3 font-semibold text-slate-900 text-center">
                             Acción
                         </th>
-
-                        
                     </tr>
                 </thead>
 
                 <tbody>
+                    <!-- SI NO HAY COLABORADOR -->
+                    <tr v-if="!loading && equipo.length === 0">
+                        <td colspan="6" class="px-6 py-10 text-center text-gray-500">
+                            No se encontro al colaborador
+                        </td>
+                    </tr>
+
                     <tr
+                        v-else
                         v-for="empleado in equipo"
-                        :key="empleado.nomina"
-                        class="border-b border-slate-200"
+                        :key="empleado.numero_nomina"
+                        class="border-b border-slate-200 hover:bg-slate-50 transition"
                     >
-                        <td class="px-6 py-5 text-slate-700">
+                        <td class="px-4 py-3 text-slate-700">
                             {{ empleado.numero_nomina }}
                         </td>
 
-                        <td class="px-6 py-5 text-slate-900 font-medium">
+                        <td class="px-4 py-3 font-medium text-slate-900">
                             {{ empleado.nombre }}
                         </td>
 
-                        <td class="px-6 py-5 text-slate-700">
+                        <td class="px-4 py-3 text-slate-700">
+                            {{ empleado.area }}
+                        </td>
+
+                        <td class="px-4 py-3 text-slate-700">
                             {{ empleado.puesto }}
                         </td>
 
-                        <td class="px-6 py-5">
+                        <td class="px-4 py-3">
                             <span
                                 v-if="empleado.estado_solicitud"
-                                class="px-3 py-1 rounded-full text-sm font-semibold"
+                                class="px-2.5 py-1 rounded-full text-xs font-semibold"
                                 :class="ESTADO_STYLES[empleado.estado_solicitud]"
                             >
                                 {{ empleado.estado_solicitud }}
@@ -95,21 +111,21 @@
 
                             <span
                                 v-else
-                                class="px-3 py-1 rounded-full text-sm font-semibold bg-slate-100 text-slate-600"
+                                class="px-2.5 py-1 rounded-full text-xs font-semibold bg-slate-100 text-slate-600"
                             >
                                 SIN SOLICITUD
                             </span>
                         </td>
 
-                        <td class="px-6 py-5">
+                        <td class="px-4 py-3 text-center">
                             <button
                                 @click="asignarColaboradorMes(empleado)"
                                 :disabled="props.solicitudActiva"
-                                class="px-5 py-3 rounded-xl transition flex items-center gap-2"
+                                class="px-3 py-2 text-sm rounded-lg transition"
                                 :class="[
                                     props.solicitudActiva
                                         ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
-                                        : 'bg-[#005B96] hover:bg-[#1E73B8] text-white cursor-pointer'
+                                        : 'bg-[#005B96] hover:bg-[#1E73B8] text-white'
                                 ]"
                             >
                                 Asignar

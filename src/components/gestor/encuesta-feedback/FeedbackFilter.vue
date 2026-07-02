@@ -31,33 +31,34 @@
 </script>
 
 <template>
-    <div class="bg-white p-4 rounded-lg shadow-sm mt-5">
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
-            
+    <div class="bg-white p-3 rounded-xl shadow-sm mt-4">
+
+        <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-3">
+
             <!-- ID -->
             <input
                 v-model="filters.idfeedback"
                 type="text"
                 placeholder="ID"
-                class="border rounded-lg px-3 py-2"
+                class="border rounded-md px-3 py-2 text-sm h-10"
             />
 
             <!-- Tipo -->
             <select
                 v-model="filters.tipo"
-                class="border rounded-lg px-3 py-2"
+                class="border rounded-md px-3 py-2 text-sm h-10"
             >
-                <option value="">Todos los tipos</option>
+                <option value="">Tipo</option>
                 <option value="QUEJA">QUEJA</option>
                 <option value="FELICITACION">FELICITACION</option>
             </select>
 
-            <!-- Area -->
+            <!-- Área -->
             <select
                 v-model="filters.area"
-                class="border rounded-lg px-3 py-2"
+                class="border rounded-md px-3 py-2 text-sm h-10"
             >
-                <option value="">Todas las areas</option>
+                <option value="">Área</option>
                 <option value="ADMINISTRACION">ADMINISTRACION</option>
                 <option value="ADMINISTRACION DE PERSONAL">ADMINISTRACION DE PERSONAL</option>
                 <option value="ALMACEN">ALMACEN</option>
@@ -88,36 +89,39 @@
             <!-- Estado -->
             <select
                 v-model="filters.estado"
-                class="border rounded-lg px-3 py-2"
+                class="border rounded-md px-3 py-2 text-sm h-10"
             >
-                <option value="">Todos los estados</option>
+                <option value="">Estado</option>
                 <option value="PENDIENTE">PENDIENTE</option>
                 <option value="EN PROCESO">EN PROCESO</option>
-                <option value="FINALIZADA">FINALIZADA</option>
+                <option value="FINALIZADO">FINALIZADO</option>
             </select>
 
             <!-- Fecha -->
             <input
                 v-model="filters.fecha"
                 type="date"
-                class="border rounded-lg px-3 py-2"
+                class="border rounded-md px-3 py-2 text-sm h-10"
             />
+
         </div>
 
-        <div class="flex justify-end gap-2 mt-4">
+        <!-- Botones -->
+        <div class="flex justify-end gap-2 mt-3">
             <button
                 @click="limpiarFiltros"
-                class="px-4 py-2 border rounded-lg cursor-pointer"
+                class="px-3 py-2 text-sm border rounded-md hover:bg-slate-50 transition cursor-pointer"
             >
                 Limpiar
             </button>
 
             <button
                 @click="aplicarFiltros"
-                class="px-4 py-2 bg-blue-500 text-white rounded-lg cursor-pointer"
+                class="px-3 py-2 text-sm bg-[#005B96] hover:bg-[#1E73B8] text-white rounded-md transition cursor-pointer"
             >
                 Filtrar
             </button>
         </div>
+
     </div>
 </template>

@@ -1,5 +1,6 @@
 <script setup>
     import AppSpinner from '@/components/ui/AppSpinner.vue';
+    import { ref } from 'vue'
     import { useRouter } from 'vue-router'
     import { formatDateTime } from '@/utils/formatDate';
     import { useIdeas } from '@/composables/useIdeas';
@@ -9,6 +10,8 @@
 
     const router = useRouter()
     const toast = useToast()
+
+    const loadingEnviar = ref(false)
 
     const { enviarIdea } = useIdeas()
 
@@ -30,6 +33,8 @@
     }
 
     const handleEnviarIdea = async (idea) => {
+        loadingEnviar.value = true
+
         try {
 
             await enviarIdea(
@@ -43,6 +48,8 @@
         } catch (err) {
             console.error(err)
             toast.showToast('Error al envíar idea', 'error')
+        } finally {
+            loadingEnviar.value = false
         }
     }
 
@@ -52,7 +59,7 @@
     <div class="w-full mt-5">
 
         <AppSpinner
-           :show="loading" logo="/images/logoAzul.png" text=" "
+           :show="loading || loadingEnviar" logo="/images/logoAzul.png" text=" "
         />
 
         <div class="md:hidden space-y-3">
@@ -73,7 +80,7 @@
                     <div class="flex items-center gap-2 bg-gray-50 p-1 rounded-lg">
                         
                         <button
-                            :disabled="ESTADOS_BLOQUEADOS.includes(idea.estado)"
+                            :disabled="ESTADOS_BLOQUEADOS.includes(idea.estado) || loadingEnviar"
                             class="text-blue-500 w-9 h-9 flex items-center justify-center rounded-lg hover:bg-blue-100 transition"
                             :class="ESTADOS_BLOQUEADOS.includes(idea.estado)
                                 ? 'text-blue-200 cursor-not-allowed'
@@ -84,7 +91,7 @@
                         </button>
 
                         <button
-                            :disabled="ESTADOS_BLOQUEADOS.includes(idea.estado)"
+                            :disabled="ESTADOS_BLOQUEADOS.includes(idea.estado) || loadingEnviar"
                             class="text-indigo-500 w-9 h-9 flex items-center justify-center rounded-lg hover:bg-indigo-100 transition"
                             :class="ESTADOS_BLOQUEADOS.includes(idea.estado)
                                 ? 'text-indigo-200 cursor-not-allowed'

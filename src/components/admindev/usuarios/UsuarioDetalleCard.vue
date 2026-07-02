@@ -119,7 +119,7 @@
                             Telefono
                         </label>
                         <p class="mt-1 text-gray-900 font-medium">
-                            {{ usuario.telefono }}
+                            {{ usuario.telefono || 'No disponible' }}
                         </p>
                     </div>
 
@@ -129,6 +129,15 @@
                         </label>
                         <p class="mt-1 text-gray-900 font-medium">
                             {{ usuario.departamento }}
+                        </p>
+                    </div>
+
+                    <div>
+                        <label class="text-xs font-semibold text-gray-500 uppercase">
+                            Area
+                        </label>
+                        <p class="mt-1 text-gray-900 font-medium">
+                            {{ usuario.area }}
                         </p>
                     </div>
 

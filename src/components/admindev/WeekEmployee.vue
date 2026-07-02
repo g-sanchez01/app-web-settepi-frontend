@@ -97,6 +97,7 @@
             <!--Puesto-->
             <h3 class="mt-5 text-xl md:text-2xl font-bold text-slate-800">{{ colaborador?.nombre }}</h3>
             <p class="text-sm text-gray-500 mt-1">{{ colaborador?.puesto_real }}</p>
+            <p class="text-sm text-gray-500 mt-1">{{ colaborador?.area }}</p>
 
             <!--Estrellas-->
             <div class="flex items-center gap-1 mt-3 text-yellow-400">

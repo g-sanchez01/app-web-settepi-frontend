@@ -93,7 +93,7 @@
                     { label: 'RELACIONES LABORALES', value: 'RELACIONES LABORALES' },
                     { label: 'RELACIONES PUBLICAS', value: 'RELACIONES PUBLICAS' },
                     { label: 'SEGURIDAD VIAL', value: 'SEGURIDAD VIAL' },
-                    { label: 'SERVICIOS ESPECIALESL', value: 'SERVICIOS ESPECIALESL' },
+                    { label: 'SERVICIOS ESPECIALES', value: 'SERVICIOS ESPECIALESL' },
                     { label: 'SERVICIOS GENERALES', value: 'SERVICIOS GENERALES' },
                     { label: 'TRANSPORTACION', value: 'TRANSPORTACION' },
                 ]"

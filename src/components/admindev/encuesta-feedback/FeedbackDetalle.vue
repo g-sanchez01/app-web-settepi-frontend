@@ -113,7 +113,7 @@
 
                     <div>
                         <label class="text-xs font-semibold text-gray-500 uppercase">
-                            Area
+                            Area Dirigida
                         </label>
                         <p class="mt-1 text-gray-900 font-medium">
                             {{ feedback.area }}
