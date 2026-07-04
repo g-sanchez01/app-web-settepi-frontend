@@ -1,18 +1,10 @@
 import { ref } from 'vue'
-import axios from 'axios'
-
+import api from '@/services/api'
 
 export function useIdeas() {
 
-    // Server QA
-    const API_URL = 'http://127.0.0.1:8000'
-
     const loading = ref(false)
     const error = ref(null)
-
-    const getAuthHeaders = () => ({
-        Authorization: `Bearer ${localStorage.getItem('token')}`
-    })
 
     const registrarIdea = async (ideaData) => {
 
@@ -24,16 +16,9 @@ export function useIdeas() {
             // inicio del tiempo
             const startTime = Date.now()
 
-            const token = localStorage.getItem('token')
-
-            const response = await axios.post(
-                `${API_URL}/ideas/registrar`,
-                ideaData,
-                {
-                    headers: {
-                        Authorization: `Bearer ${token}`
-                    }
-                }
+            const response = await api.post(
+                '/ideas/registrar',
+                ideaData
             )
 
             // duración mínima del spinner
@@ -73,9 +58,9 @@ export function useIdeas() {
         page = 1,
         limit = 10
     ) => {
-    
+
         try {
-            
+
             loading.value = true
             error.value = null
 
@@ -108,10 +93,9 @@ export function useIdeas() {
             if (filters.limit !== undefined)
                 params.limit = filters.limit
 
-            const response = await axios.get(
-                `${API_URL}/ideas/mis-ideas`,
+            const response = await api.get(
+                '/ideas/mis-ideas',
                 {
-                    headers: getAuthHeaders(),
                     params
                 }
             )
@@ -119,33 +103,37 @@ export function useIdeas() {
             return response.data
 
         } catch (err) {
+
             console.error(err)
 
-            error.value = err.response?.data?.detail || 'Error al obtener ideas'
+            error.value =
+                err.response?.data?.detail ||
+                'Error al obtener ideas'
 
             throw err
+
         } finally {
 
             loading.value = false
+
         }
     }
 
     const obtenerIdeaPorId = async (id) => {
 
         try {
+
             loading.value = true
             error.value = null
 
-            const response = await axios.get(
-                `${API_URL}/ideas/${id}`,
-                {
-                    headers: getAuthHeaders()
-                }
+            const response = await api.get(
+                `/ideas/${id}`
             )
 
             return response.data
 
         } catch (err) {
+
             console.error(err)
 
             error.value =
@@ -155,27 +143,28 @@ export function useIdeas() {
             throw err
 
         } finally {
+
             loading.value = false
+
         }
     }
 
     const editarIdea = async (id, ideaData) => {
 
         try {
+
             loading.value = true
             error.value = null
 
-            const response = await axios.put(
-                `${API_URL}/ideas/${id}`,
-                ideaData,
-                {
-                    headers: getAuthHeaders()
-                }
+            const response = await api.put(
+                `/ideas/${id}`,
+                ideaData
             )
 
             return response.data
 
         } catch (err) {
+
             console.error(err)
 
             error.value =
@@ -185,24 +174,24 @@ export function useIdeas() {
             throw err
 
         } finally {
+
             loading.value = false
+
         }
     }
 
     const enviarIdea = async (id) => {
 
         try {
+
             loading.value = true
             error.value = null
 
             const startTime = Date.now()
 
-            const response = await axios.put(
-                `${API_URL}/ideas/enviar/${id}`,
-                {},
-                {
-                    headers: getAuthHeaders()
-                }
+            const response = await api.put(
+                `/ideas/enviar/${id}`,
+                {}
             )
 
             // duración mínima del spinner
@@ -220,6 +209,7 @@ export function useIdeas() {
             return response.data
 
         } catch (err) {
+
             console.error(err)
 
             error.value =
@@ -229,11 +219,12 @@ export function useIdeas() {
             throw err
 
         } finally {
+
             loading.value = false
+
         }
     }
 
-    // ACTUALIZAR ESTADO "GESTOR"
     const actualizarEstadoIdea = async (id, estado) => {
 
         try {
@@ -241,12 +232,9 @@ export function useIdeas() {
             loading.value = true
             error.value = null
 
-            const response = await axios.put(
-                `${API_URL}/ideas/${id}/estado`,
-                { estado },
-                {
-                    headers: getAuthHeaders()
-                }
+            const response = await api.put(
+                `/ideas/${id}/estado`,
+                { estado }
             )
 
             return response.data
@@ -275,11 +263,8 @@ export function useIdeas() {
             loading.value = true
             error.value = null
 
-            const response = await axios.get(
-                `${API_URL}/ideas/estadisticas`,
-                {
-                    headers: getAuthHeaders()
-                }
+            const response = await api.get(
+                '/ideas/estadisticas'
             )
 
             return response.data

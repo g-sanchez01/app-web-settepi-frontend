@@ -1,17 +1,10 @@
 import { ref } from 'vue'
-import axios from 'axios'
+import api from '@/services/api'
 
 export function useFeedbacks() {
 
-    // Server QA
-    const API_URL = 'http://127.0.0.1:8000'
-
     const loading = ref(false)
     const error = ref(null)
-
-    const getAuthHeaders = () => ({
-        Authorization: `Bearer ${localStorage.getItem('token')}`
-    })
 
     const registrarFeedback = async (feedbackData) => {
 
@@ -19,20 +12,13 @@ export function useFeedbacks() {
 
             loading.value = true
             error.value = null
-            
+
             // inicio del tiempo
             const startTime = Date.now()
 
-            const token = localStorage.getItem('token')
-
-            const response = await axios.post(
-                `${API_URL}/feedbacks/registrar`,
-                feedbackData,
-                {
-                    headers: {
-                        Authorization: `Bearer ${token}`
-                    }
-                }
+            const response = await api.post(
+                '/feedbacks/registrar',
+                feedbackData
             )
 
             // duración mínima del spinner
@@ -50,10 +36,8 @@ export function useFeedbacks() {
             return response.data
 
         } catch (err) {
-            
-            console.error(err)
 
-            console.log(err.response?.data)
+            console.error(err)
 
             error.value =
                 err.response?.data?.detail ||
@@ -68,8 +52,9 @@ export function useFeedbacks() {
     }
 
     const obtenerMisFeedbacks = async (filters = {}) => {
+
         try {
-            
+
             loading.value = true
             error.value = null
 
@@ -102,23 +87,25 @@ export function useFeedbacks() {
             if (filters.limit !== undefined)
                 params.limit = filters.limit
 
-            const response = await axios.get(
-                `${API_URL}/feedbacks/settepi-te-escucha`,
+            const response = await api.get(
+                '/feedbacks/settepi-te-escucha',
                 {
-                    headers: getAuthHeaders(),
                     params
                 }
             )
 
             return response.data
 
-        } catch (error) {
+        } catch (err) {
 
             console.error(err)
 
-            error.value = err.response?.data?.detail || 'Error al obtener feedbacks'
+            error.value =
+                err.response?.data?.detail ||
+                'Error al obtener feedbacks'
 
             throw err
+
         } finally {
 
             loading.value = false
@@ -129,19 +116,18 @@ export function useFeedbacks() {
     const obtenerFeedbackPorId = async (id) => {
 
         try {
+
             loading.value = true
             error.value = null
 
-            const response = await axios.get(
-                `${API_URL}/feedbacks/${id}`,
-                {
-                    headers: getAuthHeaders()
-                }
+            const response = await api.get(
+                `/feedbacks/${id}`
             )
 
             return response.data
 
         } catch (err) {
+
             console.error(err)
 
             error.value =
@@ -151,7 +137,9 @@ export function useFeedbacks() {
             throw err
 
         } finally {
+
             loading.value = false
+
         }
     }
 
@@ -163,12 +151,9 @@ export function useFeedbacks() {
             loading.value = true
             error.value = null
 
-            const response = await axios.put(
-                `${API_URL}/feedbacks/${id}/estado`,
-                { estado },
-                {
-                    headers: getAuthHeaders()
-                }
+            const response = await api.put(
+                `/feedbacks/${id}/estado`,
+                { estado }
             )
 
             return response.data
@@ -197,11 +182,8 @@ export function useFeedbacks() {
             loading.value = true
             error.value = null
 
-            const response = await axios.get(
-                `${API_URL}/feedbacks/estadisticas`,
-                {
-                    headers: getAuthHeaders()
-                }
+            const response = await api.get(
+                '/feedbacks/estadisticas'
             )
 
             return response.data

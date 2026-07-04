@@ -1,11 +1,8 @@
 import { ref } from 'vue'
 import { ROLE_ROUTES } from '@/constants/roleRoutes'
-import axios from 'axios'
+import api from '@/services/api'
 
 export function useEquipo() {
-
-    // Server QA
-    const API_URL = 'http://127.0.0.1:8000'
 
     const role = localStorage.getItem('role')
 
@@ -15,16 +12,11 @@ export function useEquipo() {
 
     const totalIntegrantes = ref(0)
 
-    const getAuthHeaders = () => ({
-        Authorization: `Bearer ${localStorage.getItem('token')}`
-    })
-
-    const obtenerEquipo = async ( filters = {} ) => {
-        
+    const obtenerEquipo = async (filters = {}) => {
 
         try {
 
-            const route = ROLE_ROUTES[role] 
+            const route = ROLE_ROUTES[role]
 
             const params = {
                 offset: filters.offset || 0,
@@ -40,10 +32,9 @@ export function useEquipo() {
             if (filters.area)
                 params.area = filters.area
 
-            const response = await axios.get(
-                `${API_URL}/${route}/equipo`,
+            const response = await api.get(
+                `/${route}/equipo`,
                 {
-                    headers: getAuthHeaders(),
                     params
                 }
             )
@@ -72,13 +63,10 @@ export function useEquipo() {
     const obtenerTotalIntegrantes = async () => {
         try {
 
-            const route = ROLE_ROUTES[role] 
+            const route = ROLE_ROUTES[role]
 
-            const response = await axios.get(
-                `${API_URL}/${route}/equipo/total`,
-                {
-                    headers: getAuthHeaders()
-                }
+            const response = await api.get(
+                `/${route}/equipo/total`
             )
 
             totalIntegrantes.value = response.data.total

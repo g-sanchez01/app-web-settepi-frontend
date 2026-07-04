@@ -1,18 +1,11 @@
-import axios from 'axios'
+import api from '@/services/api'
 import { ref, computed } from 'vue'
 import { formatCurrentDate } from '@/utils/formatDate'
 
 export function useUser() {
 
-    // Server QA
-    const API_URL = 'http://127.0.0.1:8000'
-
     const loading = ref(false)
     const error = ref(null)
-
-    const getAuthHeaders = () => ({
-        Authorization: `Bearer ${localStorage.getItem('token')}`
-    })
 
     // Desactivar usuario
     const desactivarUsuario = async (numero_nomina) => {
@@ -22,24 +15,25 @@ export function useUser() {
 
         try {
 
-            const { data } = await axios.patch(
-                `${API_URL}/admindev/usuarios/${numero_nomina}/desactivar`,
-                {},
-                {
-                    headers: getAuthHeaders()
-                }
+            const { data } = await api.patch(
+                `/admindev/usuarios/${numero_nomina}/desactivar`,
+                {}
             )
 
             return data
 
         } catch (err) {
 
-            error.value = err.response?.data?.detail || 'Error al desactivar usuario'
+            error.value =
+                err.response?.data?.detail ||
+                'Error al desactivar usuario'
+
             throw err
 
         } finally {
 
             loading.value = false
+
         }
     }
 
@@ -51,27 +45,27 @@ export function useUser() {
 
         try {
 
-            const { data } = await axios.patch(
-                `${API_URL}/admindev/usuarios/${numero_nomina}/reactivar`,
-                {},
-                {
-                    headers: getAuthHeaders()
-                }
+            const { data } = await api.patch(
+                `/admindev/usuarios/${numero_nomina}/reactivar`,
+                {}
             )
 
             return data
 
         } catch (err) {
 
-            error.value = err.response?.data?.detail || 'Error al reactivar usuario'
+            error.value =
+                err.response?.data?.detail ||
+                'Error al reactivar usuario'
+
             throw err
 
         } finally {
 
             loading.value = false
+
         }
     }
-
 
     // Obtener usuario
     const storedUser = JSON.parse(
@@ -115,18 +109,21 @@ export function useUser() {
 
         department: storedUser?.departamento || '',
 
-        area: storedUser?.area || 'Sin Area',
+        area: storedUser?.area || 'Sin Área',
 
         entryDate: 'No disponible',
 
         years: 0,
 
         courses: 0
+
     }))
 
     return {
         user,
         currentDate,
+        desactivarUsuario,
+        reactivarUsuario,
         loading,
         error
     }

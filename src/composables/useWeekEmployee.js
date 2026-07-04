@@ -1,10 +1,8 @@
 import { ref } from 'vue'
-import axios from 'axios'
+import api from '@/services/api'
 import { ROLE_ROUTES } from '@/constants/roleRoutes'
 
 export function useWeekEmployee() {
-    // Server QA
-    const API_URL = 'http://127.0.0.1:8000'
 
     const colaborador = ref(null)
     const historial = ref([])
@@ -12,34 +10,34 @@ export function useWeekEmployee() {
     const loading = ref(false)
     const error = ref(null)
 
-    const getAuthHeaders = () => ({
-        Authorization: `Bearer ${localStorage.getItem('token')}`
-    })
-
     // =================================
     // OBTENER COLABORADOR DEL MES
     // =================================
     const fetchWeekEmploye = async (role) => {
-        
+
         loading.value = true
         error.value = null
 
         try {
+
             const route = ROLE_ROUTES[role] || 'general'
 
-            const { data } = await axios.get(
-                `${API_URL}/${route}/colaborador-mes/actual`,
-                {
-                    headers: getAuthHeaders()
-                }
+            const { data } = await api.get(
+                `/${route}/colaborador-mes/actual`
             )
 
             colaborador.value = data
 
         } catch (err) {
-            error.value = err.response?.data?.message || 'Error al obtener empleado del mes'
+
+            error.value =
+                err.response?.data?.message ||
+                'Error al obtener empleado del mes'
+
         } finally {
+
             loading.value = false
+
         }
 
     }
@@ -53,23 +51,25 @@ export function useWeekEmployee() {
         error.value = null
 
         try {
-            const { data } = await axios.get(
-                `${API_URL}/lider/colaborador-mes/historial`,
-                {
-                    headers: getAuthHeaders()
-                }
+
+            const { data } = await api.get(
+                '/lider/colaborador-mes/historial'
             )
 
             historial.value = data
 
         } catch (err) {
+
             error.value =
                 err.response?.data?.message ||
                 'Error al obtener historial'
 
             console.error(err)
+
         } finally {
+
             loading.value = false
+
         }
     }
 
@@ -77,47 +77,56 @@ export function useWeekEmployee() {
     // SOLICITAR COLABORADOR DEL MES
     // =================================
     const solicitarColaboradorMes = async (payload) => {
+
         loading.value = true
         error.value = null
 
         try {
-            const { data } = await axios.post(
-                    `${API_URL}/lider/colaborador-mes`,
-                    payload,
-                {
-                    headers: getAuthHeaders()
-                },
+
+            const { data } = await api.post(
+                '/lider/colaborador-mes',
+                payload
             )
 
             return data
 
         } catch (err) {
+
             console.log(err.response?.data)
-            error.value = err.response?.data?.message || 'Error al crear solicitud'
+
+            error.value =
+                err.response?.data?.message ||
+                'Error al crear solicitud'
+
             throw err
+
         } finally {
+
             loading.value = false
+
         }
     }
 
     // =================================
-    // SOLICITUD VALIDACION COLABORADOR DEL MES
+    // SOLICITUD VALIDACIÓN COLABORADOR DEL MES
     // =================================
     const fetchSolicitudActiva = async () => {
-    try {
-        const { data } = await axios.get(
-            `${API_URL}/lider/colaborador-mes/solicitud-activa`,
-            {
-                headers: getAuthHeaders()
-            }
-        )
 
-        solicitudActiva.value = data.activa
+        try {
 
-    } catch (err) {
-        console.error(err)
+            const { data } = await api.get(
+                '/lider/colaborador-mes/solicitud-activa'
+            )
+
+            solicitudActiva.value = data.activa
+
+        } catch (err) {
+
+            console.error(err)
+
+        }
+
     }
-}
 
     return {
         colaborador,
@@ -130,8 +139,5 @@ export function useWeekEmployee() {
         fetchSolicitudActiva,
         solicitarColaboradorMes
     }
-
-    
-
 
 }

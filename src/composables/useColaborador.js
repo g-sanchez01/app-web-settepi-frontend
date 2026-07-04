@@ -1,10 +1,7 @@
 import { ref } from 'vue'
-import axios from 'axios'
+import api from '@/services/api'
 
 export function useColaborador() {
-
-    // Server QA
-    const API_URL = 'http://127.0.0.1:8000'
 
     const colaborador = ref(null)
     const usuario = ref(null)
@@ -12,10 +9,6 @@ export function useColaborador() {
     const totalUsuarios = ref(0)
     const loading = ref(false)
     const error = ref(null)
-
-    const getAuthHeaders = () => ({
-        Authorization: `Bearer ${localStorage.getItem('token')}`
-    })
 
     const cleanParams = (filters) => {
         const params = {}
@@ -35,8 +28,8 @@ export function useColaborador() {
         loading.value = true
 
         try {
-            const { data } = await axios.get(
-                `${API_URL}/lider/colaborador/${numero_nomina}`
+            const { data } = await api.get(
+                `/lider/colaborador/${numero_nomina}`
             )
 
             colaborador.value = data
@@ -52,10 +45,9 @@ export function useColaborador() {
 
         try {
 
-            const { data } = await axios.get(
-                `${API_URL}/admindev/usuarios`,
+            const { data } = await api.get(
+                '/admindev/usuarios',
                 {
-                    headers: getAuthHeaders(),
                     params: {
                         offset: 0,
                         limit: 10,
@@ -74,15 +66,12 @@ export function useColaborador() {
     }
 
     const fetchTotalUsuarios = async () => {
-            const { data } = await axios.get(
-                `${API_URL}/admindev/usuarios/total`,
-                {
-                    headers: getAuthHeaders()
-                }
-            )
+        const { data } = await api.get(
+            '/admindev/usuarios/total'
+        )
 
-            totalUsuarios.value = data.total
-        }
+        totalUsuarios.value = data.total
+    }
 
     const obtenerUsuarioNomina = async (numero_nomina) => {
         loading.value = true
@@ -90,11 +79,8 @@ export function useColaborador() {
 
         try {
 
-           const { data } = await axios.get(
-                `${API_URL}/admindev/usuarios/${numero_nomina}`,
-                {
-                    headers: getAuthHeaders()
-                }
+            const { data } = await api.get(
+                `/admindev/usuarios/${numero_nomina}`
             )
 
             usuario.value = data
@@ -108,10 +94,7 @@ export function useColaborador() {
         } finally {
             loading.value = false
         }
-        
     }
-
-    
 
     return {
         colaborador,

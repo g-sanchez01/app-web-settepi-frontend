@@ -1,17 +1,10 @@
 import { ref } from 'vue'
-import axios from 'axios'
+import api from '@/services/api'
 
 export function useUserAdmin() {
 
-    // Server QA
-    const API_URL = 'http://127.0.0.1:8000'
-
     const loading = ref(false)
     const error = ref(null)
-
-    const getAuthHeaders = () => ({
-        Authorization: `Bearer ${localStorage.getItem('token')}`
-    })
 
     // ================================
     // CREAR USUARIO
@@ -23,13 +16,12 @@ export function useUserAdmin() {
 
         try {
 
-            const { data } = await axios.post(
-                `${API_URL}/admindev/usuarios/create`,
+            const { data } = await api.post(
+                '/admindev/usuarios/create',
                 userData,
                 {
                     headers: {
-                        'Content-Type': 'application/json',
-                        ...getAuthHeaders()
+                        'Content-Type': 'application/json'
                     }
                 }
             )
@@ -38,11 +30,16 @@ export function useUserAdmin() {
 
         } catch (err) {
 
-            error.value = err.response?.data?.detail || 'Error al crear usuario'
+            error.value =
+                err.response?.data?.detail ||
+                'Error al crear usuario'
+
             throw err
 
         } finally {
+
             loading.value = false
+
         }
     }
 
@@ -56,23 +53,25 @@ export function useUserAdmin() {
 
         try {
 
-            const { data } = await axios.patch(
-                `${API_URL}/admindev/usuarios/${numero_nomina}/desactivar`,
-                null,
-                {
-                    headers: getAuthHeaders()
-                }
+            const { data } = await api.patch(
+                `/admindev/usuarios/${numero_nomina}/desactivar`,
+                null
             )
 
             return data
 
         } catch (err) {
 
-            error.value = err.response?.data?.detail || 'Error al desactivar usuario'
+            error.value =
+                err.response?.data?.detail ||
+                'Error al desactivar usuario'
+
             throw err
 
         } finally {
+
             loading.value = false
+
         }
     }
 
@@ -86,23 +85,25 @@ export function useUserAdmin() {
 
         try {
 
-            const { data } = await axios.patch(
-                `${API_URL}/admindev/usuarios/${numero_nomina}/reactivar`,
-                null,
-                {
-                    headers: getAuthHeaders()
-                }
+            const { data } = await api.patch(
+                `/admindev/usuarios/${numero_nomina}/reactivar`,
+                null
             )
 
             return data
 
         } catch (err) {
 
-            error.value = err.response?.data?.detail || 'Error al reactivar usuario'
+            error.value =
+                err.response?.data?.detail ||
+                'Error al reactivar usuario'
+
             throw err
 
         } finally {
+
             loading.value = false
+
         }
     }
 

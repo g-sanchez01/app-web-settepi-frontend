@@ -1,10 +1,7 @@
 import { ref } from 'vue'
-import axios from 'axios'
+import api from '@/services/api'
 
 export function useColaboradorMesAdmin() {
-
-    // SERVER QA
-    const API_URL = 'http://127.0.0.1:8000'
 
     const solicitudes = ref([])
     const totalAsignados = ref(0)
@@ -12,10 +9,6 @@ export function useColaboradorMesAdmin() {
     const loading = ref(false)
     const error = ref(null)
     const total = ref(0)
-
-    const getAuthHeaders = () => ({
-        Authorization: `Bearer ${localStorage.getItem('token')}`
-    })
 
     const cleanParams = (filters) => {
         const params = {}
@@ -38,10 +31,9 @@ export function useColaboradorMesAdmin() {
 
         try {
 
-            const { data } = await axios.get(
-                `${API_URL}/admin/colaborador-mes/historial-admin`,
+            const { data } = await api.get(
+                '/admin/colaborador-mes/historial-admin',
                 {
-                    headers: getAuthHeaders(),
                     params: {
                         offset: 0,
                         limit: 10,
@@ -60,22 +52,16 @@ export function useColaboradorMesAdmin() {
     }
 
     const fetchTotalAsignados = async () => {
-        const { data } = await axios.get(
-            `${API_URL}/admin/colaborador-mes/asignados/total`,
-            {
-                headers: getAuthHeaders()
-            }
+        const { data } = await api.get(
+            '/admin/colaborador-mes/asignados/total'
         )
 
         totalAsignados.value = data.total
     }
 
     const fetchTotalPendientes = async () => {
-        const { data } = await axios.get(
-            `${API_URL}/admin/colaborador-mes/pendientes/total`,
-            {
-                headers: getAuthHeaders()
-            }
+        const { data } = await api.get(
+            '/admin/colaborador-mes/pendientes/total'
         )
 
         totalPendientes.value = data.total
@@ -87,11 +73,8 @@ export function useColaboradorMesAdmin() {
             loading.value = true
             error.value = null
 
-            const response = await axios.get(
-                `${API_URL}/admin/colaborador-mes/${id}`,
-                {
-                    headers: getAuthHeaders()
-                }
+            const response = await api.get(
+                `/admin/colaborador-mes/${id}`
             )
 
             return response.data
@@ -115,12 +98,9 @@ export function useColaboradorMesAdmin() {
         error.value = null
 
         try {
-            const { data } = await axios.put(
-                `${API_URL}/admin/colaborador-mes/aprobar/${id}`,
-                {},
-                {
-                    headers: getAuthHeaders()
-                }
+            const { data } = await api.put(
+                `/admin/colaborador-mes/aprobar/${id}`,
+                {}
             )
 
             solicitudes.value = solicitudes.value.map(s =>
@@ -142,12 +122,9 @@ export function useColaboradorMesAdmin() {
         error.value = null
 
         try {
-            const { data } = await axios.put(
-                `${API_URL}/admin/colaborador-mes/rechazar/${id}`,
-                {},
-                {
-                    headers: getAuthHeaders()
-                }
+            const { data } = await api.put(
+                `/admin/colaborador-mes/rechazar/${id}`,
+                {}
             )
 
             solicitudes.value = solicitudes.value.map(s =>
