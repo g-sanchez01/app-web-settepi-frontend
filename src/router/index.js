@@ -341,12 +341,19 @@ const router = createRouter({
       ]
     },
 
-    // Mantenimiento 
+    // Mantenimiento 403
     {
-      path: '/maintenance',
+      path: '/maintenance', 
       name: 'Maintenance',
       component: () => import('../views/errors/MaintenanceView.vue')
-    }
+    },
+
+    // Pagina no encontrada 404
+    {
+    path: '/:pathMatch(.*)*',
+    name: 'NotFound',
+    component: () => import('../views/errors/NotFoundView.vue')
+  }
 
     
   ],
