@@ -1,11 +1,37 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import LoginView from '../views/LoginView.vue'
 import { ROLES } from '@/constants/roles.js'
+import { getMaintenanceStatus } from '@/services/system.js'
 import { HOME_BY_ROLE } from '@/constants/homeByRole.js'
 
 import { getRole, isAuthenticated, logout } from '@/utils/auth.js'
 
+/* =========================
+   CACHE MANTENIMIENTO
+========================= */
+let maintenanceCache = null
+let lastCheck = 0
+
+const checkMaintenance = async () => {
+  const now = Date.now()
+
+  // cache 10 segundos
+  if (maintenanceCache !== null && now - lastCheck < 10000) {
+    return maintenanceCache
+  }
+
+  const { maintenance } = await getMaintenanceStatus()
+
+  maintenanceCache = maintenance
+  lastCheck = now
+
+  return maintenance
+}
+
+console.log(import.meta.env.VITE_MAINTENANCE)
+
 const router = createRouter({
+  
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
@@ -313,22 +339,47 @@ const router = createRouter({
           component: () => import('../views/UserAdminDev/MiPerfilView.vue')
         },
       ]
+    },
+
+    // Mantenimiento 
+    {
+      path: '/maintenance',
+      name: 'Maintenance',
+      component: () => import('../views/errors/MaintenanceView.vue')
     }
 
     
   ],
 })
 
-router.beforeEach((to, from) => {
+/* =========================
+   GUARD GLOBAL
+========================= */
+router.beforeEach(async (to, from) => {
+
+  /* 🛠️ Mantenimiento primero */
+  try {
+    const maintenance = await checkMaintenance()
+
+    if (maintenance && to.path !== '/maintenance') {
+      return '/maintenance'
+    }
+  } catch (error) {
+    console.error('Error checking maintenance:', error)
+  }
+
+  if (to.path === '/maintenance') {
+    return true
+  }
+
   const authenticated = isAuthenticated()
   const role = getRole()
 
-  // Ruta protegida
+  /* 🔐 auth */
   if (to.meta.requiresAuth && !authenticated) {
     return '/login'
   }
 
-  // Rol inválido
   if (
     authenticated &&
     !Object.values(ROLES).includes(role)
@@ -337,29 +388,18 @@ router.beforeEach((to, from) => {
     return '/login'
   }
 
-  // Usuario autenticado intentando entrar a login
   if (to.meta.guestOnly && authenticated) {
     const homeRoute = HOME_BY_ROLE[role]
-
-    if (homeRoute && to.path !== homeRoute) {
-      return homeRoute
-    }
-
-    return true
+    return homeRoute || true
   }
 
-  // Validar permisos
+  /* 🧾 roles */
   if (
     to.meta.roles &&
     !to.meta.roles.includes(role)
   ) {
     const homeRoute = HOME_BY_ROLE[role]
-
-    if (homeRoute && to.path !== homeRoute) {
-      return homeRoute
-    }
-
-    return '/login'
+    return homeRoute || '/login'
   }
 
   return true
