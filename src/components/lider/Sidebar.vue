@@ -129,14 +129,14 @@
 
                 </router-link>
 
-                <router-link
+                <!-- <router-link
                     to="/"
                     class="flex items-center gap-4 px-4 py-4 rounded-2xl hover:bg-white/10 transition"
                 >
                     <i class="pi pi-cog text-xl"></i>
                     <span class="text-lg">Configuración</span>
                     
-                </router-link>
+                </router-link> -->
 
             </nav>
 
