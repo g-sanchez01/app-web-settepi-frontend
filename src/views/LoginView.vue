@@ -35,13 +35,32 @@
         <!--Card-->
         <div class="relative z-10 w-full max-w-lg mx-4 sm:mx-6 md:mx-0 rounded-lg p-6 sm:p-8 md:p-10 shadow-xl" style="background-color: rgba(0, 0, 0, 0.20);">
 
-            <!--Logo-->
-            <div class="flex justify-center mb-6">
+            <!-- Logo -->
+            <div class="flex flex-col items-center justify-center mb-6">
                 <img
                     src="/images/logo.png"
                     alt="Logo"
-                    class="w-45 h-24 object-contain"
+                    class="w-45 h-24 object-contain mb-6"
                 />
+
+                <div class="flex items-center justify-center gap-4">
+                    <div class="flex items-center justify-center w-17 h-17 bg-yellow-400 rounded-2xl">
+                        <img
+                            src="/images/CAMION.svg"
+                            alt="Camión"
+                            class="w-12 h-12"
+                        />
+                    </div>
+
+                    <div class="leading-none">
+                        <h2 class="text-white text-3xl font-medium">
+                            My Way
+                        </h2>
+                        <p class="text-white/70 text-sm mt-1 tracking-wide">
+                            by Settepi
+                        </p>
+                    </div>
+                </div>
             </div>
 
             <!--Title-->
